@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "710221840901",
+    "project_id": "sitforsa",
+    "storage_bucket": "sitforsa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:710221840901:android:ae5ac38dffeadd460e926c",
+        "android_client_info": {
+          "package_name": "com.project.sitforsa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "710221840901-htae8lslestmspsprdotmgnbn31c55o2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.project.sitforsa",
+            "certificate_hash": "0ec39fb42060680273ad42c391b61fe2fde02419"
+          }
+        },
+        {
+          "client_id": "710221840901-og0j47vqhku8glm57stbeuepdom6kbvj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgGazwe1dyU8um4CTnNIgl8Q4jBdiV4DE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "710221840901-og0j47vqhku8glm57stbeuepdom6kbvj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

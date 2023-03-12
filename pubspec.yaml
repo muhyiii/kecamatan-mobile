@@ -1,0 +1,63 @@
+name: sitforsa
+version: 1.0.0+1
+publish_to: none
+description: A new Flutter project.
+environment:
+  sdk: ">=2.18.5-271.4.beta <3.0.0"
+
+dependencies:
+  cupertino_icons: ^1.0.2
+  get: 4.6.5
+  flutter:
+    sdk: flutter
+  firebase_core: ^2.4.1
+  intl: ^0.18.0
+  carousel_slider: ^4.2.1
+  awesome_notifications: ^0.6.19
+  http: ^0.13.5
+  shimmer: ^2.0.0
+  timeago: ^3.4.0
+  shared_preferences: ^2.0.18
+  cached_network_image: ^3.2.3
+  html: ^0.15.2
+  flutter_switch: ^0.3.2
+  jwt_decoder: ^2.0.1
+  connectivity: ^3.0.6
+
+dev_dependencies:
+  flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  assets:
+    - "assets/images/"
+  fonts:
+    - family: Prompt
+      fonts:
+        - asset: "assets/fonts/Prompt/Prompt-Bold.ttf"
+
+    - family: Prompt Light
+      fonts:
+        - asset: "assets/fonts/Prompt/Prompt-Light.ttf"
+
+    - family: Helvetica Neue
+      fonts:
+        - asset: "assets/fonts/Helvetica Neue/HelveticaNeueMed.ttf"
+
+    - family: Helvetica Neue Light
+      fonts:
+        - asset: "assets/fonts/Helvetica Neue/HelveticaNeue Light.ttf"
+
+    - family: Helvetica Neue Normal
+      fonts:
+        - asset: "assets/fonts/Helvetica Neue/HelveticaNeueLt.ttf"
+
+    - family: Helvetica Neue Bold
+      fonts:
+        - asset: "assets/fonts/Helvetica Neue/Helvetica Neu Bold.ttf"
+    - family: Product Sans
+      fonts:
+        - asset: "assets/fonts/Product Sans/Product Sans Bold.ttf"
+
+  uses-material-design: true
