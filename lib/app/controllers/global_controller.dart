@@ -1,16 +1,15 @@
+import 'dart:async';
 
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sitforsa/app/data/Model/ModelDesa.dart';
 import 'package:sitforsa/config/style.dart';
 
 class GlobalController extends GetxController {
   // var profile = Get.put(ProfileController());
-  final url = 'http://192.168.90.16:8000/api';
-  var dataDesa = List<Desa>.empty().obs;
+  final url = 'https://kec.giriwangi.com/api';
   final fontHeading = 27.0.obs;
   final fontSize = 18.0.obs;
   final fontSet = 13.0.obs;
@@ -19,7 +18,7 @@ class GlobalController extends GetxController {
       NumberFormat.currency(locale: 'ID', symbol: 'Rp ', decimalDigits: 0).obs;
 
   final isDark = false.obs;
-
+  var isOnline = false.obs;
   final token = ''.obs;
 
   @override
@@ -41,7 +40,7 @@ class GlobalController extends GetxController {
       fontSet.value = 19.0;
       fontSmall.value = 16.0;
     }
-    getDesa();
+
     // initApp();
   }
 
@@ -58,27 +57,6 @@ class GlobalController extends GetxController {
   @override
   void onClose() {}
 
-  getDesa() async {
-    try {
-      final response = await http.get(Uri.parse(url + '/desa'));
-
-      if (response.statusCode == 200) {
-        ModelDesa data = modelDesaFromJson(response.body.toString());
-        dataDesa.value = data.data;
-      } else {
-        throw Exception('Gagal untuk mendapatkan data desa');
-      }
-    } catch (e) {
-      Get.snackbar('Error', 'Gagal mendapatkan data desa',
-          backgroundColor: redy,
-          titleText: Text(
-            'Error',
-            style: TextStyle(color: whitey, fontSize: fontSize.toDouble()),
-          ),
-          colorText: whitey);
-    } finally {}
-  }
-
   getToken() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString('token').toString();
@@ -89,5 +67,30 @@ class GlobalController extends GetxController {
     return prefs.setString('token', value);
   }
 
+  void connection() async {
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    try {
+      if (connectivityResult == ConnectivityResult.mobile ||
+          connectivityResult == ConnectivityResult.wifi) {
+        isOnline(true);
+        update();
+      } else {
+        isOnline(false);
+        update();
+      }
+    } catch (e) {
+      isOnline(false);
+      update();
+    }
+  }
+
+  change() {
+    isDark.value = !isDark.value;
+    update();
+    if (isDark.value) {
+      Get.changeThemeMode(ThemeMode.dark);
+    } else
+      Get.changeThemeMode(ThemeMode.light);
+  }
   // initApp() async => await profile.getUserProfile(getToken().toString());
 }

@@ -7,6 +7,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sitforsa/app/controllers/global_controller.dart';
+import 'package:sitforsa/app/data/Model/ModelDesa.dart';
 import 'package:sitforsa/app/modules/bottomBar/views/bottom_bar_view.dart';
 import 'package:sitforsa/app/modules/profile/controllers/profile_controller.dart';
 import 'package:sitforsa/app/modules/splashScreen/views/splash_screen_view.dart';
@@ -18,6 +19,7 @@ class LoginPageController extends GetxController {
   TextEditingController nik = TextEditingController();
   TextEditingController nama = TextEditingController();
   TextEditingController password = TextEditingController();
+  var dataDesa = List<Desa>.empty().obs;
   var id_desa;
 
   final formKey = GlobalKey<FormState>();
@@ -25,6 +27,7 @@ class LoginPageController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    getDesa();
   }
 
   @override
@@ -34,15 +37,46 @@ class LoginPageController extends GetxController {
 
   @override
   void onClose() {}
+  getDesa() async {
+    try {
+      final response = await http.get(Uri.parse(global.url + '/desa'));
+
+      if (response.statusCode == 200) {
+        ModelDesa data = modelDesaFromJson(response.body.toString());
+        dataDesa.value = data.data;
+      } else {
+        throw Exception('Gagal untuk mendapatkan data desa');
+      }
+    } catch (e) {
+      Get.showSnackbar(GetSnackBar(
+        titleText: Text(
+          'Kesalahan',
+          style: TextStyle(color: global.isDark.value ? whitey : redy),
+        ),
+        messageText: Text(
+          'Gagal Mendapatkan Data Desa.',
+          style: TextStyle(color: global.isDark.value ? whitey : redy),
+        ),
+        backgroundColor: global.isDark.value ? blacky : whitey,
+        animationDuration: Duration(seconds: 1),
+        duration: Duration(milliseconds: 2500),
+        boxShadows: [
+          BoxShadow(blurRadius: 10, color: grayNav.withOpacity(0.5))
+        ],
+        forwardAnimationCurve: Curves.linearToEaseOut,
+        margin: EdgeInsets.all(5),
+        borderRadius: 5,
+        snackPosition: SnackPosition.TOP,
+        barBlur: 5,
+      ));
+      print(e);
+    }
+  }
 
   register() async {
-    // data yang akan dikirim
     isLoading(true);
     update();
-
-    // endpoint untuk POST request
     try {
-      // kirim POST request ke backend
       final response = await http.post(
         Uri.parse(global.url + "/penduduk/register"),
         body: json.encode({
@@ -56,43 +90,89 @@ class LoginPageController extends GetxController {
           'Accept': 'application/json',
         },
       );
-      // cek response status code
       if (response.statusCode == 200) {
         global.setToken(json.decode(response.body)['token']);
-        // response berhasil, tampilkan body response
-        Get.snackbar('Success', 'Data berhasil dikirim',
-            backgroundColor: greeny);
+        Get.showSnackbar(GetSnackBar(
+          titleText: Text(
+            'Berhasil',
+            style: TextStyle(color: global.isDark.value ? whitey : greeny),
+          ),
+          messageText: Text(
+            'Anda Berhasil Login.',
+            style: TextStyle(color: global.isDark.value ? whitey : greeny),
+          ),
+          backgroundColor: global.isDark.value ? blacky : whitey,
+          animationDuration: Duration(seconds: 1),
+          duration: Duration(milliseconds: 2500),
+          boxShadows: [
+            BoxShadow(blurRadius: 10, color: grayNav.withOpacity(0.5))
+          ],
+          forwardAnimationCurve: Curves.linearToEaseOut,
+          margin: EdgeInsets.all(5),
+          borderRadius: 5,
+          snackPosition: SnackPosition.TOP,
+          barBlur: 5,
+        ));
         profile.getUserProfile(jsonDecode(response.body)['token'].toString());
         Timer(Duration(milliseconds: 750), () {
           Get.offAll(() => BottomBarView(),
               duration: Duration(milliseconds: 1500),
               transition: Transition.rightToLeftWithFade);
-          isLoading(false);
-          update();
+          Timer(Duration(seconds: 4), () {
+            isLoading(false);
+            update();
+          });
         });
       } else {
         // response gagal, tampilkan error message
         isLoading(false);
         update();
-        Get.snackbar('Error', json.decode(response.body)['message'].toString(),
-            backgroundColor: redy,
-            titleText: Text(
-              'Error',
-              style: TextStyle(
-                  color: whitey, fontSize: global.fontSize.toDouble()),
-            ),
-            colorText: whitey);
+        Get.showSnackbar(GetSnackBar(
+          titleText: Text(
+            'Kesalahan',
+            style: TextStyle(color: global.isDark.value ? whitey : redy),
+          ),
+          messageText: Text(
+            json.decode(response.body)['message'].toString(),
+            style: TextStyle(color: global.isDark.value ? whitey : redy),
+          ),
+          backgroundColor: global.isDark.value ? blacky : whitey,
+          animationDuration: Duration(seconds: 1),
+          duration: Duration(milliseconds: 2500),
+          boxShadows: [
+            BoxShadow(blurRadius: 10, color: grayNav.withOpacity(0.5))
+          ],
+          forwardAnimationCurve: Curves.linearToEaseOut,
+          margin: EdgeInsets.all(5),
+          borderRadius: 5,
+          snackPosition: SnackPosition.TOP,
+          barBlur: 5,
+        ));
       }
     } catch (e) {
       isLoading(false);
-      Get.snackbar('Error', 'Ada kesalahan, coba beberapa saat lagi',
-          backgroundColor: redy,
-          titleText: Text(
-            'Error',
-            style:
-                TextStyle(color: whitey, fontSize: global.fontSize.toDouble()),
-          ),
-          colorText: whitey);
+      update();
+      Get.showSnackbar(GetSnackBar(
+        titleText: Text(
+          'Kesalahan',
+          style: TextStyle(color: global.isDark.value ? whitey : redy),
+        ),
+        messageText: Text(
+          'Coba Beberapa Saat Lagi.',
+          style: TextStyle(color: global.isDark.value ? whitey : redy),
+        ),
+        backgroundColor: global.isDark.value ? blacky : whitey,
+        animationDuration: Duration(seconds: 1),
+        duration: Duration(milliseconds: 2500),
+        boxShadows: [
+          BoxShadow(blurRadius: 10, color: grayNav.withOpacity(0.5))
+        ],
+        forwardAnimationCurve: Curves.linearToEaseOut,
+        margin: EdgeInsets.all(5),
+        borderRadius: 5,
+        snackPosition: SnackPosition.TOP,
+        barBlur: 5,
+      ));
     }
   }
 
@@ -114,48 +194,115 @@ class LoginPageController extends GetxController {
 
       if (response.statusCode == 200) {
         global.setToken(json.decode(response.body)['token']);
-        Get.snackbar('Success', 'Data berhasil dikirim',
-            backgroundColor: greeny);
+        Get.showSnackbar(GetSnackBar(
+          titleText: Text(
+            'Berhasil',
+            style: TextStyle(color: global.isDark.value ? whitey : greeny),
+          ),
+          messageText: Text(
+            'Anda Berhasil Login.',
+            style: TextStyle(color: global.isDark.value ? whitey : greeny),
+          ),
+          backgroundColor: global.isDark.value ? blacky : whitey,
+          animationDuration: Duration(seconds: 1),
+          duration: Duration(milliseconds: 2500),
+          boxShadows: [
+            BoxShadow(blurRadius: 10, color: grayNav.withOpacity(0.5))
+          ],
+          forwardAnimationCurve: Curves.linearToEaseOut,
+          margin: EdgeInsets.all(5),
+          borderRadius: 5,
+          snackPosition: SnackPosition.TOP,
+          barBlur: 5,
+        ));
         profile.getUserProfile(jsonDecode(response.body)['token'].toString());
         Timer(Duration(milliseconds: 750), () {
-          Get.offAll(() => BottomBarView(),
-              duration: Duration(milliseconds: 1500),
-              transition: Transition.rightToLeftWithFade);
-          isLoading(false);
-          update();
+          Get.offAll(
+            () => BottomBarView(),
+            duration: Duration(milliseconds: 1000),
+          );
+          Timer(Duration(seconds: 4), () {
+            isLoading(false);
+            update();
+          });
         });
       } else {
         isLoading(false);
         update();
-        Get.snackbar('Error', json.decode(response.body)['message'].toString(),
-            backgroundColor: redy,
-            titleText: Text(
-              'Error',
-              style: TextStyle(
-                  color: whitey, fontSize: global.fontSize.toDouble()),
-            ),
-            colorText: whitey);
+        Get.showSnackbar(GetSnackBar(
+          titleText: Text(
+            'Kesalahan',
+            style: TextStyle(color: global.isDark.value ? whitey : redy),
+          ),
+          messageText: Text(
+            json.decode(response.body)['message'].toString(),
+            style: TextStyle(color: global.isDark.value ? whitey : redy),
+          ),
+          backgroundColor: global.isDark.value ? blacky : whitey,
+          animationDuration: Duration(seconds: 1),
+          duration: Duration(milliseconds: 2500),
+          boxShadows: [
+            BoxShadow(blurRadius: 10, color: grayNav.withOpacity(0.5))
+          ],
+          forwardAnimationCurve: Curves.linearToEaseOut,
+          margin: EdgeInsets.all(5),
+          borderRadius: 5,
+          snackPosition: SnackPosition.TOP,
+          barBlur: 5,
+        ));
+        // Get.snackbar(
+        //   'Error',
+        //   json.decode(response.body)['message'].toString(),
+        //   colorText: redy,
+        //   backgroundColor: whitey,
+        //   titleText: Text(
+        //     'Error',
+        //     style:
+        //         TextStyle(color: whitey, fontSize: global.fontSize.toDouble()),
+        //   ),
+        // );
       }
     } catch (e) {
       isLoading(false);
       update();
-      Get.snackbar('Error', 'Ada kesalahan, coba beberapa saat lagi',
-          backgroundColor: redy,
-          titleText: Text(
-            'Error',
-            style:
-                TextStyle(color: whitey, fontSize: global.fontSize.toDouble()),
-          ),
-          colorText: whitey);
+      Get.showSnackbar(GetSnackBar(
+        titleText: Text(
+          'Kesalahan',
+          style: TextStyle(color: global.isDark.value ? whitey : redy),
+        ),
+        messageText: Text(
+          'Coba Beberapa Saat Lagi.',
+          style: TextStyle(color: global.isDark.value ? whitey : redy),
+        ),
+        backgroundColor: global.isDark.value ? blacky : whitey,
+        animationDuration: Duration(seconds: 1),
+        duration: Duration(milliseconds: 2500),
+        boxShadows: [
+          BoxShadow(blurRadius: 10, color: grayNav.withOpacity(0.5))
+        ],
+        forwardAnimationCurve: Curves.linearToEaseOut,
+        margin: EdgeInsets.all(5),
+        borderRadius: 5,
+        snackPosition: SnackPosition.TOP,
+        barBlur: 5,
+      ));
     }
   }
 
   logout() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (prefs.containsKey('token')) prefs.remove('token');
-    Timer(Duration(milliseconds: 500), () {
-      Get.offAll(() => SplashScreenView());
-    });
+    final prefs = await SharedPreferences.getInstance();
+    prefs.clear(); // menghapus semua data dari shared preferences
+    Get.deleteAll();
+    Get.offAll(
+      () => SplashScreenView(),
+    );
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+    // if (prefs.containsKey('token')) prefs.remove('token');
+    // Timer(Duration(milliseconds: 500), () {
+    //   Get.offAll(
+    //     () => SplashScreenView(),
+    //   );
+    // });
   }
 
   // login(String text, String password) async {

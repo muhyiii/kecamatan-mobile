@@ -43,12 +43,15 @@ class _DetailBeritaViewState extends State<DetailBeritaView> {
   @override
   Widget build(BuildContext context) {
     final data = Get.arguments;
+    print(data);
     return SafeArea(
       child: Scaffold(
         body: Stack(
           children: [
             CustomScrollView(
               controller: _scrollController,
+              physics: BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics()),
               slivers: [
                 SliverToBoxAdapter(
                   child: Column(

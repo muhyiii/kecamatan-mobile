@@ -4,33 +4,24 @@ import 'package:get/get.dart';
 import 'package:sitforsa/app/modules/loginPage/controllers/login_page_controller.dart';
 import 'package:sitforsa/config/style.dart';
 
-class InputTextFieldView extends StatefulWidget {
-  const InputTextFieldView({super.key, this.input, this.controller, t});
+class InputTextFieldProfile extends StatefulWidget {
+  const InputTextFieldProfile({this.input, this.controller, this.name});
   final input;
   final controller;
+  final name;
 
   @override
-  State<InputTextFieldView> createState() => _InputTextFieldViewState();
+  State<InputTextFieldProfile> createState() => _InputTextFieldProfileState();
 }
 
-class _InputTextFieldViewState extends State<InputTextFieldView> {
+class _InputTextFieldProfileState extends State<InputTextFieldProfile> {
   bool isShow = true;
   bool isClick = false;
   String? get _errorText {
     if (isClick) {
-      final text = widget.controller.value.text;
-      if (text.isEmpty) {
+      final text = widget.controller.value;
+      if (text == "") {
         return '${widget.input} tidak boleh kosong';
-      }
-      if (widget.input.toLowerCase() == 'nik') {
-        if (text.length < 16 || text.length > 16) {
-          return 'Harap masukan NIK yang sesuai';
-        }
-      }
-      if (widget.input.toLowerCase() == 'password') {
-        if (text.length < 6) {
-          return 'Password minimal 6 karakter';
-        }
       }
     }
     // return null if the text is valid
@@ -41,7 +32,7 @@ class _InputTextFieldViewState extends State<InputTextFieldView> {
   Widget build(BuildContext context) {
     return TextFormField(
         cursorColor: greeny,
-        controller: widget.controller,
+        controller: widget.controller.value,
         onTap: () => setState(() {
               isClick = true;
             }),
@@ -53,9 +44,6 @@ class _InputTextFieldViewState extends State<InputTextFieldView> {
           fontFamily: 'Product Sans',
         ),
         obscureText: widget.input.toLowerCase() == 'password' && isShow,
-        onChanged: (value) => setState(() {
-              widget.controller.value;
-            }),
         decoration: InputDecoration(
             errorText: _errorText,
             suffixIcon: widget.input.toLowerCase() == 'password'

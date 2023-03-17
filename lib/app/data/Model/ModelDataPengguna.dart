@@ -1,30 +1,30 @@
-// To parse this JSON data, do
+// To parse this JSON Pengguna, do
 //
 //     final modelDataPengguna = modelDataPenggunaFromJson(jsonString);
 
 import 'dart:convert';
 
-ModelDataPengguna modelDataPenggunaFromJson(String str) => ModelDataPengguna.fromJson(json.decode(str));
+ModelDataPengguna modeldataPenggunaFromJson(String str) => ModelDataPengguna.fromJson(json.decode(str));
 
-String modelDataPenggunaToJson(ModelDataPengguna data) => json.encode(data.toJson());
+String modeldataPenggunaToJson(ModelDataPengguna Pengguna) => json.encode(Pengguna.toJson());
 
 class ModelDataPengguna {
     ModelDataPengguna({
         required this.message,
-        required this.pengguna,
+        required this.data,
     });
 
     String message;
-    Pengguna pengguna;
+    Pengguna data;
 
     factory ModelDataPengguna.fromJson(Map<String, dynamic> json) => ModelDataPengguna(
         message: json["message"],
-        pengguna: Pengguna.fromJson(json["pengguna"]),
+        data: Pengguna.fromJson(json["Pengguna"]),
     );
 
     Map<String, dynamic> toJson() => {
         "message": message,
-        "pengguna": pengguna.toJson(),
+        "Pengguna": data.toJson(),
     };
 }
 
@@ -32,75 +32,75 @@ class Pengguna {
     Pengguna({
         required this.nama,
         required this.slug,
-        this.alamat,
-        this.rt,
-        this.rw,
-        this.nomorKk,
+        required this.alamat,
+        required this.rt,
+        required this.rw,
+        required this.nomorKk,
         required this.nik,
-        this.jenisKelamin,
-        this.tempatLahir,
-        this.tanggalLahir,
-        this.agama,
-        this.pendidikanDalamKk,
-        this.pendidikanSedangDitempuh,
-        this.pekerjaan,
-        this.kawin,
-        this.hubunganKeluarga,
-        this.kewarganegaraan,
-        this.namaAyah,
-        this.nikAyah,
-        this.namaIbu,
-        this.nikIbu,
-        this.golonganDarah,
-        this.aktaLahir,
-        this.nomorDokumenPaspor,
-        this.tanggalAkhirPassport,
-        this.nomorDokumenKitas,
-        this.nomorAktaPerkawinan,
-        this.tanggalPerkawinan,
-        this.nomorAktaCerai,
-        this.tanggalPerceraian,
-        this.cacat,
-        this.caraKb,
-        this.hamil,
-        this.alamatSekarang,
+        required this.jenisKelamin,
+        required this.tempatLahir,
+        required this.tanggalLahir,
+        required this.agama,
+        required this.pendidikanDalamKk,
+        required this.pendidikanSedangDitempuh,
+        required this.pekerjaan,
+        required this.kawin,
+        required this.hubunganKeluarga,
+        required this.kewarganegaraan,
+        required this.namaAyah,
+        required this.nikAyah,
+        required this.namaIbu,
+        required this.nikIbu,
+        required this.golonganDarah,
+        required this.aktaLahir,
+        required this.nomorDokumenPaspor,
+        required this.tanggalAkhirPassport,
+        required this.nomorDokumenKitas,
+        required this.nomorAktaPerkawinan,
+        required this.tanggalPerkawinan,
+        required this.nomorAktaCerai,
+        required this.tanggalPerceraian,
+        required this.cacat,
+        required this.caraKb,
+        required this.hamil,
+        required this.alamatSekarang,
         required this.desa,
     });
 
     String nama;
     String slug;
-    dynamic alamat;
-    dynamic rt;
-    dynamic rw;
-    dynamic nomorKk;
+    String alamat;
+    String rt;
+    String rw;
+    String nomorKk;
     String nik;
-    dynamic jenisKelamin;
-    dynamic tempatLahir;
-    dynamic tanggalLahir;
-    dynamic agama;
-    dynamic pendidikanDalamKk;
-    dynamic pendidikanSedangDitempuh;
-    dynamic pekerjaan;
-    dynamic kawin;
-    dynamic hubunganKeluarga;
-    dynamic kewarganegaraan;
-    dynamic namaAyah;
-    dynamic nikAyah;
-    dynamic namaIbu;
-    dynamic nikIbu;
-    dynamic golonganDarah;
-    dynamic aktaLahir;
-    dynamic nomorDokumenPaspor;
-    dynamic tanggalAkhirPassport;
-    dynamic nomorDokumenKitas;
-    dynamic nomorAktaPerkawinan;
-    dynamic tanggalPerkawinan;
-    dynamic nomorAktaCerai;
-    dynamic tanggalPerceraian;
-    dynamic cacat;
-    dynamic caraKb;
-    dynamic hamil;
-    dynamic alamatSekarang;
+    String jenisKelamin;
+    String tempatLahir;
+    String tanggalLahir;
+    String agama;
+    String pendidikanDalamKk;
+    String pendidikanSedangDitempuh;
+    String pekerjaan;
+    String kawin;
+    String hubunganKeluarga;
+    String kewarganegaraan;
+    String namaAyah;
+    String nikAyah;
+    String namaIbu;
+    String nikIbu;
+    String golonganDarah;
+    String aktaLahir;
+    String nomorDokumenPaspor;
+    String tanggalAkhirPassport;
+    String nomorDokumenKitas;
+    String nomorAktaPerkawinan;
+    String tanggalPerkawinan;
+    String nomorAktaCerai;
+    String tanggalPerceraian;
+    String cacat;
+    String caraKb;
+    String hamil;
+    String alamatSekarang;
     Desa desa;
 
     factory Pengguna.fromJson(Map<String, dynamic> json) => Pengguna(

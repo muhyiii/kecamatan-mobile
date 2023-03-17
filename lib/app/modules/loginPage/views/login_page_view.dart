@@ -215,7 +215,7 @@ class LoginPageView extends GetView<LoginPageController> {
                                         fontFamily: 'Product Sans',
                                         fontSize: global.fontSize.value - 1),
                                     elevation: 1,
-                                    items: global.dataDesa.map((value) {
+                                    items: controller.dataDesa.map((value) {
                                       return DropdownMenuItem(
                                         child: Text(value.namaDesa),
                                         value: value.namaDesa,
@@ -235,29 +235,30 @@ class LoginPageView extends GetView<LoginPageController> {
                                 ),
                               ElevatedButton(
                                   onPressed: () {
-                                    // if (type == 'daftar') {
-                                    //   if (controller.password.value.text.length <
-                                    //           1 &&
-                                    //       controller.nik.value.text.length <
-                                    //           1 &&
-                                    //       controller.nama.value.text.length <
-                                    //           1 &&
-                                    //       controller.id_desa == null)
-                                    //     return;
-                                    //   else {
+                                    print(controller.id_desa);
+                                    if (type == 'Daftar') {
+                                      if (controller.password.value.text.length <
+                                              1 &&
+                                          controller.nik.value.text.length <
+                                              1 &&
+                                          controller.nama.value.text.length <
+                                              1 &&
+                                          controller.id_desa == null)
+                                        return;
+                                      else {
                                         controller.register();
-                                    //   }
-                                    // } else {
-                                    //   if (controller
-                                    //               .password.value.text.length <
-                                    //           1 &&
-                                    //       controller.nik.value.text.length <
-                                    //           1) {
-                                    //     return;
-                                    //   } else {
-                                    //     controller.login();
-                                    //   }
-                                    // }
+                                      }
+                                    } else {
+                                      if (controller
+                                                  .password.value.text.length <
+                                              1 &&
+                                          controller.nik.value.text.length <
+                                              1) {
+                                        return;
+                                      } else {
+                                        controller.login();
+                                      }
+                                    }
                                   },
                                   style: ButtonStyle(
                                       shape: MaterialStateProperty.all(

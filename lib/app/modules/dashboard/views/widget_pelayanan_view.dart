@@ -30,7 +30,6 @@ class WidgetPelayananView extends GetView {
             itemWidget(
                 Icons.schedule_rounded, "Jadwal SIPAHADESI", SipahadesiView()),
             itemWidget(Icons.receipt_rounded, "SIAPMASJO", PengaduanView()),
-            itemWidget(Icons.report_rounded, "Kontak", PelayananView()),
             itemWidget(
                 Icons.device_unknown_rounded, "Unknown", PotensiDesaView()),
           ],

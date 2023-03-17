@@ -87,6 +87,7 @@ class PelayananView extends GetView<PelayananController> {
                       expandedCrossAxisAlignment: CrossAxisAlignment.start,
                       children: nonPerizinan
                           .map((e) => ListTile(
+                            trailing: Icon(Icons.chevron_right_rounded),
                               enableFeedback: true,
                               selectedColor: greeny,
                               onTap: () => Get.to(() => DetailPelayananView(),

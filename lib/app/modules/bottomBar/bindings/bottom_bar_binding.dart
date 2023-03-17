@@ -14,7 +14,7 @@ class BottomBarBinding extends Bindings {
       () => BottomBarController(),
     );
     Get.lazyPut<HomeController>(() => HomeController());
-    Get.lazyPut<BeritaController>(() => BeritaController());
+    Get.put(() => BeritaController());
     Get.lazyPut<PelayananController>(() => PelayananController());
     Get.lazyPut<NotifikasiController>(() => NotifikasiController());
     Get.lazyPut<ProfileController>(() => ProfileController());

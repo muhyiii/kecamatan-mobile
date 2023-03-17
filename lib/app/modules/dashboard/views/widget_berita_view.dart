@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sitforsa/app/controllers/global_controller.dart';
 import 'package:sitforsa/app/modules/berita/controllers/berita_controller.dart';
@@ -13,104 +14,144 @@ import 'package:timeago/timeago.dart' as timeago;
 class WidgetBeritaView extends GetView {
   var global = Get.put(GlobalController());
   final beritaController = Get.put(BeritaController());
-  var tes = [1, 2, 4, 5, 6, 7];
+  var empty = [0, 0];
   @override
   Widget build(BuildContext context) {
-    return CarouselSlider(
-      carouselController: CarouselController(),
-      options: CarouselOptions(
-          height: Get.width / 2.25,
-          scrollPhysics: BouncingScrollPhysics(),
-          autoPlayCurve: Curves.easeIn,
-          viewportFraction: 0.8,
-          autoPlay: true,
-          enlargeCenterPage: true,
-          enableInfiniteScroll: true),
-      items: beritaController.dataBerita.map((e) {
-        return Builder(
-          builder: (BuildContext context) {
-            if (beritaController.isLoading.value)
-              return Shimmer.fromColors(
-                baseColor: Colors.grey[300]!,
-                highlightColor: Colors.white,
-                child: Card(
-                  color: greny,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Stack(
-                    alignment: Alignment.bottomCenter,
-                    children: [
-                      Shimmer.fromColors(
-                        baseColor: Colors.grey[300]!,
-                        highlightColor: Colors.white,
-                        child: Container(
-                          height: Get.width,
-                          width: Get.width,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              image: DecorationImage(
-                                  image: CachedNetworkImageProvider(
-                                    e.thumbnail,
-                                  ),
-                                  fit: BoxFit.cover)),
-                          padding: const EdgeInsets.all(8.0),
-                        ),
-                      ),
-                      Container(
+    return Obx(() {
+      if (beritaController.dataBerita.length == 0)
+        return CarouselSlider(
+            carouselController: CarouselController(),
+            options: CarouselOptions(
+                height: Get.width / 2.25,
+                scrollPhysics: BouncingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics()),
+                autoPlayCurve: Curves.easeIn,
+                viewportFraction: 0.8,
+                autoPlay: true,
+                enlargeCenterPage: true,
+                enableInfiniteScroll: true),
+            items: empty
+                .map((e) => Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Container(
+                        height: Get.height,
                         width: Get.width,
-                        height: Get.width / 4,
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            gradient: LinearGradient(
-                                colors: [
-                                  Colors.transparent,
-                                  blacky.withOpacity(0.8)
-                                ],
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter)),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          // mainAxisAlignment: MainAxisAlignment.cent,
                           children: [
-                            Shimmer.fromColors(
-                              baseColor: Colors.grey[300]!,
-                              highlightColor: Colors.white,
-                              child: Text(
-                                timeago.format(
-                                  e.createdAt,
-                                  locale: 'id',
-                                ),
-                                style: TextStyle(
-                                    fontSize: global.fontSmall.value,
-                                    color: whitey,
-                                    fontFamily: 'Helvetica Neue'),
-                              ),
+                            LottieBuilder.network(
+                              'https://assets1.lottiefiles.com/private_files/lf30_cgfdhxgx.json',
+                              height: Get.width / 4,
                             ),
-                            SizedBox(
-                              height: 2,
-                            ),
-                            Shimmer.fromColors(
-                              baseColor: Colors.grey[300]!,
-                              highlightColor: Colors.white,
-                              child: Text(
-                                e.judul,
+                            Text('Tidak Ada Berita Yang Bisa Ditampilkan',
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
-                                    fontSize: global.fontSize.value - 2,
-                                    color: whitey,
-                                    fontFamily: 'Helvetica Neue'),
-                              ),
-                            ),
+                                  fontSize: global.fontSmall.value - 2,
+                                ))
                           ],
                         ),
-                      )
-                    ],
-                  ),
+                      ),
+                    ))
+                .toList());
+      return CarouselSlider(
+        carouselController: CarouselController(),
+        options: CarouselOptions(
+            height: Get.width / 2.25,
+            scrollPhysics:
+                BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+            autoPlayCurve: Curves.easeIn,
+            viewportFraction: 0.8,
+            autoPlay: true,
+            enlargeCenterPage: true,
+            enableInfiniteScroll: true),
+        items: beritaController.dataBerita.map((e) {
+          if (beritaController.isLoading.value)
+            return Shimmer.fromColors(
+              baseColor: Colors.grey[300]!,
+              highlightColor: Colors.white,
+              child: Card(
+                elevation: 5,
+                color: greny,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
+                child: Stack(
+                  alignment: Alignment.bottomCenter,
+                  children: [
+                    Shimmer.fromColors(
+                      baseColor: Colors.grey[300]!,
+                      highlightColor: Colors.white,
+                      child: Container(
+                        height: Get.width,
+                        width: Get.width,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            image: DecorationImage(
+                                image: CachedNetworkImageProvider(
+                                  e.thumbnail,
+                                ),
+                                fit: BoxFit.cover)),
+                        padding: const EdgeInsets.all(8.0),
+                      ),
+                    ),
+                    Container(
+                      width: Get.width,
+                      height: Get.width / 4,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          gradient: LinearGradient(
+                              colors: [
+                                Colors.transparent,
+                                blacky.withOpacity(0.8)
+                              ],
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Shimmer.fromColors(
+                            baseColor: Colors.grey[300]!,
+                            highlightColor: Colors.white,
+                            child: Text(
+                              timeago.format(
+                                e.createdAt,
+                                locale: 'id',
+                              ),
+                              style: TextStyle(
+                                  fontSize: global.fontSmall.value,
+                                  color: whitey,
+                                  fontFamily: 'Helvetica Neue'),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 2,
+                          ),
+                          Shimmer.fromColors(
+                            baseColor: Colors.grey[300]!,
+                            highlightColor: Colors.white,
+                            child: Text(
+                              e.judul,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                  fontSize: global.fontSize.value - 2,
+                                  color: whitey,
+                                  fontFamily: 'Helvetica Neue'),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
                 ),
-              );
+              ),
+            );
+          else
             return GestureDetector(
               onTap: () => Get.to(() => DetailBeritaView(),
                   arguments: e,
@@ -183,32 +224,31 @@ class WidgetBeritaView extends GetView {
               ),
             );
 
-            // return Container(
-            //     width: Get.width,
-            //     padding: EdgeInsets.all(10),
-            //     decoration: BoxDecoration(
-            //         color: greny, borderRadius: BorderRadius.circular(10)),
-            //     child: Column(
-            //       children: [
-            //         Flexible(
-            //           child: Container(
-            //             width: Get.width,
-            //             decoration: BoxDecoration(
-            //                 image: DecorationImage(
-            //                     image: AssetImage(
-            //                         'assets/images/img-article.jpeg'))),
-            //           ),
-            //         ),
-            //         Text(
-            //           'Bolehkah tidak sholat dimasjid karena takut Covid 19.',
-            //           style: TextStyle(),
-            //         ),
-            //       ],
-            //     ));
-          },
-        );
-      }).toList(),
-    );
+          // return Container(
+          //     width: Get.width,
+          //     padding: EdgeInsets.all(10),
+          //     decoration: BoxDecoration(
+          //         color: greny, borderRadius: BorderRadius.circular(10)),
+          //     child: Column(
+          //       children: [
+          //         Flexible(
+          //           child: Container(
+          //             width: Get.width,
+          //             decoration: BoxDecoration(
+          //                 image: DecorationImage(
+          //                     image: AssetImage(
+          //                         'assets/images/img-article.jpeg'))),
+          //           ),
+          //         ),
+          //         Text(
+          //           'Bolehkah tidak sholat dimasjid karena takut Covid 19.',
+          //           style: TextStyle(),
+          //         ),
+          //       ],
+          //     ));
+        }).toList(),
+      );
+    });
   }
 }
 

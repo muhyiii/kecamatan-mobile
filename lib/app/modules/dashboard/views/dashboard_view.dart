@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:sitforsa/app/controllers/global_controller.dart';
+import 'package:sitforsa/app/modules/berita/controllers/berita_controller.dart';
 import 'package:sitforsa/app/modules/dashboard/views/widget_berita_view.dart';
 import 'package:sitforsa/app/modules/dashboard/views/widget_pelayanan_view.dart';
 
@@ -12,6 +13,7 @@ import '../controllers/dashboard_controller.dart';
 
 class DashboardView extends GetView<DashboardController> {
   final controller = Get.put(DashboardController());
+  
   final global = Get.put(GlobalController());
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,9 @@ class DashboardView extends GetView<DashboardController> {
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Selamat Pagi'),
+              GestureDetector(
+                onTap: () => BeritaController().getBerita(),
+                child: Text('Selamat Pagi')),
               Text(
                 controller.formattedDate.toString(),
                 style: TextStyle(fontSize: global.fontSet.value - 2),
@@ -34,7 +38,7 @@ class DashboardView extends GetView<DashboardController> {
           ),
           actions: [
             FlutterSwitch(
-                activeColor: Color.fromARGB(255, 124, 122, 122),
+                activeColor: Color.fromARGB(255, 132, 125, 91),
                 inactiveColor: Color.fromARGB(255, 113, 111, 111),
                 activeText: "Terang",
                 inactiveText: "Gelap",
@@ -53,12 +57,8 @@ class DashboardView extends GetView<DashboardController> {
                 width: 70,
                 borderRadius: 30.0,
                 showOnOff: true,
-                value: global.isDark.value,
-                onToggle: (val) {
-                  global.isDark.toggle();
-                  Get.changeThemeMode(
-                      global.isDark.value ? ThemeMode.dark : ThemeMode.light);
-                }),
+                value: !global.isDark.value,
+                onToggle: (val) => global.change()),
             SizedBox(
               width: 5,
             ),
