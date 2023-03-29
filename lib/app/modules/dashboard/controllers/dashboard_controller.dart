@@ -4,8 +4,6 @@ import 'package:intl/intl.dart';
 class DashboardController extends GetxController {
   //TODO: Implement DashboardController
 
-  String name = 'Nurdin Cibodas';
-
   final count = 0.obs;
   // DateTime now = DateTime.now();
   final formattedDate =
@@ -23,5 +21,4 @@ class DashboardController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
 }

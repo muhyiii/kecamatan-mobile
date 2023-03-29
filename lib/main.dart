@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:sitforsa/app/controllers/global_controller.dart';
 import 'package:sitforsa/app/modules/splashScreen/controllers/splash_screen_controller.dart';
@@ -30,11 +33,27 @@ class Themes {
 
 void main() async {
   final global = Get.put(GlobalController());
-
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  FirebaseMessaging.instance.getToken().then((e) => print(e));
+
+  FirebaseMessaging.onMessage.listen((RemoteMessage? message) {
+    print("message recieved");
+    log("ini pesannnya on message " + message.toString());
+  });
+  FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage? message) {
+    print('Message clicked!');
+    log("ini pesannnya " + message.toString());
+  });
+
+  FirebaseMessaging.instance
+      .getInitialMessage()
+      .then((RemoteMessage? message) =>log("ini initial " + message.toString()));
+
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessage);
 
   runApp(
     GetMaterialApp(
@@ -47,4 +66,9 @@ void main() async {
       getPages: AppPages.routes,
     ),
   );
+}
+
+Future<void> _firebaseMessage(RemoteMessage message) async {
+  log("ini background " + message.toString());
+  await Firebase.initializeApp();
 }

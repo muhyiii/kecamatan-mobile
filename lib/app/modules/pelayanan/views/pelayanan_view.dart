@@ -12,7 +12,7 @@ class PelayananView extends GetView<PelayananController> {
   var perizinan = [
     "Izin Pemakaman",
     "Izin Spanduk dan Umbul-umbul di luar ruangan",
-    "Izin Penyelenggaraan Pendidikan Anak Usia Dini (PAUD) non formal"
+    "Izin Penyelenggaraan PAUD non formal"
   ];
   var nonPerizinan = [
     "Pernyataan Waris",
@@ -24,7 +24,7 @@ class PelayananView extends GetView<PelayananController> {
     "Proposal",
     "Dispensasi Nikah",
     "Legalisir",
-    "Izin Rame-rame",
+    "Izin Keramaian",
   ];
   @override
   Widget build(BuildContext context) {
@@ -51,11 +51,12 @@ class PelayananView extends GetView<PelayananController> {
                   color: Get.isDarkMode ? null : greny,
                   child: ExpansionTile(
                       leading:
-                          Icon(Icons.label_important_rounded ),
+                          Icon(Icons.system_security_update_warning_rounded),
                       initiallyExpanded: false,
                       textColor: Get.isDarkMode ? null : blacky,
                       backgroundColor: Get.isDarkMode ? Colors.grey : whitey,
                       iconColor: Get.isDarkMode ? null : blacky,
+                      expandedCrossAxisAlignment: CrossAxisAlignment.start,
                       title: Text(
                         'Perizinan',
                         style: TextStyle(
@@ -63,12 +64,21 @@ class PelayananView extends GetView<PelayananController> {
                             fontSize: global.fontSize.value),
                       ),
                       children: perizinan
-                          .map((e) => ListTile(
-                              enableFeedback: true,
-                              selectedColor: greeny,
-                              onTap: () => Get.to(() => DetailPelayananView(),
-                                  arguments: e),
-                              title: Text(e)))
+                          .map((e) => Container(
+                                margin: EdgeInsets.symmetric(vertical: 1),
+                                decoration: BoxDecoration(
+                                    border: Border(
+                                        bottom: BorderSide(
+                                            width: 1, color: Colors.grey))),
+                                child: ListTile(
+                                    trailing: Icon(Icons.chevron_right_rounded),
+                                    enableFeedback: true,
+                                    selectedColor: greeny,
+                                    onTap: () => Get.to(
+                                        () => DetailPelayananView(),
+                                        arguments: e),
+                                    title: Text(e)),
+                              ))
                           .toList()),
                 ),
                 Card(
@@ -86,13 +96,21 @@ class PelayananView extends GetView<PelayananController> {
                       ),
                       expandedCrossAxisAlignment: CrossAxisAlignment.start,
                       children: nonPerizinan
-                          .map((e) => ListTile(
-                            trailing: Icon(Icons.chevron_right_rounded),
-                              enableFeedback: true,
-                              selectedColor: greeny,
-                              onTap: () => Get.to(() => DetailPelayananView(),
-                                  arguments: e),
-                              title: Text(e)))
+                          .map((e) => Container(
+                                margin: EdgeInsets.symmetric(vertical: 1),
+                                decoration: BoxDecoration(
+                                    border: Border(
+                                        bottom: BorderSide(
+                                            width: 1, color: Colors.grey))),
+                                child: ListTile(
+                                    trailing: Icon(Icons.chevron_right_rounded),
+                                    enableFeedback: true,
+                                    selectedColor: greeny,
+                                    onTap: () => Get.to(
+                                        () => DetailPelayananView(),
+                                        arguments: e),
+                                    title: Text(e)),
+                              ))
                           .toList()),
                 ),
                 // ListTile.divideTiles(tiles: tiles)

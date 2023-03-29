@@ -6,6 +6,7 @@ import 'package:sitforsa/app/controllers/global_controller.dart';
 import 'package:sitforsa/app/modules/berita/controllers/berita_controller.dart';
 import 'package:sitforsa/app/modules/dashboard/views/widget_berita_view.dart';
 import 'package:sitforsa/app/modules/dashboard/views/widget_pelayanan_view.dart';
+import 'package:sitforsa/app/modules/dashboard/views/widget_potensi_desa_view.dart';
 
 import 'package:sitforsa/config/style.dart';
 
@@ -64,13 +65,17 @@ class DashboardView extends GetView<DashboardController> {
             ),
           ],
         ),
-        body: Padding(
-          padding: EdgeInsets.symmetric(vertical: 5),
-          child: Column(
-            children: [
-              WidgetBeritaView(),
-              WidgetPelayananView(),
-            ],
+        body: SingleChildScrollView(
+          physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 5),
+            child: Column(
+              children: [
+                WidgetPotensiDesaView(),
+                WidgetPelayananView(),
+                WidgetBeritaView()
+              ],
+            ),
           ),
         ),
       );

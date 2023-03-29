@@ -108,22 +108,6 @@ class SplashScreenController extends GetxController {
           ],
         ),
       );
-      Get.defaultDialog(
-          buttonColor: greeny,
-          barrierDismissible: true,
-          title: 'Internet dibutuhkan',
-          titleStyle: TextStyle(fontFamily: 'Helvetica Neue'),
-          content: Text(
-            'Anda sedang offline',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontFamily: 'Helvetica Neue'),
-          ),
-          textConfirm: 'Coba Lagi',
-          onConfirm: () => Get.offAll(() => SplashScreenView()),
-          confirmTextColor: whitey,
-          textCancel: 'Keluar',
-          onCancel: () => Get.back(),
-          cancelTextColor: greeny);
     }
   }
 
