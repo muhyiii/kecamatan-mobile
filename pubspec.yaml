@@ -6,25 +6,29 @@ environment:
   sdk: ">=2.18.5-271.4.beta <3.0.0"
 
 dependencies:
+  auto_size_text: ^3.0.0
+  awesome_notifications: ^0.6.19
+  cached_network_image: ^3.2.3
+  carousel_slider: ^4.2.1
+  connectivity: ^3.0.6
   cupertino_icons: ^1.0.2
-  get: 4.6.5
+  firebase_core: ^2.4.1
+  firebase_messaging: ^14.3.0
   flutter:
     sdk: flutter
-  firebase_core: ^2.4.1
-  intl: ^0.18.0
-  carousel_slider: ^4.2.1
-  awesome_notifications: ^0.6.19
+  flutter_switch: ^0.3.2
+  get: 4.6.5
+  google_nav_bar: ^5.0.6
+  html: ^0.15.2
   http: ^0.13.5
+  iconly: ^1.0.1
+  intl: ^0.18.0
+  jwt_decoder: ^2.0.1
+  lottie: ^2.3.0
+  rounded_tabbar_widget: ^0.0.2
+  shared_preferences: ^2.0.18
   shimmer: ^2.0.0
   timeago: ^3.4.0
-  shared_preferences: ^2.0.18
-  cached_network_image: ^3.2.3
-  html: ^0.15.2
-  flutter_switch: ^0.3.2
-  jwt_decoder: ^2.0.1
-  connectivity: ^3.0.6
-  lottie: ^2.3.0
-  firebase_messaging: ^14.3.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0

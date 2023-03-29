@@ -3,32 +3,30 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sitforsa/app/controllers/global_controller.dart';
 import 'package:sitforsa/app/modules/kontakPenting/views/kontak_penting_view.dart';
-import 'package:sitforsa/app/modules/pelayanan/views/pelayanan_view.dart';
 import 'package:sitforsa/app/modules/pengaduan/views/pengaduan_view.dart';
 import 'package:sitforsa/app/modules/potensiDesa/views/potensi_desa_view.dart';
-import 'package:sitforsa/app/modules/profile/views/profile_view.dart';
 import 'package:sitforsa/app/modules/sipahadesi/views/sipahadesi_view.dart';
 import 'package:sitforsa/config/style.dart';
+import 'package:iconly/iconly.dart';
 
 class WidgetPelayananView extends GetView {
   var global = Get.put(GlobalController());
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(5),
+      // padding: EdgeInsets.all(5),
       child: Container(
         margin: EdgeInsets.symmetric(
           vertical: 5,
         ),
         width: Get.width * 90 / 100,
         child: Wrap(
-          spacing: 1,
           runSpacing: 1,
           // alignment: WrapAlignment.spaceBetween,
           children: [
             itemWidget(Icons.contacts, "Kontak Penting", KontakPentingView()),
             itemWidget(
-                Icons.schedule_rounded, "Jadwal SIPAHADESI", SipahadesiView()),
+                IconlyBold.time_square, "Jadwal SIPAHADESI", SipahadesiView()),
             itemWidget(Icons.receipt_rounded, "SIAPMASJO", PengaduanView()),
             itemWidget(
                 Icons.device_unknown_rounded, "Unknown", PotensiDesaView()),
