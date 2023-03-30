@@ -11,9 +11,12 @@ class BeritaController extends GetxController {
   final global = Get.put(GlobalController());
   var isLoading = false.obs;
   var dataBerita = List<Berita>.empty().obs;
+  var dataBeritaFilter;
   final isSearch = false.obs;
-  // final url = 'http://192.168.43.59:8000/api/berita';
-  final count = 0.obs;
+
+  var total_page = 0.obs;
+  var page = 1.obs;
+  var textInput = TextEditingController().obs;
   @override
   void onInit() {
     getBerita();
@@ -30,21 +33,37 @@ class BeritaController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
+
+  runFilter() {
+    print(textInput == '');
+    List<Berita> results = [];
+    if (textInput != "") {
+      results = dataBerita
+          .where((user) => user.judul
+              .toLowerCase()
+              .contains(textInput.value.text.toLowerCase()))
+          .toList();
+      dataBerita.value = results;
+    }
+
+    print(results);
+  }
 
   getBerita() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-
     isLoading(true);
     update();
     try {
-      final response =
-          await http.get(Uri.parse(global.url + '/berita'), headers: {
-        'Authorization': 'Bearer ${prefs.getString('token').toString()}',
-      });
+      final response = await http.get(
+          Uri.parse(global.url + '/berita' + '?page=$page&limit=5'),
+          headers: {
+            'Authorization': 'Bearer ${prefs.getString('token').toString()}',
+          });
       if (response.statusCode == 200) {
         ModelBerita data = modelBeritaFromJson(response.body.toString());
+        total_page.value = data.totalPage;
         dataBerita.value = data.data;
+
         print(isLoading.value);
       } else {
         throw Exception('Gagal Me-load Data.');

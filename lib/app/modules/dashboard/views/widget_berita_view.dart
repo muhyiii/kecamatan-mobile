@@ -51,7 +51,6 @@ class _WidgetBeritaViewState extends State<WidgetBeritaView> {
                     : controller.isLoading.value
                         ? Column(
                             children: controller.dataBerita
-                                .getRange(0, 2)
                                 .map((element) => Card(
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),

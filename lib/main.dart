@@ -38,7 +38,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  FirebaseMessaging.instance.getToken().then((e) => print(e));
+  FirebaseMessaging.instance.getToken();
 
   FirebaseMessaging.onMessage.listen((RemoteMessage? message) {
     print("message recieved");
@@ -49,9 +49,7 @@ void main() async {
     log("ini pesannnya " + message.toString());
   });
 
-  FirebaseMessaging.instance
-      .getInitialMessage()
-      .then((RemoteMessage? message) =>log("ini initial " + message.toString()));
+  FirebaseMessaging.instance.getInitialMessage();
 
   FirebaseMessaging.onBackgroundMessage(_firebaseMessage);
 
