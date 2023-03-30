@@ -49,7 +49,7 @@ class BeritaView extends GetView<BeritaController> {
                               onPressed: () {
                                 controller.textInput.value.text = '';
                                 controller.isSearch.value = false;
-                                controller.runFilter();
+                                refreshAll();
                               },
                               icon: Icon(Icons.cancel_rounded)),
                           alignLabelWithHint: true,
