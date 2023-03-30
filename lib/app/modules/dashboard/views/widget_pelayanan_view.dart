@@ -14,7 +14,7 @@ class WidgetPelayananView extends GetView {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // padding: EdgeInsets.all(5),
+      padding: EdgeInsets.all(5),
       child: Container(
         margin: EdgeInsets.symmetric(
           vertical: 5,
