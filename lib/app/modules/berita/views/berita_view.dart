@@ -277,7 +277,7 @@ class BeritaView extends GetView<BeritaController> {
                                       return GestureDetector(
                                         onTap: () {
                                           Get.to(() => DetailBeritaView(),
-                                              arguments: controller.dataBerita,
+                                              arguments: element,
                                               transition: Transition.fadeIn,
                                               duration:
                                                   Duration(milliseconds: 1000));
