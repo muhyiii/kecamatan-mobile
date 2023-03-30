@@ -30,7 +30,9 @@ class _WidgetBeritaViewState extends State<WidgetBeritaView> {
           children: [
             Padding(
               padding: EdgeInsets.symmetric(horizontal: Get.width / 20),
-              child: Text('Berita Terkini'),
+              child: Text(
+                'Berita Terkini',
+              ),
             ),
             Container(
                 // height: Get.height,

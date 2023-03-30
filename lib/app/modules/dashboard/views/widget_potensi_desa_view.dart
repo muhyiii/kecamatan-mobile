@@ -6,9 +6,6 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sitforsa/app/controllers/global_controller.dart';
-import 'package:sitforsa/app/modules/berita/controllers/berita_controller.dart';
-import 'package:sitforsa/app/modules/berita/views/detail_berita_view.dart';
-import 'package:sitforsa/app/modules/dashboard/controllers/dashboard_controller.dart';
 import 'package:sitforsa/app/modules/potensiDesa/controllers/potensi_desa_controller.dart';
 import 'package:sitforsa/config/style.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -78,7 +75,8 @@ class WidgetPotensiDesaView extends GetView {
                 elevation: 5,
                 color: greny,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
+                  borderRadius: BorderRadius.circular(20),
+                ),
                 child: Stack(
                   alignment: Alignment.bottomCenter,
                   children: [
@@ -166,11 +164,12 @@ class WidgetPotensiDesaView extends GetView {
                 child: Stack(
                   alignment: Alignment.bottomCenter,
                   children: [
+                    // gambar
                     Container(
                       height: Get.width,
                       width: Get.width,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(14),
                           image: DecorationImage(
                               image: CachedNetworkImageProvider(
                                 e.thumbnail,
@@ -178,29 +177,32 @@ class WidgetPotensiDesaView extends GetView {
                               fit: BoxFit.cover)),
                       padding: const EdgeInsets.all(8.0),
                     ),
+                    // shadow tulisan
                     Container(
                       width: Get.width,
-                      height: Get.width / 4,
+                      height: Get.width / 6,
                       padding:
                           EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                      margin: EdgeInsets.all(4),
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          gradient: LinearGradient(
-                              colors: [
-                                Colors.transparent,
-                                blacky.withOpacity(0.8)
-                              ],
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter)),
+                          borderRadius: BorderRadius.circular(12),
+                          // gradient: LinearGradient(
+                          //     colors: [
+                          //       Colors.transparent,
+                          //       blacky.withOpacity(0.8)
+                          //     ],
+                          //     begin: Alignment.topCenter,
+                          //     end: Alignment.bottomCenter),
+                          color: Colors.black.withOpacity(0.5)),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
                             e.desa.namaDesa,
                             style: TextStyle(
                                 fontSize: global.fontSmall.value,
-                                color: whitey,
+                                color: Colors.grey.shade400,
                                 fontFamily: 'Helvetica Neue'),
                           ),
                           SizedBox(

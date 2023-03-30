@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:sitforsa/app/controllers/global_controller.dart';
 import 'package:sitforsa/app/modules/berita/controllers/berita_controller.dart';
 import 'package:sitforsa/app/modules/dashboard/views/widget_berita_view.dart';
+import 'package:sitforsa/app/modules/dashboard/views/widget_jadwal_view.dart';
 import 'package:sitforsa/app/modules/dashboard/views/widget_pelayanan_view.dart';
 import 'package:sitforsa/app/modules/dashboard/views/widget_potensi_desa_view.dart';
 
@@ -14,7 +15,7 @@ import '../controllers/dashboard_controller.dart';
 
 class DashboardView extends GetView<DashboardController> {
   final controller = Get.put(DashboardController());
-  
+
   final global = Get.put(GlobalController());
   @override
   Widget build(BuildContext context) {
@@ -29,8 +30,8 @@ class DashboardView extends GetView<DashboardController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               GestureDetector(
-                onTap: () => BeritaController().getBerita(),
-                child: Text('Selamat Pagi')),
+                  onTap: () => BeritaController().getBerita(),
+                  child: Text('Selamat Pagi')),
               Text(
                 controller.formattedDate.toString(),
                 style: TextStyle(fontSize: global.fontSet.value - 2),
@@ -66,13 +67,15 @@ class DashboardView extends GetView<DashboardController> {
           ],
         ),
         body: SingleChildScrollView(
-          physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+          physics:
+              BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 5),
             child: Column(
               children: [
                 WidgetPotensiDesaView(),
                 WidgetPelayananView(),
+                WidgetJadwalView(),
                 WidgetBeritaView()
               ],
             ),
