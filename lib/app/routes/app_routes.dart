@@ -19,6 +19,7 @@ abstract class Routes {
   static const POTENSI_DESA = _Paths.POTENSI_DESA;
   static const SIPAHADESI = _Paths.SIPAHADESI;
   static const DETAIL_PELAYANAN = _Paths.DETAIL_PELAYANAN;
+  static const DETAIL_POTENSI = _Paths.DETAIL_POTENSI;
 }
 
 abstract class _Paths {
@@ -37,4 +38,5 @@ abstract class _Paths {
   static const POTENSI_DESA = '/potensi-desa';
   static const SIPAHADESI = '/sipahadesi';
   static const DETAIL_PELAYANAN = '/detail-pelayanan';
+  static const DETAIL_POTENSI = '/detail-potensi';
 }

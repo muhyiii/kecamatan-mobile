@@ -1,11 +1,8 @@
-import 'dart:async';
-
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sitforsa/config/style.dart';
 
 class GlobalController extends GetxController {
   // var profile = Get.put(ProfileController());

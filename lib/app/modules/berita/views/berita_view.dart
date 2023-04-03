@@ -336,7 +336,7 @@ class BeritaView extends GetView<BeritaController> {
                                                             1,
                                                         color: grayNav,
                                                         fontFamily:
-                                                            'Helvetica Neue Medium'),
+                                                            'Helvetica Neue '),
                                                   )
                                                 ],
                                               )

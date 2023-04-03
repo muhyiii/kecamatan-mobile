@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:sitforsa/app/controllers/global_bindings.dart';
 import 'package:sitforsa/app/modules/profile/controllers/profile_controller.dart';
 
 class BottomBarController extends GetxController {
@@ -11,6 +10,7 @@ class BottomBarController extends GetxController {
   void changeTabIndex(int index) {
     if (index == 4) profileController.initApp;
     tabIndex.value = index;
+    // print("index => ${tabIndex.value}");
     update();
     print(index);
   }

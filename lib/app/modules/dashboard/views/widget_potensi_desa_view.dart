@@ -6,16 +6,20 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sitforsa/app/controllers/global_controller.dart';
+import 'package:sitforsa/app/modules/detailPotensi/views/detail_potensi_view.dart';
 import 'package:sitforsa/app/modules/potensiDesa/controllers/potensi_desa_controller.dart';
 import 'package:sitforsa/config/style.dart';
 import 'package:timeago/timeago.dart' as timeago;
+import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 
+// import 'container_transition.dart';
 class WidgetPotensiDesaView extends GetView {
   var global = Get.put(GlobalController());
   final potensiController = Get.put(PotensiDesaController());
   var empty = [0, 0];
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Obx(() {
       if (potensiController.dataPotensi.length == 0)
         return CarouselSlider(
@@ -153,10 +157,10 @@ class WidgetPotensiDesaView extends GetView {
             );
           else
             return GestureDetector(
-              // onTap: () => Get.to(() => DetailBeritaView(),
-              //     arguments: e,
-              //     transition: Transition.fadeIn,
-              //     duration: Duration(milliseconds: 1000)),
+              onTap: () => Get.to(() => DetailPotensiView(),
+                  arguments: e,
+                  transition: Transition.native,
+                  duration: Duration(milliseconds: 700)),
               child: Card(
                 color: greny,
                 shape: RoundedRectangleBorder(
@@ -166,8 +170,8 @@ class WidgetPotensiDesaView extends GetView {
                   children: [
                     // gambar
                     Container(
-                      height: Get.width,
-                      width: Get.width,
+                      height: Get.height,
+                      width: size.width,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(14),
                           image: DecorationImage(
@@ -178,46 +182,45 @@ class WidgetPotensiDesaView extends GetView {
                       padding: const EdgeInsets.all(8.0),
                     ),
                     // shadow tulisan
+
                     Container(
-                      width: Get.width,
-                      height: Get.width / 6,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 8),
                       margin: EdgeInsets.all(4),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          // gradient: LinearGradient(
-                          //     colors: [
-                          //       Colors.transparent,
-                          //       blacky.withOpacity(0.8)
-                          //     ],
-                          //     begin: Alignment.topCenter,
-                          //     end: Alignment.bottomCenter),
-                          color: Colors.black.withOpacity(0.5)),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            e.desa.namaDesa,
-                            style: TextStyle(
-                                fontSize: global.fontSmall.value,
-                                color: Colors.grey.shade400,
-                                fontFamily: 'Helvetica Neue'),
+                      child: GlassContainer(
+                        width: Get.width,
+                        height: Get.width / 6,
+                        blur: 1.5,
+                        border: Border.fromBorderSide(BorderSide.none),
+                        borderRadius: BorderRadius.circular(12),
+                        color: Colors.black.withOpacity(0.5),
+                        child: Padding(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                e.namaPotensi,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    fontSize: global.fontSize.value - 2,
+                                    color: whitey,
+                                    fontFamily: 'Helvetica Neue'),
+                              ),
+                              SizedBox(
+                                height: 2,
+                              ),
+                              Text(
+                                e.desa.namaDesa,
+                                style: TextStyle(
+                                    fontSize: global.fontSmall.value,
+                                    color: Colors.grey.shade400,
+                                    fontFamily: 'Helvetica Neue'),
+                              ),
+                            ],
                           ),
-                          SizedBox(
-                            height: 2,
-                          ),
-                          Text(
-                            e.namaPotensi,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                                fontSize: global.fontSize.value - 2,
-                                color: whitey,
-                                fontFamily: 'Helvetica Neue'),
-                          ),
-                        ],
+                        ),
                       ),
                     )
                   ],
@@ -252,9 +255,6 @@ class WidgetPotensiDesaView extends GetView {
     });
   }
 }
-
-
-
 
 //  Row(
 //                     children: [
