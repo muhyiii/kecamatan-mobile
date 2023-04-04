@@ -136,7 +136,7 @@ class _BottomBarViewState extends State<BottomBarView> {
                         icon: controller.tabIndex.value == 0
                             ? IconlyBold.home
                             : IconlyLight.home,
-                        text: 'Home',
+                        text: 'Beranda',
                       ),
                       GButton(
                         icon: controller.tabIndex.value == 1

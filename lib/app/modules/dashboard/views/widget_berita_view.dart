@@ -5,6 +5,7 @@ import 'package:lottie/lottie.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sitforsa/app/controllers/global_controller.dart';
 import 'package:sitforsa/app/modules/berita/controllers/berita_controller.dart';
+import 'package:sitforsa/app/modules/potensiDesa/controllers/potensi_desa_controller.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 import '../../berita/views/detail_berita_view.dart';
@@ -18,6 +19,7 @@ class WidgetBeritaView extends StatefulWidget {
 
 class _WidgetBeritaViewState extends State<WidgetBeritaView> {
   var controller = Get.put(BeritaController());
+  final loading = Get.put(PotensiDesaController());
   var global = Get.put(GlobalController());
   @override
   Widget build(BuildContext context) {
@@ -67,11 +69,12 @@ class _WidgetBeritaViewState extends State<WidgetBeritaView> {
                         ],
                       ),
                     )
-                  : controller.isLoading.value
+                  : loading.isLoading.value
                       ? Column(
                           children: controller.dataBerita
                               .getRange(0, 2)
                               .map((element) => Card(
+                                    elevation: 0,
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Row(
@@ -81,9 +84,8 @@ class _WidgetBeritaViewState extends State<WidgetBeritaView> {
                                             child: Material(
                                               borderRadius:
                                                   BorderRadius.circular(15),
-                                              elevation: 2,
                                               child: Shimmer.fromColors(
-                                                baseColor: Colors.grey[300]!,
+                                                baseColor: Colors.grey[200]!,
                                                 highlightColor: Colors.white,
                                                 child: Container(
                                                   height: Get.width / 4.2,
@@ -117,7 +119,7 @@ class _WidgetBeritaViewState extends State<WidgetBeritaView> {
                                                   Expanded(
                                                     child: Shimmer.fromColors(
                                                       baseColor:
-                                                          Colors.grey[300]!,
+                                                          Colors.grey[200]!,
                                                       highlightColor:
                                                           Colors.white,
                                                       child: Container(
@@ -154,7 +156,7 @@ class _WidgetBeritaViewState extends State<WidgetBeritaView> {
                                                     children: [
                                                       Shimmer.fromColors(
                                                         baseColor:
-                                                            Colors.grey[300]!,
+                                                            Colors.grey[200]!,
                                                         highlightColor:
                                                             Colors.white,
                                                         child: Container(
@@ -187,7 +189,7 @@ class _WidgetBeritaViewState extends State<WidgetBeritaView> {
                                                       ),
                                                       Shimmer.fromColors(
                                                         baseColor:
-                                                            Colors.grey[300]!,
+                                                            Colors.grey[200]!,
                                                         highlightColor:
                                                             Colors.white,
                                                         child: Container(

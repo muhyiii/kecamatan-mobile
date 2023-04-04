@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
@@ -6,9 +8,11 @@ import 'package:sitforsa/config/style.dart';
 import '../controllers/detail_potensi_controller.dart';
 import 'package:iconly/iconly.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:external_app_launcher/external_app_launcher.dart';
 
 class DetailPotensiView extends GetView<DetailPotensiController> {
   final e = Get.arguments;
+  String previousRoute = Get.previousRoute;
   @override
   Widget build(BuildContext context) {
     final global = Get.put(GlobalController());
@@ -35,11 +39,17 @@ class DetailPotensiView extends GetView<DetailPotensiController> {
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.white.withOpacity(0.95)),
-                child: Icon(
-                  Icons.chevron_left,
-                  size: 20,
-                  color: Colors.black,
+                    color: Colors.white),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.chevron_left,
+                      size: 20,
+                      color: Colors.black,
+                    ),
+                    // Text(previousRoute)
+                  ],
                 ),
               ),
             ),
@@ -123,25 +133,41 @@ class DetailPotensiView extends GetView<DetailPotensiController> {
                             ),
                           ],
                         ),
-                        Row(
-                          children: [
-                            Icon(
-                              Iconsax.map_1,
-                              color: Color(0xff20B08D),
-                              size: 18,
-                            ),
-                            SizedBox(
-                              width: 4,
-                            ),
-                            Text(
-                              "Arah Peta",
-                              style: TextStyle(
-                                  fontSize: global.fontSet.value - 1,
-                                  color: Color(0xff20B08D),
-                                  fontFamily: 'pop',
-                                  fontWeight: FontWeight.w500),
-                            ),
-                          ],
+                        InkWell(
+                          onTap: () async {
+                            // MapsLauncher.launchCoordinates(
+                            //     e.dasa.latitude, e.desa.longtitude);
+                            await LaunchApp.openApp(
+                              androidPackageName:
+                                  'com.google.android.apps.maps',
+                              iosUrlScheme: 'comgooglemaps://',
+                              // iosUrlScheme:
+                              //     'comgooglemaps://geo:${e.desa.latitude},${e.desa.longtitude}',
+                              appStoreLink:
+                                  "https://apps.apple.com/us/app/example-app/id1234567890",
+                              openStore: true,
+                            );
+                          },
+                          child: Row(
+                            children: [
+                              Icon(
+                                Iconsax.map_1,
+                                color: Color(0xff20B08D),
+                                size: 18,
+                              ),
+                              SizedBox(
+                                width: 4,
+                              ),
+                              Text(
+                                "Arah Peta",
+                                style: TextStyle(
+                                    fontSize: global.fontSet.value - 1,
+                                    color: Color(0xff20B08D),
+                                    fontFamily: 'pop',
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ],
+                          ),
                         ),
                       ]),
                   SizedBox(

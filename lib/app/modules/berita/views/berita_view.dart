@@ -101,6 +101,7 @@ class BeritaView extends GetView<BeritaController> {
                         itemBuilder: (context, index) {
                           if (controller.isLoading.value)
                             return Card(
+                              elevation: 0,
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Row(
@@ -109,13 +110,12 @@ class BeritaView extends GetView<BeritaController> {
                                       flex: 2,
                                       child: Material(
                                         borderRadius: BorderRadius.circular(15),
-                                        elevation: 2,
                                         child: Shimmer.fromColors(
-                                          baseColor: Colors.grey[300]!,
+                                          baseColor: Colors.grey[200]!,
                                           highlightColor: Colors.white,
                                           child: Container(
-                                            height: Get.width / 3,
-                                            width: Get.width / 2.7,
+                                            height: Get.width / 4.2,
+                                            // width: Get.width / 2.7,
                                             decoration: BoxDecoration(
                                               color: Colors.blueGrey
                                                   .withOpacity(0.6),
@@ -130,9 +130,9 @@ class BeritaView extends GetView<BeritaController> {
                                       width: 10,
                                     ),
                                     Expanded(
-                                      flex: 3,
+                                      flex: 5,
                                       child: Container(
-                                        height: Get.width / 3,
+                                        height: Get.width / 3.7,
                                         padding:
                                             EdgeInsets.symmetric(vertical: 10),
                                         child: Column(
@@ -143,7 +143,7 @@ class BeritaView extends GetView<BeritaController> {
                                           children: [
                                             Expanded(
                                               child: Shimmer.fromColors(
-                                                baseColor: Colors.grey[300]!,
+                                                baseColor: Colors.grey[200]!,
                                                 highlightColor: Colors.white,
                                                 child: Container(
                                                   child: Text(
@@ -176,7 +176,7 @@ class BeritaView extends GetView<BeritaController> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Shimmer.fromColors(
-                                                  baseColor: Colors.grey[300]!,
+                                                  baseColor: Colors.grey[200]!,
                                                   highlightColor: Colors.white,
                                                   child: Container(
                                                       child: Text(
@@ -203,7 +203,7 @@ class BeritaView extends GetView<BeritaController> {
                                                   height: 2,
                                                 ),
                                                 Shimmer.fromColors(
-                                                  baseColor: Colors.grey[300]!,
+                                                  baseColor: Colors.grey[200]!,
                                                   highlightColor: Colors.white,
                                                   child: Container(
                                                       child: Text(
@@ -245,107 +245,120 @@ class BeritaView extends GetView<BeritaController> {
                                     duration: Duration(milliseconds: 1000));
                                 controller.isSearch.value = false;
                               },
-                              child: Card(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                        flex: 2,
-                                        child: Material(
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                          elevation: 5,
-                                          child: Hero(
-                                            tag: controller
-                                                .dataBerita[index].thumbnail,
-                                            child: Container(
-                                              height: Get.width / 3,
-                                              width: Get.width / 2.7,
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(15),
-                                                  image: DecorationImage(
-                                                      image:
-                                                          CachedNetworkImageProvider(
-                                                        controller
-                                                            .dataBerita[index]
-                                                            .thumbnail,
-                                                      ),
-                                                      fit: BoxFit.cover,
-                                                      alignment:
-                                                          Alignment.topCenter)),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Expanded(
-                                        flex: 3,
-                                        child: Container(
-                                          height: Get.width / 3,
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: 10),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
-                                            children: [
-                                              Expanded(
-                                                child: Text(
-                                                  controller
-                                                      .dataBerita[index].judul,
-                                                  style: TextStyle(
-                                                      fontSize: global
-                                                              .fontSize.value -
-                                                          2,
-                                                      fontFamily:
-                                                          'Helvetica Neue'),
-                                                ),
-                                              ),
-                                              Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    timeago.format(
+                              child: Container(
+                                margin: EdgeInsets.symmetric(
+                                    horizontal: 15, vertical: 5),
+                                padding: EdgeInsets.symmetric(horizontal: 5),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12),
+                                    color: Colors.white),
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 2,
+                                      child: Material(
+                                        borderRadius: BorderRadius.circular(15),
+                                        child: Hero(
+                                          tag: controller
+                                              .dataBerita[index].thumbnail,
+                                          child: Container(
+                                            height: Get.width / 4.2,
+                                            // width: Get.width / 2.7,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                                image: DecorationImage(
+                                                    image:
+                                                        CachedNetworkImageProvider(
                                                       controller
                                                           .dataBerita[index]
-                                                          .createdAt,
-                                                      locale: 'id',
+                                                          .thumbnail,
                                                     ),
-                                                    style: TextStyle(
-                                                        fontSize: global
-                                                                .fontSmall
-                                                                .value +
-                                                            1,
-                                                        color: grayNav,
-                                                        fontFamily:
-                                                            'Helvetica Neue Medium'),
-                                                  ),
-                                                  Text(
-                                                    controller.dataBerita[index]
-                                                        .author.username,
-                                                    style: TextStyle(
-                                                        fontSize: global
-                                                                .fontSmall
-                                                                .value +
-                                                            1,
-                                                        color: grayNav,
-                                                        fontFamily:
-                                                            'Helvetica Neue '),
-                                                  )
-                                                ],
-                                              )
-                                            ],
+                                                    fit: BoxFit.cover,
+                                                    alignment:
+                                                        Alignment.topCenter)),
                                           ),
                                         ),
-                                      )
-                                    ],
-                                  ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Expanded(
+                                      flex: 5,
+                                      child: Container(
+                                        height: Get.width / 3.7,
+                                        padding:
+                                            EdgeInsets.symmetric(vertical: 10),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Expanded(
+                                              child: Text(
+                                                controller
+                                                    .dataBerita[index].judul,
+                                                overflow: TextOverflow.ellipsis,
+                                                maxLines: 2,
+                                                style: TextStyle(
+                                                    fontSize:
+                                                        global.fontSet.value,
+                                                    fontFamily: 'pop',
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              ),
+                                            ),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  controller.dataBerita[index]
+                                                      .author.username,
+                                                  style: TextStyle(
+                                                      fontSize: global
+                                                              .fontSmall.value +
+                                                          1,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      color: Colors.grey,
+                                                      fontFamily: "pop"),
+                                                ),
+                                                Container(
+                                                  margin: EdgeInsets.symmetric(
+                                                      horizontal: 5),
+                                                  child: Text(
+                                                    "•",
+                                                    style: TextStyle(
+                                                        fontSize: global
+                                                                .fontSmall
+                                                                .value +
+                                                            1,
+                                                        color: Colors.grey,
+                                                        fontFamily: 'pop'),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  timeago.format(
+                                                    controller.dataBerita[index]
+                                                        .createdAt,
+                                                    locale: 'id',
+                                                  ),
+                                                  style: TextStyle(
+                                                      fontSize: global
+                                                          .fontSmall.value,
+                                                      color: Colors.grey,
+                                                      fontFamily: 'pop',
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                ),
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                                  ],
                                 ),
                               ),
                             );

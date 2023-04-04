@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sitforsa/app/controllers/global_controller.dart';
 import 'package:sitforsa/app/modules/kontakPenting/views/kontak_penting_view.dart';
 import 'package:sitforsa/app/modules/pengaduan/views/pengaduan_view.dart';
+import 'package:sitforsa/app/modules/potensiDesa/controllers/potensi_desa_controller.dart';
 import 'package:sitforsa/app/modules/potensiDesa/views/potensi_desa_view.dart';
 import 'package:sitforsa/app/modules/sipahadesi/views/sipahadesi_view.dart';
 import 'package:iconsax/iconsax.dart';
@@ -11,6 +13,7 @@ import 'package:sitforsa/config/style.dart';
 
 class WidgetPelayananView extends GetView {
   var global = Get.put(GlobalController());
+  var loading = Get.put(PotensiDesaController());
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,54 +38,88 @@ class WidgetPelayananView extends GetView {
   }
 
   Widget itemWidget(IconData icon, String text, Widget routeTo) {
-    return GestureDetector(
-      onTap: () {
-        Get.to(() => routeTo);
-      },
-      child: Column(
-        children: [
-          Container(
-            padding: EdgeInsets.symmetric(
-                vertical: global.fontSet.value + 1,
-                horizontal: global.fontSet.value + 1),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Get.isDarkMode ? null : Colors.white,
-              // boxShadow: [
-              //   BoxShadow(
-              //       blurStyle: BlurStyle.solid,
-              //       offset: Offset(1.5, 2.5),
-              //       color: Colors.grey.shade200)
-              // ],
-            ),
-            child: Column(
-              children: [
-                Icon(
-                  icon,
-                  color: Get.isDarkMode ? null : greenny,
-                  size: global.fontSize.value + 2,
+    return Obx(
+      () {
+        return loading.isLoading.value
+            ? GestureDetector(
+                onTap: () {
+                  Get.to(() => routeTo);
+                },
+                child: Column(
+                  children: [
+                    Shimmer.fromColors(
+                      baseColor: Colors.grey[200]!,
+                      highlightColor: Colors.white,
+                      child: Container(
+                        width: Get.width / 8,
+                        height: Get.width / 8,
+                        padding: EdgeInsets.all(global.fontSmall.value + 2),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Get.isDarkMode ? null : Colors.white,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: Get.height * 0.01,
+                    ),
+                    Shimmer.fromColors(
+                      baseColor: Colors.grey[200]!,
+                      highlightColor: Colors.white,
+                      child: Container(
+                        width: Get.width / 7,
+                        height: 15,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 8,
-          ),
-          Container(
-            width: Get.width / 5.5,
-            child: Text(
-              text,
-              maxLines: 2,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontFamily: 'pop',
-                  fontSize: global.fontSet.value - 2.5,
-                  height: 1.4,
-                  fontWeight: FontWeight.w500),
-            ),
-          ),
-        ],
-      ),
+              )
+            : GestureDetector(
+                onTap: () {
+                  Get.to(() => routeTo);
+                },
+                child: Column(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(global.fontSmall.value + 2),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Get.isDarkMode ? null : Colors.white,
+                      ),
+                      child: Column(
+                        children: [
+                          Icon(
+                            icon,
+                            color: Get.isDarkMode ? null : greenny,
+                            size: global.fontSize.value + 2,
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: Get.height * 0.01,
+                    ),
+                    Container(
+                      width: Get.width / 6,
+                      child: Text(
+                        text,
+                        maxLines: 2,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontFamily: 'pop',
+                            fontSize: global.fontSet.value - 2.5,
+                            height: 1.4,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+      },
     );
   }
 }
