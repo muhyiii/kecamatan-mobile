@@ -29,7 +29,10 @@ class ProfileView extends GetView<ProfileController> {
                 Center(
                   child: Text(
                     'Profile',
-                    style: TextStyle(fontFamily: 'Helvetica Neue Bold'),
+                    style: TextStyle(
+                        fontFamily: 'pop',
+                        fontSize: global.fontSet.value + 3,
+                        fontWeight: FontWeight.w600),
                   ),
                 ),
                 SizedBox(
@@ -72,7 +75,7 @@ class ProfileView extends GetView<ProfileController> {
                           size: 22,
                         ),
                         title: Text(
-                          'Edit Profile',
+                          'Ubah Profil',
                           style: TextStyle(
                               fontFamily: "pop",
                               fontSize: global.fontSet.value,
@@ -83,36 +86,43 @@ class ProfileView extends GetView<ProfileController> {
                       Material(
                         // elevation: 2,
                         child: Container(
-                          // margin: EdgeInsets.only(top: 10),
+                          margin: EdgeInsets.only(top: 10, left: 10, right: 10),
                           width: Get.width,
                           padding: EdgeInsets.symmetric(
                               horizontal: 10, vertical: 15),
                           decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
                             color: Get.isDarkMode ? null : whitey,
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Pengajuan Saya'),
+                              Text(
+                                'Pengajuan Saya',
+                                style: TextStyle(
+                                    fontFamily: 'pop',
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: global.fontSet.value),
+                              ),
                               Divider(thickness: 0.5),
                               Container(
                                 margin: EdgeInsets.symmetric(vertical: 5),
                                 child: Row(children: [
-                                  cardPengaduan(
+                                  cardPengajuan(
                                       icon: Iconsax.timer_1,
                                       text: 'Menunggu Respon'),
-                                  cardPengaduan(
+                                  cardPengajuan(
                                       icon: Iconsax.sms_tracking,
                                       text: 'Diproses'),
-                                  cardPengaduan(
+                                  cardPengajuan(
                                       icon: Iconsax.tick_circle,
                                       text: 'Selesai'),
-                                  cardPengaduan(
+                                  cardPengajuan(
                                       icon: Iconsax.close_circle,
                                       text: 'Ditolak')
                                 ]),
                               ),
-                              Divider(),
+                              // Divider(),
                               // Text(global.token.value)
                             ],
                           ),
@@ -121,18 +131,28 @@ class ProfileView extends GetView<ProfileController> {
                       Material(
                         // elevation: 2,
                         child: Container(
-                          // margin: EdgeInsets.only(top: 15),
+                          margin: EdgeInsets.all(10),
                           width: Get.width,
                           padding: EdgeInsets.symmetric(
                               horizontal: 10, vertical: 15),
                           decoration: BoxDecoration(
-                            color: Get.isDarkMode ? null : whitey,
+                            borderRadius: BorderRadius.circular(10),
+                            color: Get.isDarkMode ? null : greenny,
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Pengaduan Saya'),
-                              Divider(),
+                              Text(
+                                'Pengaduan Saya',
+                                style: TextStyle(
+                                    fontFamily: 'pop',
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: global.fontSet.value,
+                                    color: Colors.white),
+                              ),
+                              Divider(
+                                color: Colors.white,
+                              ),
                               Container(
                                 margin: EdgeInsets.symmetric(vertical: 5),
                                 child: Row(
@@ -152,7 +172,7 @@ class ProfileView extends GetView<ProfileController> {
                                   ],
                                 ),
                               ),
-                              Divider(),
+                              // Divider(),
                             ],
                           ),
                         ),
@@ -165,7 +185,7 @@ class ProfileView extends GetView<ProfileController> {
                         ),
                         minLeadingWidth: 0,
                         title: Text(
-                          'Logout',
+                          'Keluar',
                           style: TextStyle(
                               fontFamily: "pop",
                               fontSize: global.fontSet.value,
@@ -314,33 +334,64 @@ class ProfileView extends GetView<ProfileController> {
 
   Widget cardPengaduan({IconData? icon, String? text}) {
     return Expanded(
-        child: Card(
-      elevation: 0,
-      color: Colors.grey.shade100,
-      child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 2),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Icon(
-              icon,
-              color: greenny,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              text.toString(),
-              maxLines: 1,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontFamily: 'Helvetica Neue Medium',
-                  fontSize: global.fontSmall.value),
-            )
-          ],
+      children: [
+        Container(
+          padding: EdgeInsets.all(global.fontSmall.value - 2),
+          decoration: BoxDecoration(
+            color: whitey,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Icon(
+            icon,
+            color: greenny,
+          ),
         ),
-      ),
+        SizedBox(
+          height: global.fontSmall.value - 7,
+        ),
+        Text(
+          text.toString(),
+          maxLines: 1,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontFamily: 'pop',
+              fontSize: global.fontSmall.value,
+              fontWeight: FontWeight.w600,
+              color: whitey),
+        )
+      ],
+    ));
+  }
+
+  Widget cardPengajuan({IconData? icon, String? text}) {
+    return Expanded(
+        child: Column(
+      children: [
+        Container(
+          padding: EdgeInsets.all(global.fontSmall.value - 2),
+          decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey.shade200),
+              borderRadius: BorderRadius.circular(8)),
+          child: Icon(
+            icon,
+            color: greenny,
+          ),
+        ),
+        SizedBox(
+          height: global.fontSmall.value - 7,
+        ),
+        Text(
+          text.toString(),
+          maxLines: 1,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontFamily: 'pop',
+              fontSize: global.fontSmall.value,
+              fontWeight: FontWeight.w600,
+              color: blacky),
+        )
+      ],
     ));
   }
 }

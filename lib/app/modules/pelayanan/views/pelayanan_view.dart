@@ -35,7 +35,10 @@ class PelayananView extends GetView<PelayananController> {
         elevation: 0,
         title: Text(
           'Pelayanan',
-          style: TextStyle(fontFamily: 'Helvetica Neue Bold'),
+          style: TextStyle(
+              fontFamily: 'pop',
+              fontSize: global.fontSet.value + 3,
+              fontWeight: FontWeight.w600),
         ),
         centerTitle: true,
       ),

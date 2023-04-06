@@ -25,6 +25,7 @@ class BeritaView extends GetView<BeritaController> {
     return SafeArea(
       child: Obx(() {
         return Scaffold(
+            backgroundColor: whitey,
             appBar: AppBar(
               foregroundColor: Get.isDarkMode ? null : greenny,
               elevation: 0,
@@ -61,7 +62,11 @@ class BeritaView extends GetView<BeritaController> {
                           hintText: 'Cari Berita'))
                   : Text(
                       'Berita',
-                      style: TextStyle(fontFamily: 'Helvetica Neue Bold'),
+                      style: TextStyle(
+                        fontFamily: 'pop',
+                        fontSize: global.fontSet.value + 3,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
               centerTitle: true,
               actions: [
@@ -80,6 +85,7 @@ class BeritaView extends GetView<BeritaController> {
               onRefresh: () async => refreshAll(),
               color: greeny,
               child: Container(
+                margin: EdgeInsets.only(top: 5),
                 child: controller.dataBerita.length == 0
                     ? Center(
                         child: Column(
@@ -109,7 +115,7 @@ class BeritaView extends GetView<BeritaController> {
                                     Expanded(
                                       flex: 2,
                                       child: Material(
-                                        borderRadius: BorderRadius.circular(15),
+                                        borderRadius: BorderRadius.circular(10),
                                         child: Shimmer.fromColors(
                                           baseColor: Colors.grey[200]!,
                                           highlightColor: Colors.white,
@@ -120,7 +126,7 @@ class BeritaView extends GetView<BeritaController> {
                                               color: Colors.blueGrey
                                                   .withOpacity(0.6),
                                               borderRadius:
-                                                  BorderRadius.circular(15),
+                                                  BorderRadius.circular(8),
                                             ),
                                           ),
                                         ),
@@ -241,8 +247,8 @@ class BeritaView extends GetView<BeritaController> {
                               onTap: () {
                                 Get.to(() => DetailBeritaView(),
                                     arguments: controller.dataBerita[index],
-                                    transition: Transition.fadeIn,
-                                    duration: Duration(milliseconds: 1000));
+                                    transition: Transition.native,
+                                    duration: Duration(milliseconds: 700));
                                 controller.isSearch.value = false;
                               },
                               child: Container(
@@ -250,14 +256,14 @@ class BeritaView extends GetView<BeritaController> {
                                     horizontal: 15, vertical: 5),
                                 padding: EdgeInsets.symmetric(horizontal: 5),
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(12),
+                                    borderRadius: BorderRadius.circular(10),
                                     color: Colors.white),
                                 child: Row(
                                   children: [
                                     Expanded(
                                       flex: 2,
                                       child: Material(
-                                        borderRadius: BorderRadius.circular(15),
+                                        borderRadius: BorderRadius.circular(8),
                                         child: Hero(
                                           tag: controller
                                               .dataBerita[index].thumbnail,
@@ -266,7 +272,7 @@ class BeritaView extends GetView<BeritaController> {
                                             // width: Get.width / 2.7,
                                             decoration: BoxDecoration(
                                                 borderRadius:
-                                                    BorderRadius.circular(15),
+                                                    BorderRadius.circular(8),
                                                 image: DecorationImage(
                                                     image:
                                                         CachedNetworkImageProvider(

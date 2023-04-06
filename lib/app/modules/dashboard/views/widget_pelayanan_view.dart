@@ -10,6 +10,7 @@ import 'package:sitforsa/app/modules/potensiDesa/views/potensi_desa_view.dart';
 import 'package:sitforsa/app/modules/sipahadesi/views/sipahadesi_view.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:sitforsa/config/style.dart';
+import 'package:heroicons/heroicons.dart';
 
 class WidgetPelayananView extends GetView {
   var global = Get.put(GlobalController());
@@ -26,18 +27,45 @@ class WidgetPelayananView extends GetView {
         child: Wrap(
           alignment: WrapAlignment.spaceAround,
           children: [
-            itemWidget(Iconsax.call, "Kontak Penting", KontakPentingView()),
             itemWidget(
-                Iconsax.calendar_1, "Jadwal SIPAHADESI", SipahadesiView()),
-            itemWidget(Iconsax.volume_high, "SIAPMASJO", PengaduanView()),
-            itemWidget(Iconsax.building_4, "TENDES", PotensiDesaView()),
+                Icon(
+                  Iconsax.call,
+                  color: Get.isDarkMode ? null : greenny,
+                  size: global.fontSize.value + 2,
+                ),
+                "Kontak Penting",
+                KontakPentingView()),
+            itemWidget(
+                Icon(
+                  Iconsax.calendar_1,
+                  color: Get.isDarkMode ? null : greenny,
+                  size: global.fontSize.value + 2,
+                ),
+                "Jadwal SIPAHADESI",
+                SipahadesiView()),
+            itemWidget(
+                HeroIcon(
+                  HeroIcons.megaphone,
+                  color: Get.isDarkMode ? null : greenny,
+                  size: global.fontSize.value + 2,
+                ),
+                "SIAPMASJO",
+                PengaduanView()),
+            itemWidget(
+                Icon(
+                  Iconsax.building_4,
+                  color: Get.isDarkMode ? null : greenny,
+                  size: global.fontSize.value + 2,
+                ),
+                "TENDES",
+                PotensiDesaView()),
           ],
         ),
       ),
     );
   }
 
-  Widget itemWidget(IconData icon, String text, Widget routeTo) {
+  Widget itemWidget(Widget icon, String text, Widget routeTo) {
     return Obx(
       () {
         return loading.isLoading.value
@@ -55,7 +83,7 @@ class WidgetPelayananView extends GetView {
                         height: Get.width / 8,
                         padding: EdgeInsets.all(global.fontSmall.value + 2),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
+                          borderRadius: BorderRadius.circular(10),
                           color: Get.isDarkMode ? null : Colors.white,
                         ),
                       ),
@@ -87,17 +115,11 @@ class WidgetPelayananView extends GetView {
                     Container(
                       padding: EdgeInsets.all(global.fontSmall.value + 2),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(9),
                         color: Get.isDarkMode ? null : Colors.white,
                       ),
                       child: Column(
-                        children: [
-                          Icon(
-                            icon,
-                            color: Get.isDarkMode ? null : greenny,
-                            size: global.fontSize.value + 2,
-                          ),
-                        ],
+                        children: [icon],
                       ),
                     ),
                     SizedBox(

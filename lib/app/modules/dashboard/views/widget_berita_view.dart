@@ -83,7 +83,7 @@ class _WidgetBeritaViewState extends State<WidgetBeritaView> {
                                             flex: 2,
                                             child: Material(
                                               borderRadius:
-                                                  BorderRadius.circular(15),
+                                                  BorderRadius.circular(10),
                                               child: Shimmer.fromColors(
                                                 baseColor: Colors.grey[200]!,
                                                 highlightColor: Colors.white,
@@ -235,9 +235,9 @@ class _WidgetBeritaViewState extends State<WidgetBeritaView> {
                                     onTap: () {
                                       Get.to(() => DetailBeritaView(),
                                           arguments: index,
-                                          transition: Transition.fadeIn,
+                                          transition: Transition.native,
                                           duration:
-                                              Duration(milliseconds: 1000));
+                                              Duration(milliseconds: 700));
                                       controller.isSearch.value = false;
                                     },
                                     child: Container(
@@ -248,7 +248,7 @@ class _WidgetBeritaViewState extends State<WidgetBeritaView> {
                                           EdgeInsets.symmetric(horizontal: 5),
                                       decoration: BoxDecoration(
                                           borderRadius:
-                                              BorderRadius.circular(12),
+                                              BorderRadius.circular(10),
                                           color: Colors.white),
                                       child: Row(
                                         children: [

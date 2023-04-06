@@ -23,54 +23,109 @@ class NotifikasiView extends GetView<NotifikasiController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         foregroundColor: Get.isDarkMode ? null : greenny,
         elevation: 0,
         backgroundColor: Get.isDarkMode ? null : whitey,
         title: Text(
           'Notifikasi',
-          style: TextStyle(fontFamily: 'Helvetica Neue Bold'),
+          style: TextStyle(
+              fontFamily: 'pop',
+              fontSize: global.fontSet.value + 3,
+              fontWeight: FontWeight.w600),
         ),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-        child: Column(
-            children: a
-                .map((e) => Card(
-                      elevation: 1,
-                      shape: RoundedRectangleBorder(),
-                      child: Container(
-                        padding: EdgeInsets.all(10),
-                        width: Get.width,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Pengajuan Diterima',
-                              style: TextStyle(),
-                            ),
-                            SizedBox(
-                              height: Get.width / 18,
-                            ),
-                            Text(
-                              'Pengajuan izin 03282028908 telah diterima oleh kecamatan',
-                              style:
-                                  TextStyle(fontSize: global.fontSmall.value),
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              '2022 - 04 - 01',
-                              style:
-                                  TextStyle(fontSize: global.fontSmall.value),
-                            )
-                          ],
-                        ),
-                      ),
-                    ))
-                .toList()),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 10.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                child: Text(
+                  "Terbaru",
+                  style: TextStyle(
+                      fontFamily: "pop",
+                      fontWeight: FontWeight.w500,
+                      fontSize: global.fontSet.value + 1),
+                ),
+              ),
+              SizedBox(
+                height: Get.width * 0.02,
+              ),
+              Wrap(
+                  // runSpacing: 7,
+                  children: a
+                      .map((e) => Column(
+                            children: [
+                              Card(
+                                elevation: 0,
+                                color: Colors.transparent,
+                                margin: EdgeInsets.symmetric(
+                                  horizontal: 10,
+                                ),
+                                child: Container(
+                                  padding: EdgeInsets.all(8),
+                                  width: Get.width,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            'Pengajuan Diterima',
+                                            style: TextStyle(
+                                                fontSize:
+                                                    global.fontSet.value - 0.5,
+                                                fontFamily: "pop",
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                          Text(
+                                            '2022 - 04 - 01',
+                                            style: TextStyle(
+                                                fontSize:
+                                                    global.fontSmall.value,
+                                                fontFamily: "pop",
+                                                color: Colors.grey[600],
+                                                fontWeight: FontWeight.w500),
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: Get.width * 0.03,
+                                      ),
+                                      SizedBox(
+                                        width: Get.width / 1.2,
+                                        child: Text(
+                                          'Pengajuan izin 03282028908 telah diterima oleh kecamatan',
+                                          style: TextStyle(
+                                              fontSize:
+                                                  global.fontSmall.value + 1,
+                                              fontFamily: "pop",
+                                              color: Colors.grey.shade600),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Divider(
+                                thickness: 0.5,
+                              )
+                            ],
+                          ))
+                      .toList()),
+            ],
+          ),
+        ),
       ),
     );
   }

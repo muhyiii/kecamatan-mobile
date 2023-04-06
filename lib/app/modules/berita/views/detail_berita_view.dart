@@ -113,38 +113,46 @@ class _DetailBeritaViewState extends State<DetailBeritaView> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: Colors.white),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: Column(
                   children: [
-                    Text(
-                      data.author.username,
-                      style: TextStyle(
-                        fontFamily: "pop",
-                        fontSize: global.fontSet.value,
-                        fontWeight: FontWeight.w500,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          data.author.username,
+                          style: TextStyle(
+                            fontFamily: "pop",
+                            fontSize: global.fontSet.value,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Text(
+                          timeago.format(data.createdAt, locale: "id"),
+                          style: TextStyle(
+                              fontFamily: "pop",
+                              color: Colors.grey.shade600,
+                              fontSize: global.fontSet.value - 1.5),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: global.fontSet.value - 8,
+                    ),
+                    Divider(indent: 1),
+                    SizedBox(
+                      height: global.fontSet.value - 3,
                     ),
                     Text(
-                      timeago.format(data.createdAt, locale: "id"),
+                      _parseHtmlString(data.konten),
+                      textAlign: TextAlign.start,
                       style: TextStyle(
-                          fontFamily: "pop",
                           color: Colors.grey.shade600,
-                          fontSize: global.fontSet.value - 1.5),
+                          fontSize: global.fontSet.value - 0.5,
+                          fontFamily: "pop"),
                     )
                   ],
                 ),
               ),
-              SizedBox(
-                height: global.fontSet.value,
-              ),
-              Text(
-                _parseHtmlString(data.konten),
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                    color: Colors.grey.shade600,
-                    fontSize: global.fontSet.value - 0.5,
-                    fontFamily: "pop"),
-              )
             ],
           ),
         ),

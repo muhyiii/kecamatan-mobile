@@ -51,7 +51,7 @@ class Widget_JadwalStateView extends State<WidgetJadwalView> {
                                     padding:
                                         EdgeInsets.all(global.fontSmall.value),
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(12),
+                                        borderRadius: BorderRadius.circular(7),
                                         color: Colors.white),
                                     child: Column(
                                       mainAxisAlignment:
@@ -148,7 +148,7 @@ class Widget_JadwalStateView extends State<WidgetJadwalView> {
                                     padding:
                                         EdgeInsets.all(global.fontSmall.value),
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(12),
+                                        borderRadius: BorderRadius.circular(10),
                                         color: Colors.white),
                                     child: Column(
                                       mainAxisAlignment:
