@@ -63,6 +63,7 @@ class BeritaView extends GetView<BeritaController> {
                   : Text(
                       'Berita',
                       style: TextStyle(
+                        color: greenny,
                         fontFamily: 'pop',
                         fontSize: global.fontSet.value + 3,
                         fontWeight: FontWeight.w600,
