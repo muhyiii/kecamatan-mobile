@@ -14,3 +14,4 @@ Color grayy = Color(0xff7E9899);
 Color greenNav = Color(0xff7D8F69);
 Color grayNav = Color(0xff6F7C8F);
 Color greenYellow = Color(0xff7D8F69);
+Color abu = Color(0xffDFDFDF);

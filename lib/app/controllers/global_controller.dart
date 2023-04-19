@@ -1,5 +1,4 @@
-import 'dart:async';
-
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -93,4 +92,71 @@ class GlobalController extends GetxController {
       Get.changeThemeMode(ThemeMode.light);
   }
   // initApp() async => await profile.getUserProfile(getToken().toString());
+
+  reqPermissionNotification() {
+    AwesomeNotifications().isNotificationAllowed().then(
+      (isAllowed) {
+        print("$isAllowed  sdfsfdsf");
+        if (!isAllowed) {
+          Get.dialog(
+            barrierDismissible: true,
+            transitionCurve: Curves.fastLinearToSlowEaseIn,
+            AlertDialog(
+              title: Text('Izinkan Notifikasi.'),
+              content: Text('SIPAOJOL Meminta Untuk Memberikan Notifikasi.'),
+              actions: [
+                TextButton(
+                  onPressed: () => Get.back(),
+                  child: Text(
+                    'Jangan Izinkan',
+                    style: TextStyle(color: greeny),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () => AwesomeNotifications()
+                      .requestPermissionToSendNotifications()
+                      .then((_) => Get.back()),
+                  child: Text(
+                    'Izinkan',
+                    style: TextStyle(color: greeny),
+                  ),
+                ),
+              ],
+            ),
+          );
+          // showDialog(
+          //   context: context,
+          //   builder: (context) => AlertDialog(
+          //     title: Text('Allow Notifications'),
+          //     content: Text('Our app would like to send you notifications'),
+          //     actions: [
+          //       TextButton(
+          //         onPressed: () {
+          //           Navigator.pop(context);
+          //         },
+          //         child: Text(
+          //           'Don\'t Allow',
+          //           style: TextStyle(color: Colors.grey, fontSize: 18),
+          //         ),
+          //       ),
+          //       TextButton(
+          //         onPressed: () => AwesomeNotifications()
+          //             .requestPermissionToSendNotifications()
+          //             .then((_) => Navigator.pop(context)),
+          //         child: Text(
+          //           'Allow',
+          //           style: TextStyle(
+          //             color: Colors.teal,
+          //             fontSize: 18,
+          //             fontWeight: FontWeight.bold,
+          //           ),
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // );
+        }
+      },
+    );
+  }
 }

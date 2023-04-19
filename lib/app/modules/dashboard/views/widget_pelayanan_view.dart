@@ -1,35 +1,36 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sitforsa/app/controllers/global_controller.dart';
 import 'package:sitforsa/app/modules/kontakPenting/views/kontak_penting_view.dart';
 import 'package:sitforsa/app/modules/pengaduan/views/pengaduan_view.dart';
+import 'package:sitforsa/app/modules/potensiDesa/controllers/potensi_desa_controller.dart';
 import 'package:sitforsa/app/modules/potensiDesa/views/potensi_desa_view.dart';
 import 'package:sitforsa/app/modules/sipahadesi/views/sipahadesi_view.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:sitforsa/config/style.dart';
-import 'package:iconly/iconly.dart';
 
 class WidgetPelayananView extends GetView {
   var global = Get.put(GlobalController());
+  var loading = Get.put(PotensiDesaController());
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(5),
+      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 12),
       child: Container(
         margin: EdgeInsets.symmetric(
-          vertical: 5,
+          vertical: global.fontSet.value,
         ),
-        width: Get.width * 90 / 100,
+        width: Get.width,
         child: Wrap(
-          runSpacing: 1,
-          // alignment: WrapAlignment.spaceBetween,
+          alignment: WrapAlignment.spaceAround,
           children: [
-            itemWidget(Icons.contacts, "Kontak Penting", KontakPentingView()),
+            itemWidget(Iconsax.call, "Kontak Penting", KontakPentingView()),
             itemWidget(
-                IconlyBold.time_square, "Jadwal SIPAHADESI", SipahadesiView()),
-            itemWidget(Icons.receipt_rounded, "SIAPMASJO", PengaduanView()),
-            itemWidget(
-                Icons.device_unknown_rounded, "Unknown", PotensiDesaView()),
+                Iconsax.calendar_1, "Jadwal SIPAHADESI", SipahadesiView()),
+            itemWidget(Iconsax.volume_high, "SIAPMASJO", PengaduanView()),
+            itemWidget(Iconsax.building_4, "TENDES", PotensiDesaView()),
           ],
         ),
       ),
@@ -37,43 +38,88 @@ class WidgetPelayananView extends GetView {
   }
 
   Widget itemWidget(IconData icon, String text, Widget routeTo) {
-    return GestureDetector(
-      onTap: () {
-        Get.to(() => routeTo);
+    return Obx(
+      () {
+        return loading.isLoading.value
+            ? GestureDetector(
+                onTap: () {
+                  Get.to(() => routeTo);
+                },
+                child: Column(
+                  children: [
+                    Shimmer.fromColors(
+                      baseColor: Colors.grey[200]!,
+                      highlightColor: Colors.white,
+                      child: Container(
+                        width: Get.width / 8,
+                        height: Get.width / 8,
+                        padding: EdgeInsets.all(global.fontSmall.value + 2),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Get.isDarkMode ? null : Colors.white,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: Get.height * 0.01,
+                    ),
+                    Shimmer.fromColors(
+                      baseColor: Colors.grey[200]!,
+                      highlightColor: Colors.white,
+                      child: Container(
+                        width: Get.width / 7,
+                        height: 15,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            : GestureDetector(
+                onTap: () {
+                  Get.to(() => routeTo);
+                },
+                child: Column(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(global.fontSmall.value + 2),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Get.isDarkMode ? null : Colors.white,
+                      ),
+                      child: Column(
+                        children: [
+                          Icon(
+                            icon,
+                            color: Get.isDarkMode ? null : greenny,
+                            size: global.fontSize.value + 2,
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: Get.height * 0.01,
+                    ),
+                    Container(
+                      width: Get.width / 6,
+                      child: Text(
+                        text,
+                        maxLines: 2,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontFamily: 'pop',
+                            fontSize: global.fontSet.value - 2.5,
+                            height: 1.4,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                  ],
+                ),
+              );
       },
-      child: Card(
-        color: Get.isDarkMode ? null : greny,
-        elevation: 3,
-        child: Container(
-          height: Get.width / 5,
-          width: Get.width / 5,
-          padding: EdgeInsets.symmetric(
-              vertical: global.fontSmall.value + 2,
-              horizontal: global.fontSmall.value - 2),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Flexible(
-                child: Icon(
-                  icon,
-                  color: Get.isDarkMode ? null : Colors.black.withOpacity(0.7),
-                  size: global.fontHeading.value - 5,
-                ),
-              ),
-              Flexible(
-                child: Text(
-                  text,
-                  maxLines: 2,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontFamily: 'Helvetica Neue',
-                      fontSize: global.fontSet.value - 6),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }

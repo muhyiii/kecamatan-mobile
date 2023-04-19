@@ -8,6 +8,8 @@ import '../modules/dashboard/bindings/dashboard_binding.dart';
 import '../modules/dashboard/views/dashboard_view.dart';
 import '../modules/detailPelayanan/bindings/detail_pelayanan_binding.dart';
 import '../modules/detailPelayanan/views/detail_pelayanan_view.dart';
+import '../modules/detailPotensi/bindings/detail_potensi_binding.dart';
+import '../modules/detailPotensi/views/detail_potensi_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/kontakPenting/bindings/kontak_penting_binding.dart';
@@ -106,6 +108,11 @@ class AppPages {
       name: _Paths.DETAIL_PELAYANAN,
       page: () => DetailPelayananView(),
       binding: DetailPelayananBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAIL_POTENSI,
+      page: () => DetailPotensiView(),
+      binding: DetailPotensiBinding(),
     ),
   ];
 }

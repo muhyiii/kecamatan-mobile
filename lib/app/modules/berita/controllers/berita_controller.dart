@@ -29,6 +29,7 @@ class BeritaController extends GetxController {
   @override
   void onReady() {
     super.onReady();
+    // global.reqPermissionNotification();
   }
 
   @override
