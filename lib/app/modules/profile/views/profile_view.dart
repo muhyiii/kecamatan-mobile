@@ -37,7 +37,7 @@ class ProfileView extends GetView<ProfileController> {
                 ),
                 SizedBox(
                   height: 20,
-                ),w
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
