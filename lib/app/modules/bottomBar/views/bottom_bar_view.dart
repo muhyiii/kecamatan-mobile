@@ -167,6 +167,7 @@ class _BottomBarViewState extends State<BottomBarView> {
                     onTabChange: (index) {
                       print(index == 1);
                       if (index == 1) global.reqPermissionNotification();
+
                       setState(() {
                         controller.tabIndex.value = index;
                       });

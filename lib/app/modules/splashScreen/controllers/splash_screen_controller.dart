@@ -10,11 +10,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sitforsa/app/controllers/global_controller.dart';
 import 'package:sitforsa/app/modules/bottomBar/views/bottom_bar_view.dart';
 import 'package:sitforsa/app/modules/loginPage/views/login_page_view.dart';
+import 'package:sitforsa/app/modules/profile/controllers/profile_controller.dart';
 import 'package:sitforsa/app/modules/splashScreen/views/splash_screen_view.dart';
 import 'package:sitforsa/config/style.dart';
 
 class SplashScreenController extends GetxController {
   final global = Get.put(GlobalController());
+  final profileController = Get.put(ProfileController());
   late SharedPreferences prefs;
 
   var opacity = 0.0.obs;
@@ -52,6 +54,7 @@ class SplashScreenController extends GetxController {
         if (token != null) {
           final isTokenExpired = JwtDecoder.isExpired(token);
           if (!isTokenExpired) {
+            profileController.getUserProfile(token);
             Get.off(() => BottomBarView(),
                 duration: Duration(milliseconds: 1000),
                 transition: Transition.fade);

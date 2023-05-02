@@ -54,7 +54,6 @@ class ProfileController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    initApp();
   }
 
   @override
@@ -64,13 +63,6 @@ class ProfileController extends GetxController {
 
   @override
   void onClose() {}
-
-  initApp() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.containsKey('token')
-        ? getUserProfile(prefs.getString('token').toString())
-        : null;
-  }
 
   getUserProfile(token) async {
     var decodedToken = JwtDecoder.decode(token);
@@ -88,7 +80,9 @@ class ProfileController extends GetxController {
           });
 
       if (response.statusCode == 200) {
+        print(response.body);
         nama.value.text = jsonDecode(response.body)['data']['nama'] ?? "";
+        log(nama.value.toString());
         alamat.value.text = jsonDecode(response.body)['data']['alamat'] ?? "";
         rt.value.text = jsonDecode(response.body)['data']['rt'] ?? "";
         rw.value.text = jsonDecode(response.body)['data']['rw'] ?? "";

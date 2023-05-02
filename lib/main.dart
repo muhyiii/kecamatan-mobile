@@ -37,20 +37,22 @@ class Themes {
 }
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await AwesomeNotifications().initialize('resource://drawable/icon_notif', [
     NotificationChannel(
         channelKey: 'Notification',
         channelName: 'Inbox Notification',
         channelDescription: 'Notification For SIPAOJOL',
         importance: NotificationImportance.Max,
-        defaultColor: Colors.lightBlue,
+        defaultColor: Colors.white,
         criticalAlerts: true,
         enableLights: true,
+        enableVibration: true,
         channelShowBadge: true)
   ]);
   final global = Get.put(GlobalController());
   // final notif = Get.put(() => NotifikasiController());
-  WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
