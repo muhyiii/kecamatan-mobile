@@ -18,23 +18,23 @@ class DetailPotensiView extends GetView<DetailPotensiController> {
     final global = Get.put(GlobalController());
     final size = MediaQuery.of(context).size;
     return Scaffold(
-        body: SafeArea(
-      child: SingleChildScrollView(
-        child: Obx(() => Column(
-                  children: [
-                    Container(
-                      height: Get.width / 1.5,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12.0, vertical: 10),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          bottomRight: Radius.circular(30),
-                        ),
-                        image: DecorationImage(
-                          image: CachedNetworkImageProvider(e.thumbnail),
-                          fit: BoxFit.cover,
-                        ),
+        body: SingleChildScrollView(
+      child: Obx(() => Column(
+                children: [
+                  Container(
+                    height: Get.width / 1.5,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12.0, vertical: 10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        bottomRight: Radius.circular(30),
                       ),
+                      image: DecorationImage(
+                        image: CachedNetworkImageProvider(e.thumbnail),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    child: SafeArea(
                       child: Column(
                         children: [
                           Row(
@@ -59,140 +59,139 @@ class DetailPotensiView extends GetView<DetailPotensiController> {
                         ],
                       ),
                     ),
+                  ),
 
-                    // SliverToBoxAdapter(
-                    //   child: Padding(
-                    //       padding: EdgeInsets.all(15),
-                    //       child: Row(
-                    //         children: [
-                    //           Container(
-                    //             padding:
-                    //                 EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                    //             decoration: BoxDecoration(
-                    //                 borderRadius: BorderRadius.circular(20), color: abu),
-                    //             child: Text(
-                    //               e.kategori,
-                    //               style: TextStyle(
-                    //                 fontSize: global.fontSmall.value + 1,
-                    //                 color: Colors.grey.shade700,
-                    //                 fontFamily: 'Helvetica Neue',
-                    //               ),
-                    //             ),
-                    //           )
-                    //         ],
-                    //       )),
-                    // ),
-                    Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: size.width / 1.5,
-                            child: Text(
-                              e.namaPotensi,
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontFamily: "popM",
-                              ),
+                  // SliverToBoxAdapter(
+                  //   child: Padding(
+                  //       padding: EdgeInsets.all(15),
+                  //       child: Row(
+                  //         children: [
+                  //           Container(
+                  //             padding:
+                  //                 EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                  //             decoration: BoxDecoration(
+                  //                 borderRadius: BorderRadius.circular(20), color: abu),
+                  //             child: Text(
+                  //               e.kategori,
+                  //               style: TextStyle(
+                  //                 fontSize: global.fontSmall.value + 1,
+                  //                 color: Colors.grey.shade700,
+                  //                 fontFamily: 'Helvetica Neue',
+                  //               ),
+                  //             ),
+                  //           )
+                  //         ],
+                  //       )),
+                  // ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: size.width / 1.5,
+                          child: Text(
+                            e.namaPotensi,
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontFamily: "popM",
                             ),
                           ),
-                          SizedBox(
-                            height: Get.width * 0.015,
-                          ),
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
+                        ),
+                        SizedBox(
+                          height: Get.width * 0.015,
+                        ),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Icon(
+                                    IconlyLight.location,
+                                    color: Colors.grey.shade400,
+                                    size: global.fontSize.value - 2,
+                                  ),
+                                  SizedBox(
+                                    width: 4,
+                                  ),
+                                  Text(
+                                    e.desa.namaDesa,
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.grey.shade400,
+                                      fontFamily: 'pop',
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              InkWell(
+                                onTap: () async {
+                                  // MapsLauncher.launchCoordinates(
+                                  //     e.dasa.latitude, e.desa.longtitude);
+                                  await LaunchApp.openApp(
+                                    androidPackageName:
+                                        'com.google.android.apps.maps',
+                                    iosUrlScheme: 'comgooglemaps://',
+                                    // iosUrlScheme:
+                                    //     'comgooglemaps://geo:${e.desa.latitude},${e.desa.longtitude}',
+                                    appStoreLink:
+                                        "https://apps.apple.com/us/app/example-app/id1234567890",
+                                    openStore: true,
+                                  );
+                                },
+                                child: Row(
                                   children: [
                                     Icon(
-                                      IconlyLight.location,
-                                      color: Colors.grey.shade400,
+                                      Iconsax.map_1,
+                                      color: Color(0xff20B08D),
                                       size: global.fontSize.value - 2,
                                     ),
                                     SizedBox(
                                       width: 4,
                                     ),
                                     Text(
-                                      e.desa.namaDesa,
+                                      "Arah Peta",
                                       style: TextStyle(
                                         fontSize: 12,
-                                        color: Colors.grey.shade400,
-                                        fontFamily: 'pop',
+                                        color: Color(0xff20B08D),
+                                        fontFamily: 'popM',
                                       ),
                                     ),
                                   ],
                                 ),
-                                InkWell(
-                                  onTap: () async {
-                                    // MapsLauncher.launchCoordinates(
-                                    //     e.dasa.latitude, e.desa.longtitude);
-                                    await LaunchApp.openApp(
-                                      androidPackageName:
-                                          'com.google.android.apps.maps',
-                                      iosUrlScheme: 'comgooglemaps://',
-                                      // iosUrlScheme:
-                                      //     'comgooglemaps://geo:${e.desa.latitude},${e.desa.longtitude}',
-                                      appStoreLink:
-                                          "https://apps.apple.com/us/app/example-app/id1234567890",
-                                      openStore: true,
-                                    );
-                                  },
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                        Iconsax.map_1,
-                                        color: Color(0xff20B08D),
-                                        size: global.fontSize.value - 2,
-                                      ),
-                                      SizedBox(
-                                        width: 4,
-                                      ),
-                                      Text(
-                                        "Arah Peta",
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          color: Color(0xff20B08D),
-                                          fontFamily: 'popM',
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ]),
-                          SizedBox(
-                            height: Get.width * 0.02,
+                              ),
+                            ]),
+                        SizedBox(
+                          height: Get.width * 0.02,
+                        ),
+                        Container(
+                          child: Divider(color: abu),
+                        ),
+                        SizedBox(
+                          height: Get.width * 0.02,
+                        ),
+                        Text(
+                          "Keterangan",
+                          style: TextStyle(fontSize: 16, fontFamily: "popM"),
+                        ),
+                        SizedBox(
+                          height: Get.width * 0.02,
+                        ),
+                        Text(
+                          e.deskripsi,
+                          textAlign: TextAlign.justify,
+                          style: TextStyle(
+                            fontFamily: "pop",
+                            color: Color(0xff8E8E8E),
                           ),
-                          Container(
-                            child: Divider(color: abu),
-                          ),
-                          SizedBox(
-                            height: Get.width * 0.02,
-                          ),
-                          Text(
-                            "Keterangan",
-                            style: TextStyle(fontSize: 16, fontFamily: "popM"),
-                          ),
-                          SizedBox(
-                            height: Get.width * 0.02,
-                          ),
-                          Text(
-                            e.deskripsi,
-                            textAlign: TextAlign.justify,
-                            style: TextStyle(
-                              fontFamily: "pop",
-                              color: Color(0xff8E8E8E),
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ],
-                )
-            // Add more slivers here...
-            ),
-      ),
+                  ),
+                ],
+              )
+          // Add more slivers here...
+          ),
     )
 
         // SingleChildScrollView(
