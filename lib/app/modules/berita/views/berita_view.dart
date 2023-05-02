@@ -310,11 +310,8 @@ class BeritaView extends GetView<BeritaController> {
                                                 overflow: TextOverflow.ellipsis,
                                                 maxLines: 2,
                                                 style: TextStyle(
-                                                    fontSize:
-                                                        global.fontSet.value,
-                                                    fontFamily: 'pop',
-                                                    fontWeight:
-                                                        FontWeight.w600),
+                                                  fontFamily: 'popM',
+                                                ),
                                               ),
                                             ),
                                             Row(
@@ -323,13 +320,9 @@ class BeritaView extends GetView<BeritaController> {
                                                   controller.dataBerita[index]
                                                       .author.username,
                                                   style: TextStyle(
-                                                      fontSize: global
-                                                              .fontSmall.value +
-                                                          1,
-                                                      fontWeight:
-                                                          FontWeight.w500,
+                                                      fontSize: 12,
                                                       color: Colors.grey,
-                                                      fontFamily: "pop"),
+                                                      fontFamily: "popM"),
                                                 ),
                                                 Container(
                                                   margin: EdgeInsets.symmetric(
@@ -337,10 +330,7 @@ class BeritaView extends GetView<BeritaController> {
                                                   child: Text(
                                                     "•",
                                                     style: TextStyle(
-                                                        fontSize: global
-                                                                .fontSmall
-                                                                .value +
-                                                            1,
+                                                        fontSize: 11,
                                                         color: Colors.grey,
                                                         fontFamily: 'pop'),
                                                   ),
@@ -352,12 +342,9 @@ class BeritaView extends GetView<BeritaController> {
                                                     locale: 'id',
                                                   ),
                                                   style: TextStyle(
-                                                      fontSize: global
-                                                          .fontSmall.value,
+                                                      fontSize: 11,
                                                       color: Colors.grey,
-                                                      fontFamily: 'pop',
-                                                      fontWeight:
-                                                          FontWeight.w500),
+                                                      fontFamily: 'pop'),
                                                 ),
                                               ],
                                             )

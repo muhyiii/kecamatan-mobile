@@ -12,7 +12,7 @@ class GlobalController extends GetxController {
   final fontSet = 13.0.obs;
   final fontSmall = 10.0.obs;
   final format =
-      NumberFormat.currency(locale: 'ID', symbol: 'Rp ', decimalDigits: 0).obs;
+      NumberFormat.currency(locale: 'ID', symbol: '  ', decimalDigits: 0).obs;
 
   final isDark = false.obs;
   var isOnline = false.obs;

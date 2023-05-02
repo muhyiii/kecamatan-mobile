@@ -126,16 +126,16 @@ class WidgetPelayananView extends GetView {
                       height: Get.height * 0.01,
                     ),
                     Container(
-                      width: Get.width / 6,
+                      width: Get.width / 5,
                       child: Text(
                         text,
                         maxLines: 2,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontFamily: 'pop',
-                            fontSize: global.fontSet.value - 2.5,
-                            height: 1.4,
-                            fontWeight: FontWeight.w500),
+                          fontFamily: 'popM',
+                          fontSize: 12,
+                          height: 1.4,
+                        ),
                       ),
                     ),
                   ],

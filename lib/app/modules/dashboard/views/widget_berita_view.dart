@@ -36,18 +36,14 @@ class _WidgetBeritaViewState extends State<WidgetBeritaView> {
                 children: [
                   Text(
                     'Berita Terkini',
-                    style: TextStyle(
-                      fontFamily: "pop",
-                      fontWeight: FontWeight.w500,
-                    ),
+                    style: TextStyle(fontFamily: "popM"),
                   ),
                   Text(
                     "Lihat lebih banyak",
                     style: TextStyle(
-                      color: Colors.grey,
                       fontFamily: "pop",
-                      fontSize: global.fontSet.value - 2,
-                      fontWeight: FontWeight.w500,
+                      color: Colors.grey,
+                      fontSize: 11,
                     ),
                   )
                 ],
@@ -299,11 +295,8 @@ class _WidgetBeritaViewState extends State<WidgetBeritaView> {
                                                           TextOverflow.ellipsis,
                                                       maxLines: 2,
                                                       style: TextStyle(
-                                                          fontSize: global
-                                                              .fontSet.value,
-                                                          fontFamily: 'pop',
-                                                          fontWeight:
-                                                              FontWeight.w600),
+                                                        fontFamily: 'popM',
+                                                      ),
                                                     ),
                                                   ),
                                                   Row(
@@ -311,14 +304,9 @@ class _WidgetBeritaViewState extends State<WidgetBeritaView> {
                                                       Text(
                                                         index.author.username,
                                                         style: TextStyle(
-                                                            fontSize: global
-                                                                    .fontSmall
-                                                                    .value +
-                                                                1,
-                                                            fontWeight:
-                                                                FontWeight.w500,
+                                                            fontSize: 12,
                                                             color: Colors.grey,
-                                                            fontFamily: "pop"),
+                                                            fontFamily: "popM"),
                                                       ),
                                                       Container(
                                                         margin: EdgeInsets
@@ -327,10 +315,7 @@ class _WidgetBeritaViewState extends State<WidgetBeritaView> {
                                                         child: Text(
                                                           "•",
                                                           style: TextStyle(
-                                                              fontSize: global
-                                                                      .fontSmall
-                                                                      .value +
-                                                                  1,
+                                                              fontSize: 11,
                                                               color:
                                                                   Colors.grey,
                                                               fontFamily:
@@ -343,14 +328,9 @@ class _WidgetBeritaViewState extends State<WidgetBeritaView> {
                                                           locale: 'id',
                                                         ),
                                                         style: TextStyle(
-                                                            fontSize: global
-                                                                .fontSmall
-                                                                .value,
+                                                            fontSize: 11,
                                                             color: Colors.grey,
-                                                            fontFamily: 'pop',
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w500),
+                                                            fontFamily: 'pop'),
                                                       ),
                                                     ],
                                                   )

@@ -106,7 +106,7 @@ class _BottomBarViewState extends State<BottomBarView> {
                   boxShadow: [
                     BoxShadow(
                       blurRadius: 10,
-                      color: Colors.black.withOpacity(0.02),
+                      color: Colors.black.withOpacity(0.03),
                       offset: Offset(0, -3),
                     )
                   ]),

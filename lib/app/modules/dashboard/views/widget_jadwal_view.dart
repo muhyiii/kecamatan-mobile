@@ -127,8 +127,8 @@ class Widget_JadwalStateView extends State<WidgetJadwalView> {
                   Text(
                     "Jadwal Kecamatan",
                     style: TextStyle(
-                      fontFamily: "pop",
-                      fontWeight: FontWeight.w500,
+                      fontFamily: "popM",
+                      // fontSize: 13,
                     ),
                   ),
                   SizedBox(
@@ -143,7 +143,7 @@ class Widget_JadwalStateView extends State<WidgetJadwalView> {
                           children: List.generate(
                               3,
                               (index) => Container(
-                                    width: Get.width / 2.1,
+                                    width: Get.width / 2,
                                     height: Get.width / 3,
                                     padding:
                                         EdgeInsets.all(global.fontSmall.value),
@@ -180,12 +180,8 @@ class Widget_JadwalStateView extends State<WidgetJadwalView> {
                                                 maxLines: 2,
                                                 overflow: TextOverflow.ellipsis,
                                                 style: TextStyle(
-                                                    fontFamily: "pop",
-                                                    fontSize:
-                                                        global.fontSet.value +
-                                                            0.5,
-                                                    fontWeight:
-                                                        FontWeight.w500),
+                                                  fontFamily: "popM",
+                                                ),
                                               ),
                                             ),
                                             SizedBox(height: 4),
@@ -193,10 +189,8 @@ class Widget_JadwalStateView extends State<WidgetJadwalView> {
                                               "17 Maret 2023 10:02",
                                               style: TextStyle(
                                                 fontFamily: 'pop',
-                                                fontSize:
-                                                    global.fontSet.value - 2,
+                                                fontSize: 11,
                                                 color: Colors.grey,
-                                                // fontWeight: FontWeight.w500,
                                               ),
                                             ),
                                           ],

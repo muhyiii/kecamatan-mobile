@@ -204,9 +204,9 @@ class WidgetPotensiDesaView extends GetView {
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
-                                    fontSize: global.fontSize.value - 2,
+                                    fontSize: 16,
                                     color: whitey,
-                                    fontFamily: 'Helvetica Neue'),
+                                    fontFamily: 'popM'),
                               ),
                               SizedBox(
                                 height: 2,
@@ -214,9 +214,9 @@ class WidgetPotensiDesaView extends GetView {
                               Text(
                                 e.desa.namaDesa,
                                 style: TextStyle(
-                                    fontSize: global.fontSmall.value,
+                                    fontSize: 12,
                                     color: Colors.grey.shade400,
-                                    fontFamily: 'Helvetica Neue'),
+                                    fontFamily: 'pop'),
                               ),
                             ],
                           ),
