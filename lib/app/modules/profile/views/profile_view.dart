@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:sitforsa/app/controllers/global_controller.dart';
 import 'package:sitforsa/app/modules/loginPage/controllers/login_page_controller.dart';
 import 'package:sitforsa/app/modules/profile/views/profile_form_view.dart';
+import 'package:sitforsa/app/routes/app_pages.dart';
 import 'package:sitforsa/config/style.dart';
 import 'package:iconsax/iconsax.dart';
 import '../controllers/profile_controller.dart';
@@ -30,7 +31,7 @@ class ProfileView extends GetView<ProfileController> {
                   child: Text(
                     'Profile',
                     style: TextStyle(
-                        fontFamily: 'pop',
+                        fontFamily: 'popSM',
                         fontSize: global.fontSet.value + 3,
                         fontWeight: FontWeight.w600),
                   ),
@@ -77,103 +78,108 @@ class ProfileView extends GetView<ProfileController> {
                         title: Text(
                           'Ubah Profil',
                           style: TextStyle(
-                              fontFamily: "pop",
-                              fontSize: global.fontSet.value,
-                              fontWeight: FontWeight.w500),
+                            fontFamily: "popM",
+                            fontSize: global.fontSet.value,
+                          ),
                         ),
                         minLeadingWidth: 0,
                       ),
-                      Material(
-                        // elevation: 2,
-                        child: Container(
-                          margin: EdgeInsets.only(top: 10, left: 10, right: 10),
-                          width: Get.width,
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 15),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Get.isDarkMode ? null : whitey,
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Pengajuan Saya',
-                                style: TextStyle(
-                                    fontFamily: 'pop',
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: global.fontSet.value),
-                              ),
-                              Divider(thickness: 0.5),
-                              Container(
-                                margin: EdgeInsets.symmetric(vertical: 5),
-                                child: Row(children: [
-                                  cardPengajuan(
-                                      icon: Iconsax.timer_1,
-                                      text: 'Menunggu Respon'),
-                                  cardPengajuan(
-                                      icon: Iconsax.sms_tracking,
-                                      text: 'Diproses'),
-                                  cardPengajuan(
-                                      icon: Iconsax.tick_circle,
-                                      text: 'Selesai'),
-                                  cardPengajuan(
-                                      icon: Iconsax.close_circle,
-                                      text: 'Ditolak')
-                                ]),
-                              ),
-                              // Divider(),
-                              // Text(global.token.value)
-                            ],
+                      InkWell(
+                        onTap: () => Get.toNamed(Routes.PENGAJUAN),
+                        child: Material(
+                          // elevation: 2,
+                          child: Container(
+                            margin:
+                                EdgeInsets.only(top: 10, left: 10, right: 10),
+                            width: Get.width,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 15),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Get.isDarkMode ? null : whitey,
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Pengajuan Saya',
+                                  style: TextStyle(
+                                      fontFamily: 'popM',
+                                      fontSize: global.fontSet.value),
+                                ),
+                                Divider(thickness: 0.5),
+                                Container(
+                                  margin: EdgeInsets.symmetric(vertical: 5),
+                                  child: Row(children: [
+                                    cardPengajuan(
+                                        icon: Iconsax.timer_1,
+                                        text: 'Menunggu Respon'),
+                                    cardPengajuan(
+                                        icon: Iconsax.sms_tracking,
+                                        text: 'Diproses'),
+                                    cardPengajuan(
+                                        icon: Iconsax.tick_circle,
+                                        text: 'Selesai'),
+                                    cardPengajuan(
+                                        icon: Iconsax.close_circle,
+                                        text: 'Ditolak')
+                                  ]),
+                                ),
+                                // Divider(),
+                                // Text(global.token.value)
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                      Material(
-                        // elevation: 2,
-                        child: Container(
-                          margin: EdgeInsets.all(10),
-                          width: Get.width,
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 15),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Get.isDarkMode ? null : greenny,
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Pengaduan Saya',
-                                style: TextStyle(
-                                    fontFamily: 'pop',
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: global.fontSet.value,
-                                    color: Colors.white),
-                              ),
-                              Divider(
-                                color: Colors.white,
-                              ),
-                              Container(
-                                margin: EdgeInsets.symmetric(vertical: 5),
-                                child: Row(
-                                  children: [
-                                    cardPengaduan(
-                                        icon: Iconsax.timer_1,
-                                        text: 'Menunggu Respon'),
-                                    cardPengaduan(
-                                        icon: Iconsax.sms_tracking,
-                                        text: 'Diproses'),
-                                    cardPengaduan(
-                                        icon: Iconsax.tick_circle,
-                                        text: 'Selesai'),
-                                    cardPengaduan(
-                                        icon: Iconsax.close_circle,
-                                        text: 'Ditolak')
-                                  ],
+                      InkWell(
+                        onTap: () => Get.toNamed(Routes.PENGADUAN),
+                        child: Material(
+                          // elevation: 2,
+                          child: Container(
+                            margin: EdgeInsets.all(10),
+                            width: Get.width,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 15),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Get.isDarkMode ? null : greenny,
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Pengaduan Saya',
+                                  style: TextStyle(
+                                      fontFamily: 'popM',
+                                      fontSize: global.fontSet.value,
+                                      color: Colors.white),
                                 ),
-                              ),
-                              // Divider(),
-                            ],
+                                Divider(
+                                  color: Colors.white,
+                                ),
+                                Container(
+                                  margin: EdgeInsets.symmetric(vertical: 5),
+                                  child: Row(
+                                    children: [
+                                      cardPengaduan(
+                                          icon: Iconsax.timer_1,
+                                          text: 'Menunggu Respon'),
+                                      cardPengaduan(
+                                          icon: Iconsax.sms_tracking,
+                                          text: 'Diproses'),
+                                      cardPengaduan(
+                                          icon: Iconsax.tick_circle,
+                                          text: 'Selesai'),
+                                      cardPengaduan(
+                                          icon: Iconsax.close_circle,
+                                          text: 'Ditolak')
+                                    ],
+                                  ),
+                                ),
+                                // Divider(),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -187,9 +193,9 @@ class ProfileView extends GetView<ProfileController> {
                         title: Text(
                           'Keluar',
                           style: TextStyle(
-                              fontFamily: "pop",
-                              fontSize: global.fontSet.value,
-                              fontWeight: FontWeight.w500),
+                            fontFamily: "popM",
+                            fontSize: global.fontSet.value,
+                          ),
                         ),
                         onTap: () {
                           Get.dialog(
@@ -355,7 +361,7 @@ class ProfileView extends GetView<ProfileController> {
           maxLines: 1,
           textAlign: TextAlign.center,
           style: TextStyle(
-              fontFamily: 'pop',
+              fontFamily: 'popSM',
               fontSize: global.fontSmall.value,
               fontWeight: FontWeight.w600,
               color: whitey),
@@ -386,9 +392,8 @@ class ProfileView extends GetView<ProfileController> {
           maxLines: 1,
           textAlign: TextAlign.center,
           style: TextStyle(
-              fontFamily: 'pop',
+              fontFamily: 'popSM',
               fontSize: global.fontSmall.value,
-              fontWeight: FontWeight.w600,
               color: blacky),
         )
       ],

@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class PengaduanController extends GetxController
+class PengajuanController extends GetxController
     with GetSingleTickerProviderStateMixin {
-  //TODO: Implement PengaduanController
-  // var tabIndex = 0.obs;
-  // void changeTabIndex(int index) => tabIndex.value = index;
-
+  //TODO: Implement PengajuanController
   final List<Tab> myTabs = <Tab>[
     Tab(text: 'Menunggu'),
     Tab(text: 'Diproses'),
@@ -14,7 +11,6 @@ class PengaduanController extends GetxController
     Tab(text: 'Ditolak'),
   ];
   late TabController controller;
-
   final count = 0.obs;
   @override
   void onInit() {

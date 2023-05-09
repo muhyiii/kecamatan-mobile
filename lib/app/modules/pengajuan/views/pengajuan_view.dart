@@ -4,38 +4,30 @@ import 'package:get/get.dart';
 import 'package:sitforsa/app/controllers/global_controller.dart';
 import 'package:sitforsa/config/style.dart';
 
-import '../controllers/pengaduan_controller.dart';
+import '../controllers/pengajuan_controller.dart';
 
-class PengaduanView extends GetView<PengaduanController> {
-  final tab = Get.put(PengaduanController());
+class PengajuanView extends GetView<PengajuanController> {
+  final tab = Get.put(PengajuanController());
   var global = Get.put(GlobalController());
+  @override
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
         appBar: AppBar(
           foregroundColor: Get.isDarkMode ? null : greenny,
           backgroundColor: Get.isDarkMode ? null : whitey,
+          elevation: 0,
           title: Text(
-            'PengaduanView',
+            'PengajuanView',
             style: TextStyle(
               fontFamily: 'popSM',
               fontSize: global.fontSet.value + 3,
             ),
           ),
           centerTitle: true,
-          elevation: 0,
           bottom: TabBar(
             labelColor: greenny,
-            unselectedLabelStyle: TextStyle(fontFamily: "popM", fontSize: 13),
-            unselectedLabelColor: Colors.grey.shade700,
-            indicatorSize: TabBarIndicatorSize.label,
-            // indicatorPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-            // indicator: BoxDecoration(
-            //   borderRadius:
-            //       BorderRadius.circular(5), // make the indicator rounded
-            //   color: greny, // set the color of the indicator
-            // ),
-            labelStyle: TextStyle(fontFamily: "popSM", fontSize: 13),
+            unselectedLabelColor: Colors.black,
             indicatorColor: greenny,
             isScrollable: true,
             controller: tab.controller,

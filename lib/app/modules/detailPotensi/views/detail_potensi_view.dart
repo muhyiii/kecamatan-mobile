@@ -42,14 +42,14 @@ class DetailPotensiView extends GetView<DetailPotensiController> {
                               InkWell(
                                 onTap: () => Get.back(),
                                 child: Container(
-                                  padding: EdgeInsets.all(8),
+                                  padding: EdgeInsets.all(10),
                                   alignment: Alignment.center,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
                                       color: Colors.white),
                                   child: Icon(
-                                    Icons.chevron_left,
-                                    size: 22,
+                                    Iconsax.arrow_left_2,
+                                    size: global.fontSize.value,
                                     color: Colors.black,
                                   ),
                                 ),
@@ -93,8 +93,8 @@ class DetailPotensiView extends GetView<DetailPotensiController> {
                           child: Text(
                             e.namaPotensi,
                             style: TextStyle(
-                              fontSize: 20,
-                              fontFamily: "popM",
+                              fontSize: global.fontSize.value,
+                              fontFamily: "popSM",
                             ),
                           ),
                         ),
@@ -108,7 +108,7 @@ class DetailPotensiView extends GetView<DetailPotensiController> {
                                 children: [
                                   Icon(
                                     IconlyLight.location,
-                                    color: Colors.grey.shade400,
+                                    color: Colors.grey.shade500,
                                     size: global.fontSize.value - 2,
                                   ),
                                   SizedBox(
@@ -117,8 +117,8 @@ class DetailPotensiView extends GetView<DetailPotensiController> {
                                   Text(
                                     e.desa.namaDesa,
                                     style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.grey.shade400,
+                                      fontSize: global.fontSet.value - 1,
+                                      color: Colors.grey.shade500,
                                       fontFamily: 'pop',
                                     ),
                                   ),
@@ -152,7 +152,7 @@ class DetailPotensiView extends GetView<DetailPotensiController> {
                                     Text(
                                       "Arah Peta",
                                       style: TextStyle(
-                                        fontSize: 12,
+                                        fontSize: global.fontSet.value - 1,
                                         color: Color(0xff20B08D),
                                         fontFamily: 'popM',
                                       ),
@@ -172,7 +172,9 @@ class DetailPotensiView extends GetView<DetailPotensiController> {
                         ),
                         Text(
                           "Keterangan",
-                          style: TextStyle(fontSize: 16, fontFamily: "popM"),
+                          style: TextStyle(
+                              fontSize: global.fontSize.value - 2,
+                              fontFamily: "popM"),
                         ),
                         SizedBox(
                           height: Get.width * 0.02,

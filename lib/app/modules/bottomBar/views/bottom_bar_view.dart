@@ -99,10 +99,10 @@ class _BottomBarViewState extends State<BottomBarView> {
             bottomNavigationBar: Container(
               // margin: EdgeInsets.all(10),
               decoration: BoxDecoration(
-                  color: whitey,
+                  color: Get.isDarkMode ? null : whitey,
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20)),
+                      topLeft: Radius.circular(15),
+                      topRight: Radius.circular(15)),
                   boxShadow: [
                     BoxShadow(
                       blurRadius: 10,
@@ -113,23 +113,22 @@ class _BottomBarViewState extends State<BottomBarView> {
               child: SafeArea(
                 child: Container(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
+                      const EdgeInsets.symmetric(horizontal: 9, vertical: 12),
                   child: GNav(
                     rippleColor: greeny,
                     hoverColor: greny,
                     gap: 10,
                     tabBorderRadius: 8,
                     activeColor: whitey,
-                    iconSize: 20,
+                    iconSize: 18,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    padding: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(9),
                     duration: Duration(milliseconds: 400),
                     tabBackgroundColor: greenny,
-                    color: Colors.grey,
+                    color: Get.isDarkMode ? whitey : Colors.grey,
                     textStyle: TextStyle(
-                        fontSize: 13,
-                        fontFamily: 'pop',
-                        fontWeight: FontWeight.w600,
+                        fontSize: global.fontSet.value,
+                        fontFamily: 'popSM',
                         color: whitey),
                     tabs: [
                       GButton(

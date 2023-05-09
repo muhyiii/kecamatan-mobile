@@ -241,7 +241,7 @@ class _WidgetBeritaViewState extends State<WidgetBeritaView> {
                                       margin: EdgeInsets.symmetric(
                                           horizontal: 15, vertical: 5),
                                       padding:
-                                          EdgeInsets.symmetric(horizontal: 5),
+                                          EdgeInsets.symmetric(horizontal: 8),
                                       decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(10),
@@ -255,7 +255,7 @@ class _WidgetBeritaViewState extends State<WidgetBeritaView> {
                                               //     BorderRadius.circular(20),
                                               // elevation: 5,
                                               child: Container(
-                                                height: Get.width / 4.2,
+                                                height: Get.width / 4.5,
                                                 decoration: BoxDecoration(
                                                     borderRadius:
                                                         BorderRadius.circular(
@@ -279,7 +279,7 @@ class _WidgetBeritaViewState extends State<WidgetBeritaView> {
                                             child: Container(
                                               height: Get.width / 3.7,
                                               padding: EdgeInsets.symmetric(
-                                                vertical: 10,
+                                                vertical: 8,
                                               ),
                                               child: Column(
                                                 crossAxisAlignment:
@@ -295,7 +295,9 @@ class _WidgetBeritaViewState extends State<WidgetBeritaView> {
                                                           TextOverflow.ellipsis,
                                                       maxLines: 2,
                                                       style: TextStyle(
-                                                        fontFamily: 'popM',
+                                                        fontSize: global
+                                                            .fontSet.value,
+                                                        fontFamily: 'popSM',
                                                       ),
                                                     ),
                                                   ),
@@ -305,12 +307,13 @@ class _WidgetBeritaViewState extends State<WidgetBeritaView> {
                                                         index.author.username,
                                                         style: TextStyle(
                                                             fontSize: global
-                                                                .fontSmall
-                                                                .value - 2,
+                                                                    .fontSet
+                                                                    .value -
+                                                                2,
                                                             fontWeight:
                                                                 FontWeight.w500,
                                                             color: Colors.grey,
-                                                            fontFamily: "popM"),
+                                                            fontFamily: "pop"),
                                                       ),
                                                       Container(
                                                         margin: EdgeInsets
@@ -335,8 +338,9 @@ class _WidgetBeritaViewState extends State<WidgetBeritaView> {
                                                         ),
                                                         style: TextStyle(
                                                             fontSize: global
-                                                                .fontSmall
-                                                                .value - 2,
+                                                                    .fontSet
+                                                                    .value -
+                                                                2,
                                                             color: Colors.grey,
                                                             fontFamily: 'pop'),
                                                       ),

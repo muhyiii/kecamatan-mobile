@@ -30,7 +30,7 @@ class WidgetPelayananView extends GetView {
             itemWidget(
                 Icon(
                   Iconsax.call,
-                  color: Get.isDarkMode ? null : greenny,
+                  color: greenny,
                   size: global.fontSize.value + 2,
                 ),
                 "Kontak Penting",
@@ -38,7 +38,7 @@ class WidgetPelayananView extends GetView {
             itemWidget(
                 Icon(
                   Iconsax.calendar_1,
-                  color: Get.isDarkMode ? null : greenny,
+                  color: greenny,
                   size: global.fontSize.value + 2,
                 ),
                 "Jadwal SIPAHADESI",
@@ -46,7 +46,7 @@ class WidgetPelayananView extends GetView {
             itemWidget(
                 HeroIcon(
                   HeroIcons.megaphone,
-                  color: Get.isDarkMode ? null : greenny,
+                  color: greenny,
                   size: global.fontSize.value + 2,
                 ),
                 "SIAPMASJO",
@@ -54,7 +54,7 @@ class WidgetPelayananView extends GetView {
             itemWidget(
                 Icon(
                   Iconsax.building_4,
-                  color: Get.isDarkMode ? null : greenny,
+                  color: greenny,
                   size: global.fontSize.value + 2,
                 ),
                 "TENDES",
@@ -116,11 +116,9 @@ class WidgetPelayananView extends GetView {
                       padding: EdgeInsets.all(global.fontSmall.value + 2),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(9),
-                        color: Get.isDarkMode ? null : Colors.white,
+                        color: Get.isDarkMode ? whitey : Colors.white,
                       ),
-                      child: Column(
-                        children: [icon],
-                      ),
+                      child: icon,
                     ),
                     SizedBox(
                       height: Get.height * 0.01,
@@ -133,7 +131,7 @@ class WidgetPelayananView extends GetView {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: 'popM',
-                          fontSize: 12,
+                          fontSize: global.fontSet.value - 2,
                           height: 1.4,
                         ),
                       ),

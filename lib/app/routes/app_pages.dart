@@ -22,6 +22,8 @@ import '../modules/pelayanan/bindings/pelayanan_binding.dart';
 import '../modules/pelayanan/views/pelayanan_view.dart';
 import '../modules/pengaduan/bindings/pengaduan_binding.dart';
 import '../modules/pengaduan/views/pengaduan_view.dart';
+import '../modules/pengajuan/bindings/pengajuan_binding.dart';
+import '../modules/pengajuan/views/pengajuan_view.dart';
 import '../modules/potensiDesa/bindings/potensi_desa_binding.dart';
 import '../modules/potensiDesa/views/potensi_desa_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
@@ -113,6 +115,11 @@ class AppPages {
       name: _Paths.DETAIL_POTENSI,
       page: () => DetailPotensiView(),
       binding: DetailPotensiBinding(),
+    ),
+    GetPage(
+      name: _Paths.PENGAJUAN,
+      page: () => PengajuanView(),
+      binding: PengajuanBinding(),
     ),
   ];
 }

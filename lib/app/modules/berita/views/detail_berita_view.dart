@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:html/parser.dart';
 import 'package:sitforsa/app/controllers/global_controller.dart';
 import 'package:timeago/timeago.dart' as timeago;
+import 'package:iconsax/iconsax.dart';
 
 class DetailBeritaView extends StatefulWidget {
   const DetailBeritaView({super.key});
@@ -56,7 +57,7 @@ class _DetailBeritaViewState extends State<DetailBeritaView> {
                   InkWell(
                     onTap: () => Get.back(),
                     child: Container(
-                      padding: EdgeInsets.all(8),
+                      padding: EdgeInsets.all(10),
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -65,8 +66,8 @@ class _DetailBeritaViewState extends State<DetailBeritaView> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
-                            Icons.chevron_left,
-                            size: 22,
+                            Iconsax.arrow_left_2,
+                            size: global.fontSize.value,
                             color: Colors.black,
                           ),
                           // Text(previousRoute)

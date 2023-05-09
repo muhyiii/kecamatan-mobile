@@ -49,7 +49,7 @@ class NotifikasiView extends GetView<NotifikasiController> {
                 child: Text(
                   "Terbaru",
                   style: TextStyle(
-                      fontFamily: "pop",
+                      fontFamily: "popM",
                       fontWeight: FontWeight.w500,
                       fontSize: global.fontSet.value + 1),
                 ),
@@ -82,20 +82,19 @@ class NotifikasiView extends GetView<NotifikasiController> {
                                           Text(
                                             'Pengajuan Diterima',
                                             style: TextStyle(
-                                                fontSize:
-                                                    global.fontSet.value - 0.5,
-                                                fontFamily: "pop",
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.w500),
+                                              fontSize:
+                                                  global.fontSet.value - 0.5,
+                                              fontFamily: "popM",
+                                              color: Colors.black,
+                                            ),
                                           ),
                                           Text(
                                             '2022 - 04 - 01',
                                             style: TextStyle(
-                                                fontSize:
-                                                    global.fontSmall.value,
-                                                fontFamily: "pop",
-                                                color: Colors.grey[600],
-                                                fontWeight: FontWeight.w500),
+                                              fontSize: global.fontSmall.value,
+                                              fontFamily: "popM",
+                                              color: Colors.grey[600],
+                                            ),
                                           )
                                         ],
                                       ),

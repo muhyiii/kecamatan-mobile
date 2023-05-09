@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:sitforsa/app/controllers/global_controller.dart';
+import 'package:sitforsa/app/modules/detailPotensi/views/detail_potensi_view.dart';
 import 'package:sitforsa/config/style.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 import '../controllers/potensi_desa_controller.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class PotensiDesaView extends GetView<PotensiDesaController> {
   final potensiController = Get.put(PotensiDesaController());
@@ -18,21 +20,59 @@ class PotensiDesaView extends GetView<PotensiDesaController> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
-        title: Text(
-          'Berita',
-          style: TextStyle(
-            color: greenny,
-            fontFamily: 'pop',
-            fontSize: global.fontSet.value + 3,
-            fontWeight: FontWeight.w600,
+        title: Container(
+          height: 42,
+          margin: EdgeInsets.only(top: 5),
+          child: TextField(
+            cursorColor: blacky,
+            textAlignVertical: TextAlignVertical.bottom,
+            cursorWidth: 1,
+            style: TextStyle(fontFamily: "pop", color: blacky, fontSize: 14),
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.white,
+              prefixIcon: Icon(
+                Iconsax.search_normal_1,
+                size: global.fontSize.value - 2,
+                color: blacky,
+              ),
+
+              hintText: "Cari Wisata...",
+              hintStyle: TextStyle(color: Colors.grey),
+              contentPadding:
+                  EdgeInsets.symmetric(vertical: global.fontSmall.value + 1.5),
+              // labelStyle: TextStyle(
+              //     fontFamily: "pop",
+              //     color: Colors.grey,
+              //     fontSize: global.fontSet.value + 1),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              // border: UnderlineInputBorder(borderSide: BorderSide.none),
+            ),
           ),
         ),
         leading: InkWell(
           onTap: () => Get.back(),
+          overlayColor: MaterialStateProperty.resolveWith<Color>(
+            (Set<MaterialState> states) {
+              if (states.contains(MaterialState.pressed)) {
+                // set the overlay color when the InkWell is pressed
+                return Colors.transparent;
+              }
+              // set the default overlay color
+              return Colors.transparent;
+            },
+          ),
           child: Padding(
-            padding: const EdgeInsets.only(left: 15, bottom: 6, top: 10),
+            padding:
+                const EdgeInsets.only(left: 12, right: 4, bottom: 7, top: 11),
             child: Container(
-              padding: EdgeInsets.all(8),
               alignment: Alignment.center,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10), color: Colors.white),
@@ -40,8 +80,8 @@ class PotensiDesaView extends GetView<PotensiDesaController> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
-                    Icons.chevron_left,
-                    size: global.fontSize.value + 4,
+                    Iconsax.arrow_left_2,
+                    size: global.fontSize.value,
                     color: Colors.black,
                   ),
                   // Text(previousRoute)
@@ -55,46 +95,47 @@ class PotensiDesaView extends GetView<PotensiDesaController> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            // Padding(
+            //   padding: const EdgeInsets.only(left: 12.0, right: 12.0, top: 7),
+            //   child: Container(
+            //     height: 45,
+            //     child: TextField(
+            //       cursorColor: blacky,
+            //       textAlignVertical: TextAlignVertical.bottom,
+            //       cursorWidth: 1,
+            //       style:
+            //           TextStyle(fontFamily: "pop", color: blacky, fontSize: 14),
+            //       decoration: InputDecoration(
+            //         filled: true,
+            //         fillColor: Colors.white,
+            //         prefixIcon: Icon(
+            //           Iconsax.search_normal_1,
+            //           size: global.fontSize.value - 1,
+            //           color: blacky,
+            //         ),
+            //         hintText: "Cari Wisata...",
+            //         hintStyle: TextStyle(color: Colors.grey),
+            //         contentPadding: EdgeInsets.symmetric(
+            //             vertical: global.fontSmall.value + 2),
+            //         // labelStyle: TextStyle(
+            //         //     fontFamily: "pop",
+            //         //     color: Colors.grey,
+            //         //     fontSize: global.fontSet.value + 1),
+            //         enabledBorder: OutlineInputBorder(
+            //           borderSide: BorderSide.none,
+            //           borderRadius: BorderRadius.circular(10),
+            //         ),
+            //         focusedBorder: OutlineInputBorder(
+            //           borderSide: BorderSide.none,
+            //           borderRadius: BorderRadius.circular(10),
+            //         ),
+            //         // border: UnderlineInputBorder(borderSide: BorderSide.none),
+            //       ),
+            //     ),
+            //   ),
+            // ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: Container(
-                height: 50,
-                child: TextField(
-                  cursorColor: blacky,
-                  cursorWidth: 1,
-                  style: TextStyle(
-                    fontFamily: "pop",
-                    color: blacky,
-                  ),
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    prefixIcon: Icon(
-                      Iconsax.search_normal_1,
-                      size: global.fontSize.value + 2,
-                      color: blacky,
-                    ),
-                    // contentPadding: EdgeInsets.symmetric(vertical: 30),
-                    // labelStyle: TextStyle(
-                    //     fontFamily: "pop",
-                    //     color: Colors.grey,
-                    //     fontSize: global.fontSet.value + 1),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    // border: UnderlineInputBorder(borderSide: BorderSide.none),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 12.0, vertical: 10),
+              padding: const EdgeInsets.only(left: 12.0, right: 12.0, top: 15),
               child: Grid(potensiController: potensiController, global: global),
             ),
           ],
@@ -116,92 +157,97 @@ class Grid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      children: List.generate(
-        potensiController.dataPotensi.length,
-        (index) {
-          var e = potensiController.dataPotensi.value;
-          return Padding(
-            padding: const EdgeInsets.all(2.0),
-            child: Container(
-              width: Get.width / 2.25,
-              height: Get.width / 2,
-              padding: EdgeInsets.all(5),
-              alignment: Alignment.bottomCenter,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                image: DecorationImage(
-                  image: CachedNetworkImageProvider(
-                    e[index].thumbnail,
-                  ),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              child: GlassContainer(
-                width: Get.width,
-                height: Get.width / 6.5,
-                blur: 1.5,
-                border: Border.fromBorderSide(BorderSide.none),
-                borderRadius: BorderRadius.circular(12),
-                color: Colors.black.withOpacity(0.5),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        e[index].namaPotensi,
-                        maxLines: 1,
-                        // overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            fontSize: global.fontSet.value,
-                            color: whitey,
-                            fontFamily: 'Helvetica Neue'),
-                      ),
-                      SizedBox(
-                        height: global.fontSmall.value - 5,
-                      ),
-                      Text(
-                        e[index].desa.namaDesa,
-                        style: TextStyle(
-                            fontSize: global.fontSmall.value,
-                            color: Colors.grey.shade400,
-                            fontFamily: 'Helvetica Neue'),
-                      ),
-                    ],
+    return StaggeredGrid.count(
+        // verticalDirection: VerticalDirection.down,
+        crossAxisCount: 2,
+        mainAxisSpacing: 8,
+        crossAxisSpacing: 10,
+        // spacing: 10,
+        // runSpacing: 8,
+        children: [
+          Container(
+            margin: EdgeInsets.only(bottom: 15, top: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Icon(Iconsax.blur),
+                Container(
+                  width: Get.width / 3.5,
+                  child: Text(
+                    "Potensi Desa",
+                    style: TextStyle(
+                        fontFamily: "popSM",
+                        fontSize: global.fontHeading.value - 2,
+                        height: 1.2),
                   ),
                 ),
-              ),
+              ],
             ),
-          );
-        },
-      ),
-    );
+          ),
+          ...List.generate(
+            potensiController.dataPotensi.length,
+            (index) {
+              var e = potensiController.dataPotensi.value;
+              return GestureDetector(
+                onTap: () => Get.to(() => DetailPotensiView(),
+                    arguments: e[index],
+                    transition: Transition.native,
+                    duration: Duration(milliseconds: 700)),
+                child: Container(
+                  width: Get.width / 2.25,
+                  height: Get.width / 2,
+                  padding: EdgeInsets.all(3),
+                  alignment: Alignment.bottomCenter,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    image: DecorationImage(
+                      image: CachedNetworkImageProvider(
+                        e[index].thumbnail,
+                      ),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  child: GlassContainer(
+                    width: Get.width,
+                    height: Get.width / 6.5,
+                    blur: 1.5,
+                    border: Border.fromBorderSide(BorderSide.none),
+                    borderRadius: BorderRadius.circular(12),
+                    color: Colors.black.withOpacity(0.5),
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            e[index].namaPotensi,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                fontSize: global.fontSet.value,
+                                color: whitey,
+                                fontFamily: 'Helvetica Neue'),
+                          ),
+                          SizedBox(
+                            height: global.fontSmall.value - 5,
+                          ),
+                          Text(
+                            e[index].desa.namaDesa,
+                            style: TextStyle(
+                                fontSize: global.fontSmall.value,
+                                color: Colors.grey.shade400,
+                                fontFamily: 'Helvetica Neue'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+        ]);
   }
 }
-//   Row(
-//                   children: [
-//                     InkWell(
-//                       onTap: () => Get.back(),
-//                       child: Container(
-//                         padding: EdgeInsets.all(8),
-//                         alignment: Alignment.center,
-//                         decoration: BoxDecoration(
-//                             borderRadius: BorderRadius.circular(10),
-//                             color: Colors.white),
-//                         child: Row(
-//                           mainAxisAlignment: MainAxisAlignment.center,
-//                           children: [
-//                             Icon(
-//                               Icons.chevron_left,
-//                               size: 22,
-//                               color: Colors.black,
-//                             ),
-//                             // Text(previousRoute)
-//                           ],
-//                         ),
-//                       ),
-//                     ),
-//                   ],
-//                 ),

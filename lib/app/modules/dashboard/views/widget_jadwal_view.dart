@@ -30,8 +30,7 @@ class Widget_JadwalStateView extends State<WidgetJadwalView> {
                   Text(
                     "Jadwal Kecamatan",
                     style: TextStyle(
-                      fontFamily: "pop",
-                      fontWeight: FontWeight.w500,
+                      fontFamily: "popM",
                     ),
                   ),
                   SizedBox(
@@ -180,8 +179,9 @@ class Widget_JadwalStateView extends State<WidgetJadwalView> {
                                                 maxLines: 2,
                                                 overflow: TextOverflow.ellipsis,
                                                 style: TextStyle(
-                                                  fontFamily: "popM",
-                                                ),
+                                                    fontFamily: "popM",
+                                                    fontSize:
+                                                        global.fontSet.value),
                                               ),
                                             ),
                                             SizedBox(height: 4),
@@ -189,7 +189,8 @@ class Widget_JadwalStateView extends State<WidgetJadwalView> {
                                               "17 Maret 2023 10:02",
                                               style: TextStyle(
                                                 fontFamily: 'pop',
-                                                fontSize: 11,
+                                                fontSize:
+                                                    global.fontSmall.value + 1,
                                                 color: Colors.grey,
                                               ),
                                             ),
