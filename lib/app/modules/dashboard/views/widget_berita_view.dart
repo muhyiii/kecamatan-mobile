@@ -304,7 +304,11 @@ class _WidgetBeritaViewState extends State<WidgetBeritaView> {
                                                       Text(
                                                         index.author.username,
                                                         style: TextStyle(
-                                                            fontSize: 12,
+                                                            fontSize: global
+                                                                .fontSmall
+                                                                .value - 2,
+                                                            fontWeight:
+                                                                FontWeight.w500,
                                                             color: Colors.grey,
                                                             fontFamily: "popM"),
                                                       ),
@@ -315,7 +319,9 @@ class _WidgetBeritaViewState extends State<WidgetBeritaView> {
                                                         child: Text(
                                                           "•",
                                                           style: TextStyle(
-                                                              fontSize: 11,
+                                                              fontSize: global
+                                                                  .fontSmall
+                                                                  .value,
                                                               color:
                                                                   Colors.grey,
                                                               fontFamily:
@@ -328,7 +334,9 @@ class _WidgetBeritaViewState extends State<WidgetBeritaView> {
                                                           locale: 'id',
                                                         ),
                                                         style: TextStyle(
-                                                            fontSize: 11,
+                                                            fontSize: global
+                                                                .fontSmall
+                                                                .value - 2,
                                                             color: Colors.grey,
                                                             fontFamily: 'pop'),
                                                       ),

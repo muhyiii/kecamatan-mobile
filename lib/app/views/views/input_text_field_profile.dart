@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -30,13 +32,15 @@ class _InputTextFieldProfileState extends State<InputTextFieldProfile> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.controller.value.text);
     return TextFormField(
         cursorColor: greeny,
         controller: widget.controller.value,
         onTap: () => setState(() {
+              // log(widget.controller.value);
               isClick = true;
             }),
-        // initialValue: widget.value != null ? widget.value : null,
+        // initialValue: widget.controller.value.text ?? '',
         keyboardType:
             widget.input.toLowerCase() == 'nik' ? TextInputType.number : null,
         style: TextStyle(

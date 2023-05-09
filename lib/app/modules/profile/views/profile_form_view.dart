@@ -1,15 +1,39 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sitforsa/app/controllers/global_controller.dart';
 import 'package:sitforsa/app/modules/profile/controllers/profile_controller.dart';
 import 'package:sitforsa/app/views/views/input_text_field_profile.dart';
 import 'package:sitforsa/config/style.dart';
 
-class ProfileFormView extends GetView<ProfileController> {
+class ProfileFormView extends StatefulWidget {
+  @override
+  State<ProfileFormView> createState() => _ProfileFormViewState();
+}
+
+class _ProfileFormViewState extends State<ProfileFormView> {
   final controller = Get.put(ProfileController());
+  // final global = Get.put(GlobalController());
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    // getToken();
+    getData();
+    super.initState();
+  }
+
+  getData() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    controller.getUserProfile(prefs.getString('token'));
+  }
 
   @override
   Widget build(BuildContext context) {
+    log(controller.nama.value.toString());
     return GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Scaffold(
@@ -25,8 +49,7 @@ class ProfileFormView extends GetView<ProfileController> {
             actions: [
               TextButton(
                   onPressed: () => controller.editProfile(),
-                  child: Text('Simpan',
-                      style: TextStyle(color: greeny)))
+                  child: Text('Simpan', style: TextStyle(color: greeny)))
             ],
           ),
           body: Obx(() => controller.isLoading.value

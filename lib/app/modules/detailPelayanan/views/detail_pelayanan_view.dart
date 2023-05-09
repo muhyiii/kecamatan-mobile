@@ -12,6 +12,7 @@ class DetailPelayananView extends GetView<DetailPelayananController> {
   @override
   Widget build(BuildContext context) {
     var data = Get.arguments;
+    print(data.syarat);
     return Scaffold(
       appBar: AppBar(
         foregroundColor: Get.isDarkMode ? null : greenny,
@@ -30,7 +31,7 @@ class DetailPelayananView extends GetView<DetailPelayananController> {
                 children: [
                   Center(
                     child: Text(
-                      data,
+                      data.nama,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: global.fontSize.value,
@@ -44,10 +45,26 @@ class DetailPelayananView extends GetView<DetailPelayananController> {
                     width: Get.width,
                     decoration: BoxDecoration(color: greny),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Persyaratan'),
-                        Text(
-                            "Setiap Penduduk yang telah berusia 17 tahun atau sudah kawin atau pernah kawin berhak memiliki KTP Setiap Penduduk  hanya diperbolehkan memiliki 1 (satu)")
+                        Container(
+                            margin: EdgeInsets.only(bottom: 10),
+                            child: Center(
+                                child: Text(
+                              'Persyaratan',
+                              style: TextStyle(
+                                  fontSize: global.fontSize.value, fontWeight: FontWeight.bold),
+                            ))),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: List.generate(data.syarat.length, (index) {
+                            // return Text(data.syarat[index]);
+                            return ListTile(
+                              title: Text(data.syarat[index]),
+                              leading: Icon(Icons.chevron_right),
+                            );
+                          }),
+                        )
                       ],
                     ),
                   ),
@@ -57,7 +74,8 @@ class DetailPelayananView extends GetView<DetailPelayananController> {
                 alignment: Alignment.bottomCenter,
                 widthFactor: Get.width,
                 child: GestureDetector(
-                    child: Material(borderRadius: BorderRadius.circular(10),
+                    child: Material(
+                  borderRadius: BorderRadius.circular(10),
                   elevation: 1,
                   child: Container(
                     height: Get.width / 10,
