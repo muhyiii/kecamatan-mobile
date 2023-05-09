@@ -49,7 +49,7 @@ class PengaduanView extends GetView<PengaduanController> {
             return Center(
               child: Text(
                 'This is the $label tab',
-                style: const TextStyle(fontSize: 36),
+                style: const TextStyle(fontSize: 14),
               ),
             );
           }).toList(),
