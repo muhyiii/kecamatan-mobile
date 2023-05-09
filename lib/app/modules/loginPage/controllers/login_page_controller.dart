@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:convert';
@@ -21,12 +22,15 @@ class LoginPageController extends GetxController {
   TextEditingController password = TextEditingController();
   var dataDesa = List<Desa>.empty().obs;
   var id_desa;
+  var token;
 
   final formKey = GlobalKey<FormState>();
   var isLoading = false.obs;
   @override
   void onInit() {
     super.onInit();
+
+    FirebaseMessaging.instance.getToken().then((value) => token = value);
     getDesa();
   }
 
@@ -83,13 +87,15 @@ class LoginPageController extends GetxController {
           'nik': nik.text,
           'nama': nama.text,
           'password': password.text,
-          "id_desa": id_desa
+          "id_desa": id_desa,
+          "token": token.toString()
         }),
         headers: {
           'Content-type': 'application/json',
           'Accept': 'application/json',
         },
       );
+      log(token.toString());
       if (response.statusCode == 200) {
         global.setToken(json.decode(response.body)['token']);
         Get.showSnackbar(GetSnackBar(
@@ -152,6 +158,7 @@ class LoginPageController extends GetxController {
     } catch (e) {
       isLoading(false);
       update();
+      log(e.toString());
       Get.showSnackbar(GetSnackBar(
         titleText: Text(
           'Kesalahan',

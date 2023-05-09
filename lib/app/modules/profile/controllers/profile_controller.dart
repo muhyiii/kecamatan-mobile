@@ -80,9 +80,9 @@ class ProfileController extends GetxController {
           });
 
       if (response.statusCode == 200) {
-        print(response.body);
+        // print(response.body);
         nama.value.text = jsonDecode(response.body)['data']['nama'] ?? "";
-        log(nama.value.toString());
+        // log(nama.value.toString());
         alamat.value.text = jsonDecode(response.body)['data']['alamat'] ?? "";
         rt.value.text = jsonDecode(response.body)['data']['rt'] ?? "";
         rw.value.text = jsonDecode(response.body)['data']['rw'] ?? "";
