@@ -31,13 +31,13 @@ class Themes {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await AwesomeNotifications().initialize('resource://drawable/icon_notif', [
+  AwesomeNotifications().initialize('resource://drawable/icon_notif', [
     NotificationChannel(
-        channelKey: 'Notification',
+        channelKey: 'basic_channel',
         channelName: 'Inbox Notification',
         channelDescription: 'Notification For SIPAOJOL',
-        importance: NotificationImportance.Max,
-        defaultColor: Colors.white,
+        importance: NotificationImportance.High,
+        defaultColor: Colors.red,
         criticalAlerts: true,
         enableLights: true,
         enableVibration: true,
@@ -49,7 +49,6 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  FirebaseMessaging.instance.getToken();
 
   FirebaseMessaging.instance.subscribeToTopic('news');
 
@@ -116,25 +115,24 @@ void main() async {
   );
 }
 
-showAwesomeNotification({required String title, required String body}) {
+showAwesomeNotification({required String title, required String body}) async {
   // Define notification content
-  NotificationContent content = NotificationContent(
-    id: Random().nextInt(100),
-    channelKey: 'Notification',
-    title: title,
-    body: body,
-    backgroundColor: Colors.red,
-    notificationLayout: NotificationLayout.Default,
-    summary: '',
-    payload: {
-      'data': 'additional data',
-    },
+  await AwesomeNotifications().createNotification(
+    content: NotificationContent(
+      id: createUniqueId(),
+      channelKey: 'basic_channel',
+      title:
+          '${Emojis.money_money_bag + Emojis.plant_cactus} Buy Plant Food!!!',
+      body:
+          'Kurir Ekspedisi Dibegal di Bekasi, Dibacok Setelah Tolak Serahkan Tas dan HP',
+      bigPicture: 'asset://assets/images/logo.png',
+      notificationLayout: NotificationLayout.BigPicture,
+    ),
   );
+}
 
-  // Create and show the notification
-  AwesomeNotifications().createNotification(
-    content: content,
-  );
+createUniqueId() {
+  return DateTime.now().millisecondsSinceEpoch.remainder(1);
 }
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {

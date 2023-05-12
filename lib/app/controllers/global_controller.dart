@@ -39,6 +39,8 @@ class GlobalController extends GetxController {
       fontSmall.value = 16.0;
     }
 
+
+    
     // initApp();
   }
 
@@ -164,4 +166,6 @@ class GlobalController extends GetxController {
     //   },
     // );
   }
+
+  
 }

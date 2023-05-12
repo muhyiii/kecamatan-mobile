@@ -1,9 +1,15 @@
+import 'dart:developer';
+
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:sitforsa/app/controllers/global_controller.dart';
+import 'package:sitforsa/app/modules/berita/controllers/berita_controller.dart';
 import 'package:sitforsa/app/modules/berita/views/berita_view.dart';
+import 'package:sitforsa/app/modules/berita/views/detail_berita_view.dart';
 import 'package:sitforsa/app/modules/dashboard/views/dashboard_view.dart';
+import 'package:sitforsa/app/modules/kontakPenting/views/kontak_penting_view.dart';
 import 'package:sitforsa/app/modules/notifikasi/views/notifikasi_view.dart';
 import 'package:sitforsa/app/modules/pelayanan/views/pelayanan_view.dart';
 import 'package:sitforsa/app/modules/profile/views/profile_view.dart';
@@ -21,6 +27,7 @@ class BottomBarView extends StatefulWidget {
 
 class _BottomBarViewState extends State<BottomBarView> {
   final controller = Get.put(BottomBarController());
+  final beritaController = Get.put(BeritaController());
 
 // ConnectivityResult? _connectivityResult;
 // late StreamSubscription _connectivitySubscription;
@@ -29,6 +36,25 @@ class _BottomBarViewState extends State<BottomBarView> {
   @override
   initState() {
     super.initState();
+
+    AwesomeNotifications().createdStream.listen((notification) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Notification Created on ${notification.channelKey}'),
+        ),
+      );
+    });
+
+    AwesomeNotifications().actionStream.listen((notification) {
+      var news = beritaController.dataBerita.where((data) => data.judul == notification.body).first;
+      log(news.toString());
+      print(news.runtimeType);
+      print(notification.body);
+      Get.off(() => DetailBeritaView(),
+          arguments: news,
+          transition: Transition.native,
+          duration: Duration(milliseconds: 700));
+    });
 
     // _connectivitySubscription = Connectivity()
     //     .onConnectivityChanged

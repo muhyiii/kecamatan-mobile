@@ -266,6 +266,7 @@ class _BeritaViewState extends State<BeritaView> {
                               else
                                 return GestureDetector(
                                   onTap: () {
+                                    print( controller.dataBerita[index].runtimeType);
                                     Get.to(() => DetailBeritaView(),
                                         arguments: controller.dataBerita[index],
                                         transition: Transition.native,
