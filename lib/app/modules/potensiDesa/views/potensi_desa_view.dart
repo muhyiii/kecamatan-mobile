@@ -20,9 +20,19 @@ class PotensiDesaView extends GetView<PotensiDesaController> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
+        titleSpacing: 10,
         title: Container(
           height: 42,
           margin: EdgeInsets.only(top: 5),
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                blurRadius: 10,
+                color: Colors.black.withOpacity(0.025),
+                offset: Offset(0, 2),
+              )
+            ],
+          ),
           child: TextField(
             cursorColor: blacky,
             textAlignVertical: TextAlignVertical.bottom,
@@ -30,13 +40,12 @@ class PotensiDesaView extends GetView<PotensiDesaController> {
             style: TextStyle(fontFamily: "pop", color: blacky, fontSize: 14),
             decoration: InputDecoration(
               filled: true,
-              fillColor: Colors.white,
+              fillColor: global.isDark.value ? Color(0xff202427) : Colors.white,
               prefixIcon: Icon(
                 Iconsax.search_normal_1,
                 size: global.fontSize.value - 2,
-                color: blacky,
+                color: global.isDark.value ? Colors.grey : blacky,
               ),
-
               hintText: "Cari Wisata...",
               hintStyle: TextStyle(color: Colors.grey),
               contentPadding:
@@ -75,14 +84,23 @@ class PotensiDesaView extends GetView<PotensiDesaController> {
             child: Container(
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10), color: Colors.white),
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 10,
+                    color: Colors.black.withOpacity(0.025),
+                    offset: Offset(0, 2),
+                  )
+                ],
+                borderRadius: BorderRadius.circular(10),
+                color: global.isDark.value ? Color(0xff202427) : Colors.white,
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
                     Iconsax.arrow_left_2,
                     size: global.fontSize.value,
-                    color: Colors.black,
+                    color: global.isDark.value ? Colors.grey : Colors.black,
                   ),
                   // Text(previousRoute)
                 ],
@@ -170,12 +188,16 @@ class Grid extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Icon(Iconsax.blur),
+                Icon(
+                  Iconsax.blur,
+                  color: global.isDark.value ? greenny : Colors.black,
+                ),
                 Container(
                   width: Get.width / 3.5,
                   child: Text(
                     "Potensi Desa",
                     style: TextStyle(
+                        color: global.isDark.value ? greenny : Colors.black,
                         fontFamily: "popSM",
                         fontSize: global.fontHeading.value - 2,
                         height: 1.2),
@@ -213,7 +235,9 @@ class Grid extends StatelessWidget {
                     blur: 1.5,
                     border: Border.fromBorderSide(BorderSide.none),
                     borderRadius: BorderRadius.circular(12),
-                    color: Colors.black.withOpacity(0.5),
+                    color: Get.isDarkMode
+                        ? Colors.black.withOpacity(0.35)
+                        : Colors.black.withOpacity(0.5),
                     child: Padding(
                       padding:
                           EdgeInsets.symmetric(horizontal: 10, vertical: 8),

@@ -19,7 +19,7 @@ class ProfileView extends GetView<ProfileController> {
   Widget build(BuildContext context) {
     return Obx(() {
       return Scaffold(
-          backgroundColor: Get.isDarkMode ? null : whitey,
+          backgroundColor: global.isDark.value ? Color(0xff111315) : null,
           appBar: AppBar(
             backgroundColor: Get.isDarkMode ? null : greny,
             foregroundColor: Get.isDarkMode ? null : blacky,
@@ -84,19 +84,18 @@ class ProfileView extends GetView<ProfileController> {
                         ),
                         minLeadingWidth: 0,
                       ),
-                      InkWell(
-                        onTap: () => Get.toNamed(Routes.PENGAJUAN),
-                        child: Material(
-                          // elevation: 2,
+                      Container(
+                        margin: EdgeInsets.only(top: 10, left: 10, right: 10),
+                        child: InkWell(
+                          onTap: () => Get.toNamed(Routes.PENGAJUAN),
                           child: Container(
-                            margin:
-                                EdgeInsets.only(top: 10, left: 10, right: 10),
                             width: Get.width,
                             padding: EdgeInsets.symmetric(
                                 horizontal: 10, vertical: 15),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Get.isDarkMode ? null : whitey,
+                              color:
+                                  Get.isDarkMode ? Color(0xff202427) : whitey,
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -132,18 +131,20 @@ class ProfileView extends GetView<ProfileController> {
                           ),
                         ),
                       ),
-                      InkWell(
-                        onTap: () => Get.toNamed(Routes.PENGADUAN),
-                        child: Material(
-                          // elevation: 2,
+                      Container(
+                        margin: EdgeInsets.all(10),
+                        // elevation: 2,
+                        child: InkWell(
+                          onTap: () => Get.toNamed(Routes.PENGADUAN),
                           child: Container(
-                            margin: EdgeInsets.all(10),
                             width: Get.width,
                             padding: EdgeInsets.symmetric(
                                 horizontal: 10, vertical: 15),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Get.isDarkMode ? null : greenny,
+                              color: global.isDark.value
+                                  ? Color(0xff202427)
+                                  : greenny,
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,

@@ -25,7 +25,7 @@ class WidgetPelayananView extends GetView {
         ),
         width: Get.width,
         child: Wrap(
-          alignment: WrapAlignment.spaceAround,
+          alignment: WrapAlignment.spaceBetween,
           children: [
             itemWidget(
                 Icon(
@@ -53,7 +53,7 @@ class WidgetPelayananView extends GetView {
                 PengaduanView()),
             itemWidget(
                 Icon(
-                  Iconsax.building_4,
+                  Iconsax.blur,
                   color: greenny,
                   size: global.fontSize.value + 2,
                 ),
@@ -81,9 +81,9 @@ class WidgetPelayananView extends GetView {
                       child: Container(
                         width: Get.width / 8,
                         height: Get.width / 8,
-                        padding: EdgeInsets.all(global.fontSmall.value + 2),
+                        padding: EdgeInsets.all(13),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(100),
                           color: Get.isDarkMode ? null : Colors.white,
                         ),
                       ),
@@ -113,10 +113,19 @@ class WidgetPelayananView extends GetView {
                 child: Column(
                   children: [
                     Container(
-                      padding: EdgeInsets.all(global.fontSmall.value + 2),
+                      padding: EdgeInsets.all(13),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(9),
-                        color: Get.isDarkMode ? whitey : Colors.white,
+                        borderRadius: BorderRadius.circular(100),
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 10,
+                            color: Colors.black.withOpacity(0.02),
+                            offset: Offset(0, 2),
+                          )
+                        ],
+                        color: global.isDark.value
+                            ? Color(0xff202427)
+                            : Colors.white,
                       ),
                       child: icon,
                     ),
@@ -131,6 +140,9 @@ class WidgetPelayananView extends GetView {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: 'popM',
+                          color: global.isDark.value
+                              ? Colors.grey.shade400
+                              : Colors.black,
                           fontSize: global.fontSet.value - 2,
                           height: 1.4,
                         ),

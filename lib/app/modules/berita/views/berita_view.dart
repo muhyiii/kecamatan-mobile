@@ -32,7 +32,6 @@ class _BeritaViewState extends State<BeritaView> {
     return SafeArea(
       child: Obx(() {
         return Scaffold(
-            backgroundColor: whitey,
             appBar: AppBar(
               foregroundColor: Get.isDarkMode ? null : greenny,
               elevation: 0,
@@ -124,6 +123,7 @@ class _BeritaViewState extends State<BeritaView> {
                                         Expanded(
                                           flex: 2,
                                           child: Material(
+                                            elevation: 0,
                                             borderRadius:
                                                 BorderRadius.circular(10),
                                             child: Shimmer.fromColors(
@@ -133,7 +133,7 @@ class _BeritaViewState extends State<BeritaView> {
                                                 height: Get.width / 4.2,
                                                 // width: Get.width / 2.7,
                                                 decoration: BoxDecoration(
-                                                  color: Colors.blueGrey
+                                                  color: Colors.white
                                                       .withOpacity(0.6),
                                                   borderRadius:
                                                       BorderRadius.circular(8),
@@ -177,8 +177,7 @@ class _BeritaViewState extends State<BeritaView> {
                                                                 'Helvetica Neue'),
                                                       ),
                                                       decoration: BoxDecoration(
-                                                        color: Colors.blueGrey
-                                                            .withOpacity(0.6),
+                                                        color: Colors.white,
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(5),
@@ -213,8 +212,7 @@ class _BeritaViewState extends State<BeritaView> {
                                                           ),
                                                           decoration:
                                                               BoxDecoration(
-                                                            color: Colors
-                                                                .blueGrey
+                                                            color: Colors.white
                                                                 .withOpacity(
                                                                     0.6),
                                                             borderRadius:
@@ -246,8 +244,7 @@ class _BeritaViewState extends State<BeritaView> {
                                                           ),
                                                           decoration:
                                                               BoxDecoration(
-                                                            color: Colors
-                                                                .blueGrey
+                                                            color: Colors.white
                                                                 .withOpacity(
                                                                     0.6),
                                                             borderRadius:
@@ -282,7 +279,9 @@ class _BeritaViewState extends State<BeritaView> {
                                         EdgeInsets.symmetric(horizontal: 8),
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
-                                        color: Colors.white),
+                                        color: global.isDark.value
+                                            ? Color(0xff202427)
+                                            : Colors.white),
                                     child: Row(
                                       children: [
                                         Expanded(
@@ -294,7 +293,7 @@ class _BeritaViewState extends State<BeritaView> {
                                               tag: controller
                                                   .dataBerita[index].thumbnail,
                                               child: Container(
-                                                height: Get.width / 4.5,
+                                                height: Get.width / 5,
                                                 // width: Get.width / 2.7,
                                                 decoration: BoxDecoration(
                                                     borderRadius:
@@ -318,9 +317,9 @@ class _BeritaViewState extends State<BeritaView> {
                                           width: 10,
                                         ),
                                         Expanded(
-                                          flex: 5,
+                                          flex: 6,
                                           child: Container(
-                                            height: Get.width / 3.7,
+                                            height: Get.width / 4.2,
                                             padding: EdgeInsets.symmetric(
                                                 vertical: 8),
                                             child: Column(
@@ -338,7 +337,8 @@ class _BeritaViewState extends State<BeritaView> {
                                                     maxLines: 2,
                                                     style: TextStyle(
                                                       fontSize:
-                                                          global.fontSet.value,
+                                                          global.fontSet.value -
+                                                              1,
                                                       fontFamily: 'popSM',
                                                     ),
                                                   ),
@@ -357,7 +357,12 @@ class _BeritaViewState extends State<BeritaView> {
                                                               2,
                                                           fontWeight:
                                                               FontWeight.w500,
-                                                          color: Colors.grey,
+                                                          color:
+                                                              global.isDark
+                                                                      .value
+                                                                  ? Colors.grey
+                                                                      .shade600
+                                                                  : Colors.grey,
                                                           fontFamily: "pop"),
                                                     ),
                                                     Container(
@@ -366,12 +371,21 @@ class _BeritaViewState extends State<BeritaView> {
                                                               horizontal: 5),
                                                       child: Text(
                                                         "•",
-                                                        style: TextStyle(
-                                                            fontSize: global
-                                                                .fontSmall
-                                                                .value,
-                                                            color: Colors.grey,
-                                                            fontFamily: 'pop'),
+                                                        style:
+                                                            TextStyle(
+                                                                fontSize: global
+                                                                    .fontSmall
+                                                                    .value,
+                                                                color: global
+                                                                        .isDark
+                                                                        .value
+                                                                    ? Colors
+                                                                        .grey
+                                                                        .shade600
+                                                                    : Colors
+                                                                        .grey,
+                                                                fontFamily:
+                                                                    'pop'),
                                                       ),
                                                     ),
                                                     Text(
@@ -385,7 +399,11 @@ class _BeritaViewState extends State<BeritaView> {
                                                         fontSize: global
                                                                 .fontSet.value -
                                                             2,
-                                                        color: Colors.grey,
+                                                        color:
+                                                            global.isDark.value
+                                                                ? Colors.grey
+                                                                    .shade600
+                                                                : Colors.grey,
                                                         fontFamily: 'pop',
                                                       ),
                                                     ),
@@ -464,7 +482,9 @@ class _BeritaViewState extends State<BeritaView> {
                             padding: EdgeInsets.all(18),
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: Colors.white,
+                              color: global.isDark.value
+                                  ? Color(0xff202427)
+                                  : Colors.white,
                             ),
                             child: Text(
                               controller.page.value.toString(),

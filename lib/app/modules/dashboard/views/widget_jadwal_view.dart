@@ -147,8 +147,18 @@ class Widget_JadwalStateView extends State<WidgetJadwalView> {
                                     padding:
                                         EdgeInsets.all(global.fontSmall.value),
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        color: Colors.white),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          blurRadius: 10,
+                                          color: Colors.black.withOpacity(0.02),
+                                          offset: Offset(0, 2),
+                                        )
+                                      ],
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: global.isDark.value
+                                          ? Color(0xff202427)
+                                          : Colors.white,
+                                    ),
                                     child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -158,10 +168,16 @@ class Widget_JadwalStateView extends State<WidgetJadwalView> {
                                         Container(
                                           padding: EdgeInsets.all(8),
                                           decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(100),
-                                            color: Colors.grey.shade100,
-                                          ),
+                                              borderRadius:
+                                                  BorderRadius.circular(100),
+                                              color: global.isDark.value
+                                                  ? Colors.transparent
+                                                  : Colors.grey.shade100,
+                                              border: Border.all(
+                                                  width: 1,
+                                                  color: global.isDark.value
+                                                      ? greenny
+                                                      : Colors.transparent)),
                                           child: Icon(
                                             Iconsax.calendar_2,
                                             color: greenny,
@@ -179,9 +195,10 @@ class Widget_JadwalStateView extends State<WidgetJadwalView> {
                                                 maxLines: 2,
                                                 overflow: TextOverflow.ellipsis,
                                                 style: TextStyle(
-                                                    fontFamily: "popM",
+                                                    fontFamily: "popSM",
                                                     fontSize:
-                                                        global.fontSet.value),
+                                                        global.fontSet.value -
+                                                            0.5),
                                               ),
                                             ),
                                             SizedBox(height: 4),
@@ -191,7 +208,9 @@ class Widget_JadwalStateView extends State<WidgetJadwalView> {
                                                 fontFamily: 'pop',
                                                 fontSize:
                                                     global.fontSmall.value + 1,
-                                                color: Colors.grey,
+                                                color: global.isDark.value
+                                                    ? Colors.grey.shade600
+                                                    : Colors.grey,
                                               ),
                                             ),
                                           ],

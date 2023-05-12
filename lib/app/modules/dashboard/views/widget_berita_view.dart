@@ -243,41 +243,46 @@ class _WidgetBeritaViewState extends State<WidgetBeritaView> {
                                       padding:
                                           EdgeInsets.symmetric(horizontal: 8),
                                       decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: Colors.white),
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: global.isDark.value
+                                            ? Color(0xff202427)
+                                            : Colors.white,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            blurRadius: 10,
+                                            color:
+                                                Colors.black.withOpacity(0.02),
+                                            offset: Offset(0, 2),
+                                          )
+                                        ],
+                                      ),
                                       child: Row(
                                         children: [
                                           Expanded(
                                             flex: 2,
-                                            child: Material(
-                                              // borderRadius:
-                                              //     BorderRadius.circular(20),
-                                              // elevation: 5,
-                                              child: Container(
-                                                height: Get.width / 4.5,
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8),
-                                                    image: DecorationImage(
-                                                        image:
-                                                            CachedNetworkImageProvider(
-                                                          index.thumbnail,
-                                                        ),
-                                                        fit: BoxFit.cover,
-                                                        alignment: Alignment
-                                                            .topCenter)),
-                                              ),
+                                            child: Container(
+                                              height: Get.width / 5,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.transparent,
+                                                  borderRadius:
+                                                      BorderRadius.circular(8),
+                                                  image: DecorationImage(
+                                                      image:
+                                                          CachedNetworkImageProvider(
+                                                        index.thumbnail,
+                                                      ),
+                                                      fit: BoxFit.cover,
+                                                      alignment:
+                                                          Alignment.topCenter)),
                                             ),
                                           ),
                                           SizedBox(
                                             width: 10,
                                           ),
                                           Expanded(
-                                            flex: 5,
+                                            flex: 6,
                                             child: Container(
-                                              height: Get.width / 3.7,
+                                              height: Get.width / 4.2,
                                               padding: EdgeInsets.symmetric(
                                                 vertical: 8,
                                               ),
@@ -296,7 +301,8 @@ class _WidgetBeritaViewState extends State<WidgetBeritaView> {
                                                       maxLines: 2,
                                                       style: TextStyle(
                                                         fontSize: global
-                                                            .fontSet.value,
+                                                                .fontSet.value -
+                                                            0.5,
                                                         fontFamily: 'popSM',
                                                       ),
                                                     ),
@@ -312,7 +318,11 @@ class _WidgetBeritaViewState extends State<WidgetBeritaView> {
                                                                 2,
                                                             fontWeight:
                                                                 FontWeight.w500,
-                                                            color: Colors.grey,
+                                                            color: global
+                                                                    .isDark.value
+                                                                ? Colors.grey
+                                                                    .shade600
+                                                                : Colors.grey,
                                                             fontFamily: "pop"),
                                                       ),
                                                       Container(
@@ -325,8 +335,11 @@ class _WidgetBeritaViewState extends State<WidgetBeritaView> {
                                                               fontSize: global
                                                                   .fontSmall
                                                                   .value,
-                                                              color:
-                                                                  Colors.grey,
+                                                              color: global.isDark
+                                                                      .value
+                                                                  ? Colors.grey
+                                                                      .shade600
+                                                                  : Colors.grey,
                                                               fontFamily:
                                                                   'pop'),
                                                         ),

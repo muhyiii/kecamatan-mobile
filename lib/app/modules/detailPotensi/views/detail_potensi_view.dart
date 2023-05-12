@@ -45,8 +45,9 @@ class DetailPotensiView extends GetView<DetailPotensiController> {
                                   padding: EdgeInsets.all(10),
                                   alignment: Alignment.center,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Colors.white),
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Colors.white,
+                                  ),
                                   child: Icon(
                                     Iconsax.arrow_left_2,
                                     size: global.fontSize.value,

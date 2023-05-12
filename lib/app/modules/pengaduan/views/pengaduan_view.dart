@@ -29,12 +29,6 @@ class PengaduanView extends GetView<PengaduanController> {
             unselectedLabelStyle: TextStyle(fontFamily: "popM", fontSize: 13),
             unselectedLabelColor: Colors.grey.shade700,
             indicatorSize: TabBarIndicatorSize.label,
-            // indicatorPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-            // indicator: BoxDecoration(
-            //   borderRadius:
-            //       BorderRadius.circular(5), // make the indicator rounded
-            //   color: greny, // set the color of the indicator
-            // ),
             labelStyle: TextStyle(fontFamily: "popSM", fontSize: 13),
             indicatorColor: greenny,
             isScrollable: true,

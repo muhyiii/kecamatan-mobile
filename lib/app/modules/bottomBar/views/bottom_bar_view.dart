@@ -98,81 +98,78 @@ class _BottomBarViewState extends State<BottomBarView> {
                 ))),
             bottomNavigationBar: Container(
               // margin: EdgeInsets.all(10),
+              padding: EdgeInsets.symmetric(horizontal: 9, vertical: 12),
               decoration: BoxDecoration(
-                  color: Get.isDarkMode ? null : whitey,
+                  color: global.isDark.value ? Color(0xff111315) : whitey,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(15),
                       topRight: Radius.circular(15)),
                   boxShadow: [
                     BoxShadow(
                       blurRadius: 10,
-                      color: Colors.black.withOpacity(0.03),
+                      color: global.isDark.value
+                          ? Colors.black.withOpacity(0.3)
+                          : Colors.black.withOpacity(0.03),
                       offset: Offset(0, -3),
                     )
                   ]),
-              child: SafeArea(
-                child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 9, vertical: 12),
-                  child: GNav(
-                    rippleColor: greeny,
-                    hoverColor: greny,
-                    gap: 10,
-                    tabBorderRadius: 8,
-                    activeColor: whitey,
-                    iconSize: 18,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    padding: EdgeInsets.all(9),
-                    duration: Duration(milliseconds: 400),
-                    tabBackgroundColor: greenny,
-                    color: Get.isDarkMode ? whitey : Colors.grey,
-                    textStyle: TextStyle(
-                        fontSize: global.fontSet.value,
-                        fontFamily: 'popSM',
-                        color: whitey),
-                    tabs: [
-                      GButton(
-                        icon: controller.tabIndex.value == 0
-                            ? IconlyBold.home
-                            : IconlyLight.home,
-                        text: 'Beranda',
-                      ),
-                      GButton(
-                        icon: controller.tabIndex.value == 1
-                            ? FontAwesomeIcons.book
-                            : Iconsax.book,
-                        text: 'Berita',
-                      ),
-                      GButton(
-                        icon: controller.tabIndex.value == 2
-                            ? Iconsax.clipboard_text5
-                            : Iconsax.clipboard_text,
-                        text: 'Layanan',
-                      ),
-                      GButton(
-                        icon: controller.tabIndex.value == 3
-                            ? Iconsax.notification5
-                            : Iconsax.notification,
-                        text: 'Notifikasi',
-                      ),
-                      GButton(
-                        icon: controller.tabIndex.value == 4
-                            ? IconlyBold.profile
-                            : IconlyLight.profile,
-                        text: 'Akun',
-                      ),
-                    ],
-                    selectedIndex: controller.tabIndex.value,
-                    onTabChange: (index) {
-                      print(index == 1);
-                      if (index == 1) global.reqPermissionNotification();
-
-                      setState(() {
-                        controller.tabIndex.value = index;
-                      });
-                    },
+              child: GNav(
+                rippleColor: greeny,
+                hoverColor: greny,
+                gap: 10,
+                tabBorderRadius: 8,
+                activeColor: whitey,
+                iconSize: 18,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                padding: EdgeInsets.all(9),
+                duration: Duration(milliseconds: 400),
+                tabBackgroundColor: greenny,
+                color: global.isDark.value ? Colors.grey.shade600 : Colors.grey,
+                textStyle: TextStyle(
+                    fontSize: global.fontSet.value,
+                    fontFamily: 'popSM',
+                    color: whitey),
+                tabs: [
+                  GButton(
+                    icon: controller.tabIndex.value == 0
+                        ? IconlyBold.home
+                        : IconlyLight.home,
+                    text: 'Beranda',
                   ),
-                ),
+                  GButton(
+                    icon: controller.tabIndex.value == 1
+                        ? FontAwesomeIcons.book
+                        : Iconsax.book,
+                    text: 'Berita',
+                  ),
+                  GButton(
+                    icon: controller.tabIndex.value == 2
+                        ? Iconsax.clipboard_text5
+                        : Iconsax.clipboard_text,
+                    text: 'Layanan',
+                  ),
+                  GButton(
+                    icon: controller.tabIndex.value == 3
+                        ? Iconsax.notification5
+                        : Iconsax.notification,
+                    text: 'Notifikasi',
+                  ),
+                  GButton(
+                    icon: controller.tabIndex.value == 4
+                        ? IconlyBold.profile
+                        : IconlyLight.profile,
+                    text: 'Akun',
+                  ),
+                ],
+                selectedIndex: controller.tabIndex.value,
+                onTabChange: (index) {
+                  print(index == 1);
+                  if (index == 1) global.reqPermissionNotification();
+
+                  setState(() {
+                    controller.tabIndex.value = index;
+                  });
+                },
               ),
               // BottomNavigationBar(
               //   selectedIconTheme: IconThemeData(size: 30),

@@ -61,6 +61,13 @@ class _DetailBeritaViewState extends State<DetailBeritaView> {
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              blurRadius: 10,
+                              color: Colors.black.withOpacity(0.025),
+                              offset: Offset(0, 2),
+                            )
+                          ],
                           color: Colors.white),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -113,6 +120,13 @@ class _DetailBeritaViewState extends State<DetailBeritaView> {
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 10,
+                        color: Colors.black.withOpacity(0.025),
+                        offset: Offset(0, 2),
+                      )
+                    ],
                     color: Colors.white),
                 child: Column(
                   children: [

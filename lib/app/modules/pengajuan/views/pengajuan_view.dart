@@ -27,7 +27,11 @@ class PengajuanView extends GetView<PengajuanController> {
           centerTitle: true,
           bottom: TabBar(
             labelColor: greenny,
-            unselectedLabelColor: Colors.black,
+            
+            unselectedLabelStyle: TextStyle(fontFamily: "popM", fontSize: 13),
+            unselectedLabelColor: Colors.grey.shade700,
+            indicatorSize: TabBarIndicatorSize.label,
+            labelStyle: TextStyle(fontFamily: "popSM", fontSize: 13),
             indicatorColor: greenny,
             isScrollable: true,
             controller: tab.controller,

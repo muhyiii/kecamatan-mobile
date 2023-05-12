@@ -9,21 +9,21 @@ import '../controllers/notifikasi_controller.dart';
 class NotifikasiView extends GetView<NotifikasiController> {
   final global = Get.put(GlobalController());
   var a = [
-    11,
     1,
-    1,
-    1,
+    2,
     3,
-    3,
-    3,
-    3,
-    3,
-    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: global.isDark.value ? Color(0xff111315) : Colors.white,
       appBar: AppBar(
         foregroundColor: Get.isDarkMode ? null : greenny,
         elevation: 0,
@@ -49,6 +49,7 @@ class NotifikasiView extends GetView<NotifikasiController> {
                 child: Text(
                   "Terbaru",
                   style: TextStyle(
+                      color: global.isDark.value ? Colors.white : Colors.black,
                       fontFamily: "popM",
                       fontWeight: FontWeight.w500,
                       fontSize: global.fontSet.value + 1),
@@ -85,7 +86,9 @@ class NotifikasiView extends GetView<NotifikasiController> {
                                               fontSize:
                                                   global.fontSet.value - 0.5,
                                               fontFamily: "popM",
-                                              color: Colors.black,
+                                              color: global.isDark.value
+                                                  ? Colors.white
+                                                  : Colors.black,
                                             ),
                                           ),
                                           Text(
@@ -93,7 +96,9 @@ class NotifikasiView extends GetView<NotifikasiController> {
                                             style: TextStyle(
                                               fontSize: global.fontSmall.value,
                                               fontFamily: "popM",
-                                              color: Colors.grey[600],
+                                              color: global.isDark.value
+                                                  ? Colors.grey[600]
+                                                  : Colors.grey,
                                             ),
                                           )
                                         ],
@@ -106,10 +111,13 @@ class NotifikasiView extends GetView<NotifikasiController> {
                                         child: Text(
                                           'Pengajuan izin 03282028908 telah diterima oleh kecamatan',
                                           style: TextStyle(
-                                              fontSize:
-                                                  global.fontSmall.value + 1,
-                                              fontFamily: "pop",
-                                              color: Colors.grey.shade600),
+                                            fontSize:
+                                                global.fontSmall.value + 1,
+                                            fontFamily: "pop",
+                                            color: global.isDark.value
+                                                ? Colors.grey[600]
+                                                : Colors.grey,
+                                          ),
                                         ),
                                       ),
                                     ],
@@ -118,6 +126,9 @@ class NotifikasiView extends GetView<NotifikasiController> {
                               ),
                               Divider(
                                 thickness: 0.5,
+                                color: global.isDark.value
+                                    ? Colors.grey[800]
+                                    : Colors.grey.shade200,
                               )
                             ],
                           ))

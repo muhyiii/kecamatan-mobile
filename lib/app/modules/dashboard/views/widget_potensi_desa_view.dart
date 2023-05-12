@@ -191,7 +191,9 @@ class WidgetPotensiDesaView extends GetView {
                         blur: 1.5,
                         border: Border.fromBorderSide(BorderSide.none),
                         borderRadius: BorderRadius.circular(12),
-                        color: Colors.black.withOpacity(0.5),
+                        color: Get.isDarkMode
+                            ? Colors.black.withOpacity(0.35)
+                            : Colors.black.withOpacity(0.5),
                         child: Padding(
                           padding:
                               EdgeInsets.symmetric(horizontal: 10, vertical: 8),

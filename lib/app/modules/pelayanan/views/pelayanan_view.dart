@@ -31,6 +31,7 @@ class PelayananView extends GetView<PelayananController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: whitey,
       appBar: AppBar(
         foregroundColor: Get.isDarkMode ? null : greenny,
         backgroundColor: Get.isDarkMode ? null : whitey,
@@ -45,202 +46,193 @@ class PelayananView extends GetView<PelayananController> {
         centerTitle: true,
       ),
       body: Container(
-          padding:
-              EdgeInsets.symmetric(horizontal: Get.width / 10, vertical: 15),
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
-            child: controller.isLoading.value
-                ? Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Shimmer.fromColors(
-                        baseColor: Colors.grey[300]!,
-                        highlightColor: Colors.white,
-                        child: Card(
-                          color: Get.isDarkMode ? null : greny,
-                          child: ExpansionTile(
-                              leading: Icon(
-                                  Icons.system_security_update_warning_rounded),
-                              initiallyExpanded: false,
-                              textColor: Get.isDarkMode ? null : blacky,
-                              backgroundColor:
-                                  Get.isDarkMode ? Colors.grey : whitey,
-                              iconColor: Get.isDarkMode ? null : blacky,
-                              expandedCrossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                              title: Text(
-                                'Perizinan',
-                                style: TextStyle(
-                                    fontFamily: 'Helvetica Neue',
-                                    fontSize: global.fontSize.value),
-                              ),
-                              children: perizinan
-                                  .map((e) => Container(
-                                        margin:
-                                            EdgeInsets.symmetric(vertical: 1),
-                                        decoration: BoxDecoration(
-                                            border: Border(
-                                                bottom: BorderSide(
-                                                    width: 1,
-                                                    color: Colors.grey))),
-                                        child: ListTile(
-                                            trailing: Icon(
-                                                Icons.chevron_right_rounded),
-                                            enableFeedback: true,
-                                            selectedColor: greeny,
-                                            // onTap: () => Get.to(
-                                            //     () => DetailPelayananView(),
-                                            //     arguments: e),
-                                            title: Text(
-                                              e,
-                                              style: TextStyle(
-                                                  fontSize:
-                                                      global.fontSet.value),
-                                            )),
-                                      ))
-                                  .toList()),
-                        ),
-                      ),
-                      Shimmer.fromColors(
-                        baseColor: Colors.grey[300]!,
-                        highlightColor: Colors.white,
-                        child: Card(
-                          color: Get.isDarkMode ? null : greny,
-                          child: ExpansionTile(
-                              leading: Icon(
-                                  Icons.system_security_update_warning_rounded),
-                              initiallyExpanded: false,
-                              textColor: Get.isDarkMode ? null : blacky,
-                              backgroundColor:
-                                  Get.isDarkMode ? Colors.grey : whitey,
-                              iconColor: Get.isDarkMode ? null : blacky,
-                              title: Text(
-                                'Non Perizinan',
-                                style: TextStyle(fontFamily: 'Helvetica Neue'),
-                              ),
-                              expandedCrossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                              children: nonPerizinan
-                                  .map((e) => Container(
-                                        margin:
-                                            EdgeInsets.symmetric(vertical: 1),
-                                        decoration: BoxDecoration(
-                                            border: Border(
-                                                bottom: BorderSide(
-                                                    width: 1,
-                                                    color: Colors.grey))),
-                                        child: ListTile(
-                                            trailing: Icon(
-                                                Icons.chevron_right_rounded),
-                                            enableFeedback: true,
-                                            selectedColor: greeny,
-                                            // onTap: () => Get.to(
-                                            //     () => DetailPelayananView(),
-                                            //     arguments: e),
-                                            title: Text(
-                                              e,
-                                              style: TextStyle(
-                                                  fontSize:
-                                                      global.fontSet.value),
-                                            )),
-                                      ))
-                                  .toList()),
-                        ),
-                      ),
-                      // ListTile.divideTiles(tiles: tiles)
-                    ],
-                  )
-                : Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Card(
-                        color: Get.isDarkMode ? null : greny,
-                        child: ExpansionTile(
-                            leading: Icon(
-                                Icons.system_security_update_warning_rounded),
-                            initiallyExpanded: false,
-                            textColor: Get.isDarkMode ? null : blacky,
-                            backgroundColor:
-                                Get.isDarkMode ? Colors.grey : whitey,
-                            iconColor: Get.isDarkMode ? null : blacky,
-                            expandedCrossAxisAlignment:
-                                CrossAxisAlignment.start,
-                            title: Text(
-                              'Perizinan',
-                              style: TextStyle(
-                                  fontFamily: 'Helvetica Neue',
-                                  fontSize: global.fontSize.value),
-                            ),
-                            children: perizinan
-                                .map((e) => Container(
-                                      margin: EdgeInsets.symmetric(vertical: 1),
-                                      decoration: BoxDecoration(
-                                          border: Border(
-                                              bottom: BorderSide(
-                                                  width: 1,
-                                                  color: Colors.grey))),
-                                      child: ListTile(
-                                          trailing:
-                                              Icon(Icons.chevron_right_rounded),
-                                          enableFeedback: true,
-                                          selectedColor: greeny,
-                                          onTap: () => Get.to(
-                                              () => DetailPelayananView(),
-                                              arguments:
-                                                  controller.dataPelayanan[0]),
-                                          title: Text(
-                                            e,
-                                            style: TextStyle(
-                                                fontSize: global.fontSet.value),
-                                          )),
-                                    ))
-                                .toList()),
-                      ),
-                      Card(
-                        color: Get.isDarkMode ? null : greny,
-                        child: ExpansionTile(
-                            leading: Icon(
-                                Icons.system_security_update_warning_rounded),
-                            initiallyExpanded: false,
-                            textColor: Get.isDarkMode ? null : blacky,
-                            backgroundColor:
-                                Get.isDarkMode ? Colors.grey : whitey,
-                            iconColor: Get.isDarkMode ? null : blacky,
-                            title: Text(
-                              'Non Perizinan',
-                              style: TextStyle(fontFamily: 'Helvetica Neue'),
-                            ),
-                            expandedCrossAxisAlignment:
-                                CrossAxisAlignment.start,
-                            children: nonPerizinan
-                                .map((e) => Container(
-                                      margin: EdgeInsets.symmetric(vertical: 1),
-                                      decoration: BoxDecoration(
-                                          border: Border(
-                                              bottom: BorderSide(
-                                                  width: 1,
-                                                  color: Colors.grey))),
-                                      child: ListTile(
-                                          trailing:
-                                              Icon(Icons.chevron_right_rounded),
-                                          enableFeedback: true,
-                                          selectedColor: greeny,
-                                          onTap: () => Get.to(
-                                              () => DetailPelayananView(),
-                                              arguments:
-                                                  controller.dataPelayanan[0]),
-                                          title: Text(
-                                            e,
-                                            style: TextStyle(
-                                                fontSize: global.fontSet.value),
-                                          )),
-                                    ))
-                                .toList()),
-                      ),
-                      // ListTile.divideTiles(tiles: tiles)
-                    ],
+        physics: BouncingScrollPhysics(),
+        child: controller.isLoading.value
+            ? Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Shimmer.fromColors(
+                    baseColor: Colors.grey[300]!,
+                    highlightColor: Colors.white,
+                    child: Card(
+                      color: Get.isDarkMode ? null : greny,
+                      child: ExpansionTile(
+                          leading: Icon(
+                              Icons.system_security_update_warning_rounded),
+                          initiallyExpanded: false,
+                          textColor: Get.isDarkMode ? null : blacky,
+                          backgroundColor:
+                              Get.isDarkMode ? Colors.grey : whitey,
+                          iconColor: Get.isDarkMode ? null : blacky,
+                          expandedCrossAxisAlignment: CrossAxisAlignment.start,
+                          title: Text(
+                            'Perizinan',
+                            style: TextStyle(
+                                fontFamily: 'Helvetica Neue',
+                                fontSize: global.fontSize.value),
+                          ),
+                          children: perizinan
+                              .map((e) => Container(
+                                    margin: EdgeInsets.symmetric(vertical: 1),
+                                    decoration: BoxDecoration(
+                                        border: Border(
+                                            bottom: BorderSide(
+                                                width: 1, color: Colors.grey))),
+                                    child: ListTile(
+                                        trailing:
+                                            Icon(Icons.chevron_right_rounded),
+                                        enableFeedback: true,
+                                        selectedColor: greeny,
+                                        // onTap: () => Get.to(
+                                        //     () => DetailPelayananView(),
+                                        //     arguments: e),
+                                        title: Text(
+                                          e,
+                                          style: TextStyle(
+                                              fontSize: global.fontSet.value),
+                                        )),
+                                  ))
+                              .toList()),
+                    ),
                   ),
-          )),
+                  Shimmer.fromColors(
+                    baseColor: Colors.grey[300]!,
+                    highlightColor: Colors.white,
+                    child: Card(
+                      color: Get.isDarkMode ? null : greny,
+                      child: ExpansionTile(
+                          leading: Icon(
+                              Icons.system_security_update_warning_rounded),
+                          initiallyExpanded: false,
+                          textColor: Get.isDarkMode ? null : blacky,
+                          backgroundColor:
+                              Get.isDarkMode ? Colors.grey : whitey,
+                          iconColor: Get.isDarkMode ? null : blacky,
+                          title: Text(
+                            'Non Perizinan',
+                            style: TextStyle(fontFamily: 'Helvetica Neue'),
+                          ),
+                          expandedCrossAxisAlignment: CrossAxisAlignment.start,
+                          children: nonPerizinan
+                              .map((e) => Container(
+                                    margin: EdgeInsets.symmetric(vertical: 1),
+                                    decoration: BoxDecoration(
+                                        border: Border(
+                                            bottom: BorderSide(
+                                                width: 1, color: Colors.grey))),
+                                    child: ListTile(
+                                        trailing:
+                                            Icon(Icons.chevron_right_rounded),
+                                        enableFeedback: true,
+                                        selectedColor: greeny,
+                                        // onTap: () => Get.to(
+                                        //     () => DetailPelayananView(),
+                                        //     arguments: e),
+                                        title: Text(
+                                          e,
+                                          style: TextStyle(
+                                              fontSize: global.fontSet.value),
+                                        )),
+                                  ))
+                              .toList()),
+                    ),
+                  ),
+                  // ListTile.divideTiles(tiles: tiles)
+                ],
+              )
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Card(
+                    // color: Get.isDarkMode ? null : greny,
+                    elevation: 0,
+                    margin: EdgeInsets.all(0),
+
+                    child: ExpansionTile(
+                        // leading: Icon(
+                        //     Icons.system_security_update_warning_rounded),
+                        initiallyExpanded: false,
+                        textColor: Get.isDarkMode ? null : blacky,
+                        backgroundColor: Get.isDarkMode ? Colors.grey : whitey,
+                        iconColor: Get.isDarkMode ? null : blacky,
+                        expandedCrossAxisAlignment: CrossAxisAlignment.start,
+                        title: Text(
+                          'Perizinan',
+                          style: TextStyle(
+                              fontFamily: 'Helvetica Neue',
+                              fontSize: global.fontSize.value),
+                        ),
+                        children: perizinan
+                            .map((e) => Container(
+                                  margin: EdgeInsets.symmetric(vertical: 1),
+                                  decoration: BoxDecoration(
+                                      border: Border(
+                                          bottom: BorderSide(
+                                              width: 1, color: Colors.grey))),
+                                  child: ListTile(
+                                      trailing:
+                                          Icon(Icons.chevron_right_rounded),
+                                      enableFeedback: true,
+                                      selectedColor: greeny,
+                                      onTap: () => Get.to(
+                                          () => DetailPelayananView(),
+                                          arguments:
+                                              controller.dataPelayanan[0]),
+                                      title: Text(
+                                        e,
+                                        style: TextStyle(
+                                            fontSize: global.fontSet.value),
+                                      )),
+                                ))
+                            .toList()),
+                  ),
+
+                  Card(
+                    // color: Get.isDarkMode ? null : greny,
+                    margin: EdgeInsets.all(0),
+                    elevation: 0,
+                    child: ExpansionTile(
+                        // leading:
+                        //     Icon(Icons.system_security_update_warning_rounded),
+                        initiallyExpanded: false,
+                        textColor: Get.isDarkMode ? null : blacky,
+                        backgroundColor: Get.isDarkMode ? Colors.grey : whitey,
+                        iconColor: Get.isDarkMode ? null : blacky,
+                        title: Text(
+                          'Non Perizinan',
+                          style: TextStyle(fontFamily: 'Helvetica Neue'),
+                        ),
+                        expandedCrossAxisAlignment: CrossAxisAlignment.start,
+                        children: nonPerizinan
+                            .map((e) => Container(
+                                  margin: EdgeInsets.symmetric(vertical: 1),
+                                  decoration: BoxDecoration(
+                                      border: Border(
+                                          bottom: BorderSide(
+                                              width: 1, color: Colors.grey))),
+                                  child: ListTile(
+                                      trailing:
+                                          Icon(Icons.chevron_right_rounded),
+                                      enableFeedback: true,
+                                      selectedColor: greeny,
+                                      onTap: () => Get.to(
+                                          () => DetailPelayananView(),
+                                          arguments:
+                                              controller.dataPelayanan[0]),
+                                      title: Text(
+                                        e,
+                                        style: TextStyle(
+                                            fontSize: global.fontSet.value),
+                                      )),
+                                ))
+                            .toList()),
+                  ),
+
+                  // ListTile.divideTiles(tiles: tiles)
+                ],
+              ),
+      )),
     );
   }
 }

@@ -30,12 +30,12 @@ class GlobalController extends GetxController {
     } else if (Get.width > 360 && Get.width <= 720) {
       fontHeading.value = 30.0;
       fontSize.value = 21.0;
-      fontSet.value = 16.0;
+      fontSet.value = 13.0;
       fontSmall.value = 13.0;
     } else {
       fontHeading.value = 33.0;
       fontSize.value = 24.0;
-      fontSet.value = 19.0;
+      fontSet.value = 14.0;
       fontSmall.value = 16.0;
     }
 
