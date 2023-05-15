@@ -46,12 +46,16 @@ class DetailPotensiView extends GetView<DetailPotensiController> {
                                   alignment: Alignment.center,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
-                                    color: Colors.white,
+                                    color: global.isDark.value
+                                        ? Color(0xff202427)
+                                        : Colors.white,
                                   ),
                                   child: Icon(
                                     Iconsax.arrow_left_2,
                                     size: global.fontSize.value,
-                                    color: Colors.black,
+                                    color: global.isDark.value
+                                        ? Colors.grey
+                                        : Colors.black,
                                   ),
                                 ),
                               ),
@@ -140,25 +144,41 @@ class DetailPotensiView extends GetView<DetailPotensiController> {
                                     openStore: true,
                                   );
                                 },
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Iconsax.map_1,
-                                      color: Color(0xff20B08D),
-                                      size: global.fontSize.value - 2,
-                                    ),
-                                    SizedBox(
-                                      width: 4,
-                                    ),
-                                    Text(
-                                      "Arah Peta",
-                                      style: TextStyle(
-                                        fontSize: global.fontSet.value - 1,
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 6, vertical: 3),
+                                  decoration: BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                          blurRadius: 10,
+                                          color: Colors.black.withOpacity(0.02),
+                                          offset: Offset(0, 2),
+                                        )
+                                      ],
+                                      borderRadius: BorderRadius.circular(4),
+                                      color: global.isDark.value
+                                          ? Color(0xff202427)
+                                          : Colors.white),
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        Iconsax.map_1,
                                         color: Color(0xff20B08D),
-                                        fontFamily: 'popM',
+                                        size: global.fontSize.value - 2,
                                       ),
-                                    ),
-                                  ],
+                                      SizedBox(
+                                        width: 4,
+                                      ),
+                                      Text(
+                                        "Arah Peta",
+                                        style: TextStyle(
+                                          fontSize: global.fontSet.value - 1,
+                                          color: Color(0xff20B08D),
+                                          fontFamily: 'popM',
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ]),

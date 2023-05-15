@@ -104,9 +104,15 @@ class ProfileView extends GetView<ProfileController> {
                                   'Pengajuan Saya',
                                   style: TextStyle(
                                       fontFamily: 'popM',
-                                      fontSize: global.fontSet.value),
+                                      fontSize: global.fontSet.value,
+                                      color: Colors.white),
                                 ),
-                                Divider(thickness: 0.5),
+                                Divider(
+                                  thickness: 0.5,
+                                  color: global.isDark.value
+                                      ? Colors.grey.shade600
+                                      : Colors.grey,
+                                ),
                                 Container(
                                   margin: EdgeInsets.symmetric(vertical: 5),
                                   child: Row(children: [
@@ -142,9 +148,7 @@ class ProfileView extends GetView<ProfileController> {
                                 horizontal: 10, vertical: 15),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: global.isDark.value
-                                  ? Color(0xff202427)
-                                  : greenny,
+                              color: greenny,
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -378,7 +382,8 @@ class ProfileView extends GetView<ProfileController> {
         Container(
           padding: EdgeInsets.all(global.fontSmall.value - 2),
           decoration: BoxDecoration(
-              border: Border.all(color: Colors.grey.shade200),
+              border: Border.all(
+                  color: global.isDark.value ? greenny : Colors.grey.shade200),
               borderRadius: BorderRadius.circular(8)),
           child: Icon(
             icon,
@@ -395,7 +400,7 @@ class ProfileView extends GetView<ProfileController> {
           style: TextStyle(
               fontFamily: 'popSM',
               fontSize: global.fontSmall.value,
-              color: blacky),
+              color: global.isDark.value ? Colors.grey : blacky),
         )
       ],
     ));

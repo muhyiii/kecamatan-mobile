@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:html/parser.dart';
 import 'package:sitforsa/app/controllers/global_controller.dart';
+import 'package:sitforsa/config/style.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:iconsax/iconsax.dart';
 
@@ -60,22 +61,25 @@ class _DetailBeritaViewState extends State<DetailBeritaView> {
                       padding: EdgeInsets.all(10),
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 10,
-                              color: Colors.black.withOpacity(0.025),
-                              offset: Offset(0, 2),
-                            )
-                          ],
-                          color: Colors.white),
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 10,
+                            color: Colors.black.withOpacity(0.025),
+                            offset: Offset(0, 2),
+                          )
+                        ],
+                        color: global.isDark.value
+                            ? Color(0xff202427)
+                            : Colors.white,
+                      ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
                             Iconsax.arrow_left_2,
                             size: global.fontSize.value,
-                            color: Colors.black,
+                            color: global.isDark.value ? Colors.grey : blacky,
                           ),
                           // Text(previousRoute)
                         ],
@@ -119,15 +123,16 @@ class _DetailBeritaViewState extends State<DetailBeritaView> {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        blurRadius: 10,
-                        color: Colors.black.withOpacity(0.025),
-                        offset: Offset(0, 2),
-                      )
-                    ],
-                    color: Colors.white),
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 10,
+                      color: Colors.black.withOpacity(0.025),
+                      offset: Offset(0, 2),
+                    )
+                  ],
+                  color: global.isDark.value ? Color(0xff202427) : Colors.white,
+                ),
                 child: Column(
                   children: [
                     Row(
@@ -145,7 +150,9 @@ class _DetailBeritaViewState extends State<DetailBeritaView> {
                           timeago.format(data.createdAt, locale: "id"),
                           style: TextStyle(
                               fontFamily: "pop",
-                              color: Colors.grey.shade600,
+                              color: global.isDark.value
+                                  ? Colors.grey.shade600
+                                  : Colors.grey,
                               fontSize: global.fontSet.value - 1.5),
                         )
                       ],
@@ -153,7 +160,12 @@ class _DetailBeritaViewState extends State<DetailBeritaView> {
                     SizedBox(
                       height: global.fontSet.value - 8,
                     ),
-                    Divider(indent: 1),
+                    Divider(
+                      indent: 1,
+                      color: global.isDark.value
+                          ? Colors.grey.shade600
+                          : Colors.grey,
+                    ),
                     SizedBox(
                       height: global.fontSet.value - 3,
                     ),
@@ -161,7 +173,9 @@ class _DetailBeritaViewState extends State<DetailBeritaView> {
                       _parseHtmlString(data.konten),
                       textAlign: TextAlign.start,
                       style: TextStyle(
-                          color: Colors.grey.shade600,
+                          color: global.isDark.value
+                              ? Colors.grey.shade600
+                              : Colors.grey,
                           fontSize: global.fontSet.value - 0.5,
                           fontFamily: "pop"),
                     )

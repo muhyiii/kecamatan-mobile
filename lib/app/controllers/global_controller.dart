@@ -39,8 +39,6 @@ class GlobalController extends GetxController {
       fontSmall.value = 16.0;
     }
 
-
-    
     // initApp();
   }
 
@@ -89,8 +87,9 @@ class GlobalController extends GetxController {
     update();
     if (isDark.value) {
       Get.changeThemeMode(ThemeMode.dark);
-    } else
+    } else {
       Get.changeThemeMode(ThemeMode.light);
+    }
   }
   // initApp() async => await profile.getUserProfile(getToken().toString());
 
@@ -166,6 +165,4 @@ class GlobalController extends GetxController {
     //   },
     // );
   }
-
-  
 }
