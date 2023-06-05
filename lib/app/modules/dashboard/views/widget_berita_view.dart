@@ -36,7 +36,10 @@ class _WidgetBeritaViewState extends State<WidgetBeritaView> {
                 children: [
                   Text(
                     'Berita Terkini',
-                    style: TextStyle(fontFamily: "popM"),
+                    style: TextStyle(
+                      fontFamily: "popM",
+                      fontSize: global.fontSet.value + 1,
+                    ),
                   ),
                   Text(
                     "Lihat lebih banyak",
@@ -313,9 +316,9 @@ class _WidgetBeritaViewState extends State<WidgetBeritaView> {
                                                         index.author.username,
                                                         style: TextStyle(
                                                             fontSize: global
-                                                                    .fontSet
-                                                                    .value -
-                                                                2,
+                                                                    .fontSmall
+                                                                    .value +
+                                                                1,
                                                             fontWeight:
                                                                 FontWeight.w500,
                                                             color: global
@@ -351,9 +354,9 @@ class _WidgetBeritaViewState extends State<WidgetBeritaView> {
                                                         ),
                                                         style: TextStyle(
                                                             fontSize: global
-                                                                    .fontSet
-                                                                    .value -
-                                                                2,
+                                                                    .fontSmall
+                                                                    .value +
+                                                                1,
                                                             color: Colors.grey,
                                                             fontFamily: 'pop'),
                                                       ),

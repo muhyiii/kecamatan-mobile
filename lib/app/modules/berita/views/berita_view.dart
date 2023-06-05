@@ -35,7 +35,7 @@ class _BeritaViewState extends State<BeritaView> {
             appBar: AppBar(
               foregroundColor: Get.isDarkMode ? null : greenny,
               elevation: 0,
-              backgroundColor: Get.isDarkMode ? null : whitey,
+              backgroundColor: Get.isDarkMode ? null : Colors.transparent,
               title: controller.isSearch.value
                   ? TextField(
                       style: TextStyle(
@@ -114,159 +114,158 @@ class _BeritaViewState extends State<BeritaView> {
                             itemCount: controller.dataBerita.length,
                             itemBuilder: (context, index) {
                               if (controller.isLoading.value)
-                                return Card(
-                                  elevation: 0,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                          flex: 2,
-                                          child: Material(
-                                            elevation: 0,
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            child: Shimmer.fromColors(
-                                              baseColor: Colors.grey[200]!,
-                                              highlightColor: Colors.white,
-                                              child: Container(
-                                                height: Get.width / 4.2,
-                                                // width: Get.width / 2.7,
-                                                decoration: BoxDecoration(
-                                                  color: Colors.white
-                                                      .withOpacity(0.6),
-                                                  borderRadius:
-                                                      BorderRadius.circular(8),
-                                                ),
+                                return Container(
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal: 15, vertical: 5),
+                                  padding: const EdgeInsets.all(8.0),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: global.isDark.value
+                                          ? Color(0xff202427)
+                                          : Colors.white),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        flex: 2,
+                                        child: Material(
+                                          elevation: 0,
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          child: Shimmer.fromColors(
+                                            baseColor: Colors.grey[200]!,
+                                            highlightColor: Colors.white,
+                                            child: Container(
+                                              height: Get.width / 5,
+                                              // width: Get.width / 2.7,
+                                              decoration: BoxDecoration(
+                                                color: Colors.white
+                                                    .withOpacity(0.6),
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
                                               ),
                                             ),
                                           ),
                                         ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Expanded(
-                                          flex: 5,
-                                          child: Container(
-                                            height: Get.width / 3.7,
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 10),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              // mainAxisAlignment:
-                                              //     MainAxisAlignment.s,
-                                              children: [
-                                                Expanded(
-                                                  child: Shimmer.fromColors(
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Expanded(
+                                        flex: 6,
+                                        child: Container(
+                                          height: Get.width / 4.2,
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 10),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            // mainAxisAlignment:
+                                            //     MainAxisAlignment.s,
+                                            children: [
+                                              Expanded(
+                                                child: Shimmer.fromColors(
+                                                  baseColor: Colors.grey[200]!,
+                                                  highlightColor: Colors.white,
+                                                  child: Container(
+                                                    child: Text(
+                                                      'Jelang tahun baru orang - orang pada shoalat',
+                                                      style: TextStyle(
+                                                          fontSize: global
+                                                                  .fontSize
+                                                                  .value -
+                                                              5,
+                                                          color: Colors
+                                                              .transparent,
+                                                          fontFamily:
+                                                              'Helvetica Neue'),
+                                                    ),
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 5,
+                                              ),
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Shimmer.fromColors(
                                                     baseColor:
                                                         Colors.grey[200]!,
                                                     highlightColor:
                                                         Colors.white,
                                                     child: Container(
-                                                      child: Text(
-                                                        'Jelang tahun baru orang - orang pada shoalat',
-                                                        style: TextStyle(
-                                                            fontSize: global
-                                                                    .fontSize
-                                                                    .value -
-                                                                5,
-                                                            color: Colors
-                                                                .transparent,
-                                                            fontFamily:
-                                                                'Helvetica Neue'),
-                                                      ),
-                                                      decoration: BoxDecoration(
-                                                        color: Colors.white,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(5),
-                                                      ),
-                                                    ),
+                                                        child: Text(
+                                                          '40 menit yang lalu',
+                                                          style: TextStyle(
+                                                              fontSize: global
+                                                                      .fontSmall
+                                                                      .value +
+                                                                  1,
+                                                              color: Colors
+                                                                  .transparent,
+                                                              fontFamily:
+                                                                  'Helvetica Neue Medium'),
+                                                        ),
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: Colors.white
+                                                              .withOpacity(0.6),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(8),
+                                                        )),
                                                   ),
-                                                ),
-                                                SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Shimmer.fromColors(
-                                                      baseColor:
-                                                          Colors.grey[200]!,
-                                                      highlightColor:
-                                                          Colors.white,
-                                                      child: Container(
-                                                          child: Text(
-                                                            '40 menit yang lalu',
-                                                            style: TextStyle(
-                                                                fontSize: global
-                                                                        .fontSmall
-                                                                        .value +
-                                                                    1,
-                                                                color: Colors
-                                                                    .transparent,
-                                                                fontFamily:
-                                                                    'Helvetica Neue Medium'),
-                                                          ),
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: Colors.white
-                                                                .withOpacity(
-                                                                    0.6),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        5),
-                                                          )),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 2,
-                                                    ),
-                                                    Shimmer.fromColors(
-                                                      baseColor:
-                                                          Colors.grey[200]!,
-                                                      highlightColor:
-                                                          Colors.white,
-                                                      child: Container(
-                                                          child: Text(
-                                                            'by Farah Sadika',
-                                                            style: TextStyle(
-                                                                fontSize: global
-                                                                        .fontSmall
-                                                                        .value +
-                                                                    1,
-                                                                color: Colors
-                                                                    .transparent,
-                                                                fontFamily:
-                                                                    'Helvetica Neue Medium'),
-                                                          ),
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: Colors.white
-                                                                .withOpacity(
-                                                                    0.6),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        5),
-                                                          )),
-                                                    ),
-                                                  ],
-                                                )
-                                              ],
-                                            ),
+                                                  SizedBox(
+                                                    height: 2,
+                                                  ),
+                                                  Shimmer.fromColors(
+                                                    baseColor:
+                                                        Colors.grey[200]!,
+                                                    highlightColor:
+                                                        Colors.white,
+                                                    child: Container(
+                                                        child: Text(
+                                                          'by Farah Sadika',
+                                                          style: TextStyle(
+                                                              fontSize: global
+                                                                      .fontSmall
+                                                                      .value +
+                                                                  1,
+                                                              color: Colors
+                                                                  .transparent,
+                                                              fontFamily:
+                                                                  'Helvetica Neue Medium'),
+                                                        ),
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: Colors.white
+                                                              .withOpacity(0.6),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(8),
+                                                        )),
+                                                  ),
+                                                ],
+                                              )
+                                            ],
                                           ),
-                                        )
-                                      ],
-                                    ),
+                                        ),
+                                      )
+                                    ],
                                   ),
                                 );
                               else
                                 return GestureDetector(
                                   onTap: () {
-                                    print( controller.dataBerita[index].runtimeType);
+                                    print(controller
+                                        .dataBerita[index].runtimeType);
                                     Get.to(() => DetailBeritaView(),
                                         arguments: controller.dataBerita[index],
                                         transition: Transition.native,
@@ -353,11 +352,11 @@ class _BeritaViewState extends State<BeritaView> {
                                                           .username,
                                                       style: TextStyle(
                                                           fontSize: global
-                                                                  .fontSet
-                                                                  .value -
-                                                              2,
-                                                          fontWeight:
-                                                              FontWeight.w500,
+                                                                  .fontSmall
+                                                                  .value +
+                                                              1,
+                                                          fontWeight: FontWeight
+                                                              .w500,
                                                           color:
                                                               global.isDark
                                                                       .value
@@ -398,8 +397,9 @@ class _BeritaViewState extends State<BeritaView> {
                                                       ),
                                                       style: TextStyle(
                                                         fontSize: global
-                                                                .fontSet.value -
-                                                            2,
+                                                                .fontSmall
+                                                                .value +
+                                                            1,
                                                         color:
                                                             global.isDark.value
                                                                 ? Colors.grey
@@ -483,6 +483,13 @@ class _BeritaViewState extends State<BeritaView> {
                             padding: EdgeInsets.all(18),
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 10,
+                                  color: Colors.black.withOpacity(0.02),
+                                  offset: Offset(0, 2),
+                                )
+                              ],
                               color: global.isDark.value
                                   ? Color(0xff202427)
                                   : Colors.white,

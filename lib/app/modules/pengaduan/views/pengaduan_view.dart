@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sitforsa/app/controllers/global_controller.dart';
 import 'package:sitforsa/config/style.dart';
-
 import '../controllers/pengaduan_controller.dart';
 
 class PengaduanView extends GetView<PengaduanController> {
@@ -13,25 +12,27 @@ class PengaduanView extends GetView<PengaduanController> {
     return Obx(
       () => Scaffold(
         appBar: AppBar(
-          foregroundColor: Get.isDarkMode ? null : greenny,
+          foregroundColor: Get.isDarkMode ? null : blacky,
           backgroundColor: Get.isDarkMode ? null : whitey,
+          iconTheme: IconThemeData(size: global.fontHeading.value - 5),
+          elevation: 0,
           title: Text(
-            'PengaduanView',
+            'Pengaduan',
             style: TextStyle(
               fontFamily: 'popSM',
-              fontSize: global.fontSet.value + 3,
+              fontSize: global.fontSet.value + 2,
             ),
           ),
           centerTitle: true,
-          elevation: 0,
           bottom: TabBar(
             labelColor: greenny,
             unselectedLabelStyle: TextStyle(fontFamily: "popM", fontSize: 13),
-            unselectedLabelColor: Colors.black,
+            unselectedLabelColor:
+                global.isDark.value ? Colors.white : Colors.black,
             indicatorSize: TabBarIndicatorSize.label,
             labelStyle: TextStyle(fontFamily: "popSM", fontSize: 13),
             indicatorColor: greenny,
-            isScrollable: true,
+            isScrollable: Get.width > 720 ? false : true,
             controller: tab.controller,
             tabs: tab.myTabs,
           ),

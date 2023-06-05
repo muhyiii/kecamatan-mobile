@@ -16,12 +16,14 @@ class GlobalController extends GetxController {
       NumberFormat.currency(locale: 'ID', symbol: '  ', decimalDigits: 0).obs;
 
   final isDark = false.obs;
+  var dark = false.obs;
   var isOnline = false.obs;
   final token = ''.obs;
 
   @override
   void onInit() {
     super.onInit();
+    change();
     if (Get.width <= 360) {
       fontHeading.value = 27.0;
       fontSize.value = 18.0;
@@ -30,13 +32,13 @@ class GlobalController extends GetxController {
     } else if (Get.width > 360 && Get.width <= 720) {
       fontHeading.value = 30.0;
       fontSize.value = 21.0;
-      fontSet.value = 13.0;
+      fontSet.value = 16.0;
       fontSmall.value = 13.0;
     } else {
-      fontHeading.value = 33.0;
-      fontSize.value = 24.0;
-      fontSet.value = 14.0;
-      fontSmall.value = 16.0;
+      fontHeading.value = 32.0;
+      fontSize.value = 23.0;
+      fontSet.value = 18.0;
+      fontSmall.value = 15.0;
     }
 
     // initApp();
@@ -44,6 +46,7 @@ class GlobalController extends GetxController {
 
   @override
   void onReady() {
+    change();
     super.onReady();
   }
 
@@ -86,9 +89,15 @@ class GlobalController extends GetxController {
     isDark.value = !isDark.value;
     update();
     if (isDark.value) {
+      print("dark ${isDark}");
       Get.changeThemeMode(ThemeMode.dark);
+      ThemeMode.dark;
+      return dark.value = true;
     } else {
+      print("light ${isDark}");
       Get.changeThemeMode(ThemeMode.light);
+      ThemeMode.light;
+      return dark.value = false;
     }
   }
   // initApp() async => await profile.getUserProfile(getToken().toString());

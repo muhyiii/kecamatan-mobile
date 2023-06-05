@@ -72,7 +72,8 @@ class ProfileView extends GetView<ProfileController> {
                         onTap: () => Get.to(() => ProfileFormView()),
                         trailing: Icon(
                           Icons.chevron_right_rounded,
-                          color: Colors.black,
+                          color:
+                              global.isDark.value ? Colors.white : Colors.black,
                           size: 22,
                         ),
                         title: Text(
@@ -93,6 +94,13 @@ class ProfileView extends GetView<ProfileController> {
                             padding: EdgeInsets.symmetric(
                                 horizontal: 10, vertical: 15),
                             decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 10,
+                                  color: Colors.black.withOpacity(0.02),
+                                  offset: Offset(0, 2),
+                                )
+                              ],
                               borderRadius: BorderRadius.circular(10),
                               color:
                                   Get.isDarkMode ? Color(0xff202427) : whitey,
@@ -105,13 +113,15 @@ class ProfileView extends GetView<ProfileController> {
                                   style: TextStyle(
                                       fontFamily: 'popM',
                                       fontSize: global.fontSet.value,
-                                      color: Colors.white),
+                                      color: global.isDark.value
+                                          ? whitey
+                                          : Colors.black),
                                 ),
                                 Divider(
                                   thickness: 0.5,
                                   color: global.isDark.value
                                       ? Colors.grey.shade600
-                                      : Colors.grey,
+                                      : Colors.grey.shade400,
                                 ),
                                 Container(
                                   margin: EdgeInsets.symmetric(vertical: 5),
@@ -147,8 +157,22 @@ class ProfileView extends GetView<ProfileController> {
                             padding: EdgeInsets.symmetric(
                                 horizontal: 10, vertical: 15),
                             decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 10,
+                                  color: Colors.black.withOpacity(0.02),
+                                  offset: Offset(0, 2),
+                                )
+                              ],
+                              border: Border.all(
+                                  width: 1,
+                                  color: global.isDark.value
+                                      ? greenny
+                                      : Colors.transparent),
                               borderRadius: BorderRadius.circular(10),
-                              color: greenny,
+                              color: global.isDark.value
+                                  ? Colors.transparent
+                                  : greenny,
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -156,12 +180,14 @@ class ProfileView extends GetView<ProfileController> {
                                 Text(
                                   'Pengaduan Saya',
                                   style: TextStyle(
-                                      fontFamily: 'popM',
-                                      fontSize: global.fontSet.value,
-                                      color: Colors.white),
+                                    fontFamily: 'popM',
+                                    fontSize: global.fontSet.value,
+                                    color:
+                                        global.isDark.value ? greenny : whitey,
+                                  ),
                                 ),
                                 Divider(
-                                  color: Colors.white,
+                                  color: global.isDark.value ? greenny : whitey,
                                 ),
                                 Container(
                                   margin: EdgeInsets.symmetric(vertical: 5),
@@ -191,7 +217,8 @@ class ProfileView extends GetView<ProfileController> {
                       ListTile(
                         trailing: Icon(
                           Icons.chevron_right_rounded,
-                          color: Colors.black,
+                          color:
+                              global.isDark.value ? Colors.white : Colors.black,
                           size: 22,
                         ),
                         minLeadingWidth: 0,
@@ -350,12 +377,12 @@ class ProfileView extends GetView<ProfileController> {
         Container(
           padding: EdgeInsets.all(global.fontSmall.value - 2),
           decoration: BoxDecoration(
-            color: whitey,
+            color: global.isDark.value ? greenny : whitey,
             borderRadius: BorderRadius.circular(8),
           ),
           child: Icon(
             icon,
-            color: greenny,
+            color: global.isDark.value ? whitey : greenny,
           ),
         ),
         SizedBox(
@@ -369,7 +396,7 @@ class ProfileView extends GetView<ProfileController> {
               fontFamily: 'popSM',
               fontSize: global.fontSmall.value,
               fontWeight: FontWeight.w600,
-              color: whitey),
+              color: global.isDark.value ? greenny : whitey),
         )
       ],
     ));

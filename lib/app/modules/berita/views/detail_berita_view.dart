@@ -47,6 +47,7 @@ class _DetailBeritaViewState extends State<DetailBeritaView> {
     print(data);
     return Scaffold(
         body: SingleChildScrollView(
+      physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
       child: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 10),
@@ -89,7 +90,7 @@ class _DetailBeritaViewState extends State<DetailBeritaView> {
                 ],
               ),
               SizedBox(
-                height: global.fontSmall.value,
+                height: 15,
               ),
               Container(
                 // width: Get.width / 1.5,
@@ -105,7 +106,7 @@ class _DetailBeritaViewState extends State<DetailBeritaView> {
                 ),
               ),
               SizedBox(
-                height: global.fontSet.value + 2,
+                height: 15,
               ),
               Container(
                 width: Get.width,
@@ -118,7 +119,7 @@ class _DetailBeritaViewState extends State<DetailBeritaView> {
                 ),
               ),
               SizedBox(
-                height: global.fontSet.value - 1,
+                height: 15,
               ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),

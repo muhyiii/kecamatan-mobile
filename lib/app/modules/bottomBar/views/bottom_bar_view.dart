@@ -9,7 +9,6 @@ import 'package:sitforsa/app/modules/berita/controllers/berita_controller.dart';
 import 'package:sitforsa/app/modules/berita/views/berita_view.dart';
 import 'package:sitforsa/app/modules/berita/views/detail_berita_view.dart';
 import 'package:sitforsa/app/modules/dashboard/views/dashboard_view.dart';
-import 'package:sitforsa/app/modules/kontakPenting/views/kontak_penting_view.dart';
 import 'package:sitforsa/app/modules/notifikasi/views/notifikasi_view.dart';
 import 'package:sitforsa/app/modules/pelayanan/views/pelayanan_view.dart';
 import 'package:sitforsa/app/modules/profile/views/profile_view.dart';
@@ -46,7 +45,9 @@ class _BottomBarViewState extends State<BottomBarView> {
     });
 
     AwesomeNotifications().actionStream.listen((notification) {
-      var news = beritaController.dataBerita.where((data) => data.judul == notification.body).first;
+      var news = beritaController.dataBerita
+          .where((data) => data.judul == notification.body)
+          .first;
       log(news.toString());
       print(news.runtimeType);
       print(notification.body);
@@ -126,35 +127,44 @@ class _BottomBarViewState extends State<BottomBarView> {
               // margin: EdgeInsets.all(10),
               padding: EdgeInsets.symmetric(horizontal: 9, vertical: 12),
               decoration: BoxDecoration(
-                  color: global.isDark.value ? Color(0xff111315) : whitey,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(15)),
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 10,
-                      color: global.isDark.value
-                          ? Colors.black.withOpacity(0.3)
-                          : Colors.black.withOpacity(0.03),
-                      offset: Offset(0, -3),
-                    )
-                  ]),
+                color: global.isDark.value ? Color(0xff111315) : whitey,
+                // borderRadius: BorderRadius.only(
+                //     topLeft: Radius.circular(15),
+                //     topRight: Radius.circular(15)),
+                border: Border(
+                    top: BorderSide(
+                        width: 0.75,
+                        color: global.isDark.value
+                            ? Colors.grey.shade800
+                            : Colors.grey.shade200)),
+                // boxShadow: [
+                //   BoxShadow(
+                //     blurRadius: 10,
+                //     color: global.isDark.value
+                //         ? Colors.black.withOpacity(0.3)
+                //         : Colors.black.withOpacity(0.03),
+                //     offset: Offset(0, -3),
+                //   )
+                // ],
+              ),
               child: GNav(
                 rippleColor: greeny,
                 hoverColor: greny,
                 gap: 10,
                 tabBorderRadius: 8,
-                activeColor: whitey,
+                activeColor: global.isDark.value ? greenny : whitey,
                 iconSize: 18,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 padding: EdgeInsets.all(9),
                 duration: Duration(milliseconds: 400),
-                tabBackgroundColor: greenny,
+                tabBackgroundColor:
+                    global.isDark.value ? Colors.transparent : greenny,
+                tabActiveBorder: Border.all(width: 1, color: greenny),
                 color: global.isDark.value ? Colors.grey.shade600 : Colors.grey,
                 textStyle: TextStyle(
                     fontSize: global.fontSet.value,
                     fontFamily: 'popSM',
-                    color: whitey),
+                    color: global.isDark.value ? greenny : whitey),
                 tabs: [
                   GButton(
                     icon: controller.tabIndex.value == 0
@@ -191,7 +201,6 @@ class _BottomBarViewState extends State<BottomBarView> {
                 onTabChange: (index) {
                   print(index == 1);
                   if (index == 1) global.reqPermissionNotification();
-
                   setState(() {
                     controller.tabIndex.value = index;
                   });

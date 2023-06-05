@@ -14,25 +14,27 @@ class PengajuanView extends GetView<PengajuanController> {
     return Obx(
       () => Scaffold(
         appBar: AppBar(
-          foregroundColor: Get.isDarkMode ? null : greenny,
+          foregroundColor: Get.isDarkMode ? null : blacky,
           backgroundColor: Get.isDarkMode ? null : whitey,
+          iconTheme: IconThemeData(size: global.fontHeading.value - 5),
           elevation: 0,
           title: Text(
-            'PengajuanView',
+            'Pengajuan',
             style: TextStyle(
               fontFamily: 'popSM',
-              fontSize: global.fontSet.value + 3,
+              fontSize: global.fontSet.value + 2,
             ),
           ),
           centerTitle: true,
           bottom: TabBar(
             labelColor: greenny,
             unselectedLabelStyle: TextStyle(fontFamily: "popM", fontSize: 13),
-            unselectedLabelColor: Colors.black,
+            unselectedLabelColor:
+                global.isDark.value ? Colors.white : Colors.black,
             indicatorSize: TabBarIndicatorSize.label,
             labelStyle: TextStyle(fontFamily: "popSM", fontSize: 13),
             indicatorColor: greenny,
-            isScrollable: true,
+            isScrollable: Get.width > 720 ? false : true,
             controller: tab.controller,
             tabs: tab.myTabs,
           ),

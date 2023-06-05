@@ -31,12 +31,15 @@ class Widget_JadwalStateView extends State<WidgetJadwalView> {
                     "Jadwal Kecamatan",
                     style: TextStyle(
                       fontFamily: "popM",
+                    fontSize: global.fontSet.value + 1,
                     ),
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   SingleChildScrollView(
+                    physics: BouncingScrollPhysics(
+                        parent: AlwaysScrollableScrollPhysics()),
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
@@ -127,13 +130,15 @@ class Widget_JadwalStateView extends State<WidgetJadwalView> {
                     "Jadwal Kecamatan",
                     style: TextStyle(
                       fontFamily: "popM",
-                      // fontSize: 13,
+                      fontSize: global.fontSet.value + 1,
                     ),
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   SingleChildScrollView(
+                    physics: BouncingScrollPhysics(
+                        parent: AlwaysScrollableScrollPhysics()),
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [

@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:sitforsa/app/controllers/global_controller.dart';
 import 'package:sitforsa/config/style.dart';
 import '../controllers/detail_potensi_controller.dart';
-import 'package:iconly/iconly.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:external_app_launcher/external_app_launcher.dart';
 
@@ -18,204 +17,189 @@ class DetailPotensiView extends GetView<DetailPotensiController> {
     final global = Get.put(GlobalController());
     final size = MediaQuery.of(context).size;
     return Scaffold(
+        backgroundColor: global.isDark.value ? Color(0xff111315) : Colors.white,
         body: SingleChildScrollView(
-      child: Obx(() => Column(
-                children: [
-                  Container(
-                    height: Get.width / 1.5,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 12.0, vertical: 10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        bottomRight: Radius.circular(30),
-                      ),
-                      image: DecorationImage(
-                        image: CachedNetworkImageProvider(e.thumbnail),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    child: SafeArea(
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              InkWell(
-                                onTap: () => Get.back(),
-                                child: Container(
-                                  padding: EdgeInsets.all(10),
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: global.isDark.value
-                                        ? Color(0xff202427)
-                                        : Colors.white,
-                                  ),
-                                  child: Icon(
-                                    Iconsax.arrow_left_2,
-                                    size: global.fontSize.value,
-                                    color: global.isDark.value
-                                        ? Colors.grey
-                                        : Colors.black,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-
-                  // SliverToBoxAdapter(
-                  //   child: Padding(
-                  //       padding: EdgeInsets.all(15),
-                  //       child: Row(
-                  //         children: [
-                  //           Container(
-                  //             padding:
-                  //                 EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                  //             decoration: BoxDecoration(
-                  //                 borderRadius: BorderRadius.circular(20), color: abu),
-                  //             child: Text(
-                  //               e.kategori,
-                  //               style: TextStyle(
-                  //                 fontSize: global.fontSmall.value + 1,
-                  //                 color: Colors.grey.shade700,
-                  //                 fontFamily: 'Helvetica Neue',
-                  //               ),
-                  //             ),
-                  //           )
-                  //         ],
-                  //       )),
-                  // ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: size.width / 1.5,
-                          child: Text(
-                            e.namaPotensi,
-                            style: TextStyle(
-                              fontSize: global.fontSize.value,
-                              fontFamily: "popSM",
-                            ),
+          child: Obx(() => Column(
+                    children: [
+                      Container(
+                        height: Get.width / 1.5,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12.0, vertical: 10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(12),
+                              bottomRight: Radius.circular(12)),
+                          boxShadow: [
+                            BoxShadow(
+                              blurRadius: 10,
+                              color: global.isDark.value
+                                  ? Colors.black.withOpacity(0.8)
+                                  : Colors.black.withOpacity(0.15),
+                              offset: Offset(0, 3),
+                            )
+                          ],
+                          image: DecorationImage(
+                            image: CachedNetworkImageProvider(e.thumbnail),
+                            fit: BoxFit.cover,
                           ),
                         ),
-                        SizedBox(
-                          height: Get.width * 0.015,
-                        ),
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        child: SafeArea(
+                          child: Column(
                             children: [
                               Row(
                                 children: [
-                                  Icon(
-                                    IconlyLight.location,
-                                    color: Colors.grey.shade500,
-                                    size: global.fontSize.value - 2,
-                                  ),
-                                  SizedBox(
-                                    width: 4,
-                                  ),
-                                  Text(
-                                    e.desa.namaDesa,
-                                    style: TextStyle(
-                                      fontSize: global.fontSet.value - 1,
-                                      color: Colors.grey.shade500,
-                                      fontFamily: 'pop',
+                                  InkWell(
+                                    onTap: () => Get.back(),
+                                    child: Container(
+                                      padding: EdgeInsets.all(10),
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            blurRadius: 10,
+                                            color:
+                                                Colors.black.withOpacity(0.025),
+                                            offset: Offset(0, 2),
+                                          )
+                                        ],
+                                        color: global.isDark.value
+                                            ? Color(0xff202427)
+                                            : Colors.white,
+                                      ),
+                                      child: Icon(
+                                        Iconsax.arrow_left_2,
+                                        size: global.fontSize.value,
+                                        color: global.isDark.value
+                                            ? Colors.grey
+                                            : blacky,
+                                      ),
                                     ),
                                   ),
                                 ],
                               ),
-                              InkWell(
-                                onTap: () async {
-                                  // MapsLauncher.launchCoordinates(
-                                  //     e.dasa.latitude, e.desa.longtitude);
-                                  await LaunchApp.openApp(
-                                    androidPackageName:
-                                        'com.google.android.apps.maps',
-                                    iosUrlScheme: 'comgooglemaps://',
-                                    // iosUrlScheme:
-                                    //     'comgooglemaps://geo:${e.desa.latitude},${e.desa.longtitude}',
-                                    appStoreLink:
-                                        "https://apps.apple.com/us/app/example-app/id1234567890",
-                                    openStore: true,
-                                  );
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 6, vertical: 3),
-                                  decoration: BoxDecoration(
-                                      boxShadow: [
-                                        BoxShadow(
-                                          blurRadius: 10,
-                                          color: Colors.black.withOpacity(0.02),
-                                          offset: Offset(0, 2),
-                                        )
-                                      ],
-                                      borderRadius: BorderRadius.circular(4),
-                                      color: global.isDark.value
-                                          ? Color(0xff202427)
-                                          : Colors.white),
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                        Iconsax.map_1,
-                                        color: Color(0xff20B08D),
-                                        size: global.fontSize.value - 2,
-                                      ),
-                                      SizedBox(
-                                        width: 4,
-                                      ),
-                                      Text(
-                                        "Arah Peta",
-                                        style: TextStyle(
-                                          fontSize: global.fontSet.value - 1,
-                                          color: Color(0xff20B08D),
-                                          fontFamily: 'popM',
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ]),
-                        SizedBox(
-                          height: Get.width * 0.02,
-                        ),
-                        Container(
-                          child: Divider(color: abu),
-                        ),
-                        SizedBox(
-                          height: Get.width * 0.02,
-                        ),
-                        Text(
-                          "Keterangan",
-                          style: TextStyle(
-                              fontSize: global.fontSize.value - 2,
-                              fontFamily: "popM"),
-                        ),
-                        SizedBox(
-                          height: Get.width * 0.02,
-                        ),
-                        Text(
-                          e.deskripsi,
-                          textAlign: TextAlign.justify,
-                          style: TextStyle(
-                            fontFamily: "pop",
-                            color: Color(0xff8E8E8E),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                ],
-              )
-          // Add more slivers here...
-          ),
-    )
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 13,
+                          horizontal: 15,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              child: Text(
+                                e.namaPotensi,
+                                style: TextStyle(
+                                  fontSize: global.fontSize.value,
+                                  fontFamily: "popSM",
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: Get.width * 0.015,
+                            ),
+                            Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    e.desa.namaDesa,
+                                    style: TextStyle(
+                                      fontSize: global.fontSet.value - 1,
+                                      color: Colors.grey.shade600,
+                                      fontFamily: 'pop',
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () async {
+                                      await LaunchApp.openApp(
+                                        androidPackageName:
+                                            'com.google.android.apps.maps',
+                                        iosUrlScheme: 'comgooglemaps://',
+                                        appStoreLink:
+                                            "https://apps.apple.com/us/app/example-app/id1234567890",
+                                        openStore: true,
+                                      );
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 6, vertical: 3),
+                                      decoration: BoxDecoration(
+                                          boxShadow: [
+                                            BoxShadow(
+                                              blurRadius: 10,
+                                              color: Colors.black
+                                                  .withOpacity(0.02),
+                                              offset: Offset(0, 2),
+                                            )
+                                          ],
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                          color: global.isDark.value
+                                              ? Color(0xff202427)
+                                              : Colors.white),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Iconsax.map_1,
+                                            color: Color(0xff20B08D),
+                                            size: global.fontSize.value - 2,
+                                          ),
+                                          SizedBox(
+                                            width: 4,
+                                          ),
+                                          Text(
+                                            "Arah Peta",
+                                            style: TextStyle(
+                                              fontSize:
+                                                  global.fontSet.value - 1,
+                                              color: Color(0xff20B08D),
+                                              fontFamily: 'popM',
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ]),
+                            SizedBox(
+                              height: Get.width * 0.02,
+                            ),
+                            Container(
+                              child: Divider(color: abu),
+                            ),
+                            SizedBox(
+                              height: Get.width * 0.02,
+                            ),
+                            Text(
+                              "Keterangan",
+                              style: TextStyle(
+                                  fontSize: global.fontSize.value - 2,
+                                  fontFamily: "popM"),
+                            ),
+                            SizedBox(
+                              height: Get.width * 0.02,
+                            ),
+                            Text(
+                              e.deskripsi,
+                              textAlign: TextAlign.justify,
+                              style: TextStyle(
+                                fontFamily: "pop",
+                                color: Color(0xff8E8E8E),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  )
+              // Add more slivers here...
+              ),
+        )
 
         // SingleChildScrollView(
         //   child: Column(
